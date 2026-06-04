@@ -1,0 +1,192 @@
+{
+  "meta": {
+    "title": "Bedrock Construction Group — We Build What Lasts",
+    "description": "Bedrock Construction Group is a full-service general contractor delivering commercial, industrial, and infrastructure projects across the region since 1992.",
+    "favicon": "images/favicon.png"
+  },
+  "company": {
+    "name": "Bedrock",
+    "fullName": "Bedrock Construction Group",
+    "tagline": "We build what lasts.",
+    "established": "1992",
+    "license": "GC #0427781"
+  },
+  "nav": [
+    { "label": "Work", "href": "#work" },
+    { "label": "Services", "href": "#services" },
+    { "label": "Process", "href": "#process" },
+    { "label": "About", "href": "#about" },
+    { "label": "Contact", "href": "#contact" }
+  ],
+  "cta": { "label": "Start a project", "href": "#contact" },
+  "hero": {
+    "eyebrow": "General Contractor · Est. 1992",
+    "headline": "Ground broken. Standards higher.",
+    "subheadline": "We deliver commercial, industrial, and infrastructure projects with the precision of an engineer and the grit of a crew that shows up before sunrise.",
+    "primaryCta": { "label": "See our work", "href": "#work" },
+    "secondaryCta": { "label": "Request a bid", "href": "#contact" },
+    "image": "images/hero.jpg"
+  },
+  "stats": [
+    { "value": "32", "suffix": "yrs", "label": "On the job" },
+    { "value": "450", "suffix": "+", "label": "Projects delivered" },
+    { "value": "2.4", "suffix": "M sq ft", "label": "Built to date" },
+    { "value": "98", "suffix": "%", "label": "Delivered on schedule" }
+  ],
+  "services": [
+    {
+      "code": "01",
+      "title": "General Contracting",
+      "description": "Single point of accountability from groundbreaking to final walkthrough, with self-performed structural and concrete crews."
+    },
+    {
+      "code": "02",
+      "title": "Design-Build",
+      "description": "One contract, one team. We collapse the gap between design and construction to cut cost and compress your schedule."
+    },
+    {
+      "code": "03",
+      "title": "Commercial Construction",
+      "description": "Offices, retail, hospitality, and mixed-use. Spaces engineered for the people who use them every day."
+    },
+    {
+      "code": "04",
+      "title": "Industrial & Infrastructure",
+      "description": "Warehouses, plants, bridges, and utilities built to carry load for decades, not warranty periods."
+    },
+    {
+      "code": "05",
+      "title": "Renovation & Restoration",
+      "description": "Adaptive reuse and historic restoration that respects what was built and reinforces it for what's next."
+    },
+    {
+      "code": "06",
+      "title": "Pre-Construction",
+      "description": "Estimating, value engineering, and constructability reviews that surface risk while it's still cheap to fix."
+    }
+  ],
+  "projects": [
+    {
+      "title": "Harborline Logistics Center",
+      "category": "Industrial",
+      "location": "Port District",
+      "year": "2024",
+      "scope": "410,000 sq ft distribution facility",
+      "image": "images/project-1.jpg",
+      "featured": true
+    },
+    {
+      "title": "The Foundry Lofts",
+      "category": "Adaptive Reuse",
+      "location": "Old Mill Quarter",
+      "year": "2023",
+      "scope": "1907 foundry converted to 84 residences",
+      "image": "images/project-2.jpg",
+      "featured": true
+    },
+    {
+      "title": "Meridian Medical Pavilion",
+      "category": "Commercial",
+      "location": "Uptown",
+      "year": "2023",
+      "scope": "6-story outpatient surgical center",
+      "image": "images/project-3.jpg",
+      "featured": false
+    },
+    {
+      "title": "Crosstown Transit Bridge",
+      "category": "Infrastructure",
+      "location": "River Crossing",
+      "year": "2022",
+      "scope": "1,240 ft cable-stayed span",
+      "image": "images/project-4.jpg",
+      "featured": false
+    }
+  ],
+  "process": [
+    {
+      "step": "01",
+      "title": "Consult",
+      "description": "We sit down before anyone picks up a pencil. Budget, timeline, and risk get defined out loud."
+    },
+    {
+      "step": "02",
+      "title": "Plan",
+      "description": "Pre-construction modeling, estimating, and value engineering turn the vision into a buildable, costed plan."
+    },
+    {
+      "step": "03",
+      "title": "Build",
+      "description": "Self-performed crews and vetted subs execute against a schedule you can watch in real time."
+    },
+    {
+      "step": "04",
+      "title": "Deliver",
+      "description": "Punch list closed, warranties documented, keys handed over. Then we stay reachable."
+    }
+  ],
+  "about": {
+    "eyebrow": "Who we are",
+    "headline": "Three decades of showing up.",
+    "body": [
+      "Bedrock started in 1992 with two pickup trucks, a concrete mixer, and a refusal to cut corners. Thirty-two years later the equipment yard is bigger, but the rule hasn't moved an inch.",
+      "We self-perform our structural, concrete, and carpentry work, which means the people accountable for your project are on our payroll, not a stranger's. That's how schedules hold and quality stays consistent from the footing to the final coat."
+    ],
+    "points": [
+      "Self-performing structural & concrete crews",
+      "OSHA-recordable rate 3x below industry average",
+      "Bonded & insured to $50M per project",
+      "In-house estimating & BIM coordination"
+    ],
+    "image": "images/about.jpg"
+  },
+  "testimonials": [
+    {
+      "quote": "Bedrock hit a 14-month schedule on a project everyone else padded to 18. No drama, no change-order games. Just built.",
+      "author": "Dana Whitfield",
+      "role": "VP Development, Harborline Partners"
+    },
+    {
+      "quote": "They walked us through every risk before we signed. When the unexpected showed up underground, they already had a plan.",
+      "author": "Marcus Reyes",
+      "role": "Facilities Director, Meridian Health"
+    }
+  ],
+  "contact": {
+    "eyebrow": "Start a project",
+    "headline": "Let's talk about what you're building.",
+    "body": "Tell us the scope and the deadline. We'll tell you straight whether we can hit it.",
+    "phone": "(555) 014-2200",
+    "email": "build@bedrockgroup.example",
+    "address": "1492 Quarry Road, Building C\nIndustrial District, ST 00420",
+    "hours": "Mon–Fri · 6:00a – 5:00p"
+  },
+  "footer": {
+    "blurb": "Full-service general contractor building commercial, industrial, and infrastructure projects that outlast their warranties.",
+    "columns": [
+      {
+        "title": "Company",
+        "links": [
+          { "label": "Our Work", "href": "#work" },
+          { "label": "Services", "href": "#services" },
+          { "label": "About", "href": "#about" },
+          { "label": "Careers", "href": "#contact" }
+        ]
+      },
+      {
+        "title": "Capabilities",
+        "links": [
+          { "label": "General Contracting", "href": "#services" },
+          { "label": "Design-Build", "href": "#services" },
+          { "label": "Pre-Construction", "href": "#services" },
+          { "label": "Renovation", "href": "#services" }
+        ]
+      }
+    ],
+    "social": [
+      { "label": "LinkedIn", "href": "#" },
+      { "label": "Instagram", "href": "#" }
+    ],
+    "legal": "© 2025 Bedrock Construction Group. All rights reserved."
+  }
+}

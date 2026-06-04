@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bedrock Construction Group</title>
+<meta name="description" content="Full-service general contractor." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Black&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  /* ============================================================
+     SCAFFOLDING ONLY — all copy/images come from content.json
+     ============================================================ */
+  :root {
+    --bg:        #14110d;
+    --bg-2:      #1b1812;
+    --panel:     #221e17;
+    --line:      #36302502;
+    --line-solid:#372f23;
+    --concrete:  #b9b1a3;
+    --fog:       #79716237;
+    --text:      #ece6da;
+    --muted:     #9a9183;
+    --amber:     #f5a623;
+    --amber-deep:#cf8511;
+    --max:       1240px;
+    --pad:       clamp(1.25rem, 5vw, 4rem);
+    --display:   'Archivo Black', system-ui, sans-serif;
+    --sans:      'Archivo', system-ui, sans-serif;
+    --mono:      'Spline Sans Mono', ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    /* blueprint grid */
+    background-image:
+      linear-gradient(rgba(245,166,35,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245,166,35,.025) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding-inline: var(--pad); }
+
+  .mono { font-family: var(--mono); }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: var(--amber);
+    display: inline-flex;
+    align-items: center;
+    gap: .7rem;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 26px; height: 2px;
+    background: var(--amber);
+    display: inline-block;
+  }
+
+  .section-head { max-width: 720px; margin-bottom: 3.5rem; }
+  .section-head h2 {
+    font-family: var(--display);
+    font-size: clamp(2.1rem, 5.5vw, 3.6rem);
+    line-height: .98;
+    letter-spacing: -.02em;
+    margin-top: 1.1rem;
+    text-transform: uppercase;
+  }
+
+  section { padding-block: clamp(4.5rem, 9vw, 8rem); position: relative; }
+
+  /* hazard stripe divider */
+  .hazard {
+    height: 14px;
+    background: repeating-linear-gradient(
+      -45deg, var(--amber) 0 18px, var(--bg) 18px 36px);
+    opacity: .9;
+  }
+
+  /* ---------- buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; gap: .6rem;
+    font-family: var(--mono);
+    font-size: .82rem; font-weight: 500;
+    letter-spacing: .08em; text-transform: uppercase;
+    padding: .95rem 1.6rem;
+    border: 1px solid var(--line-solid);
+    transition: .25s ease;
+    cursor: pointer;
+  }
+  .btn--primary { background: var(--amber); color: #1a1206; border-color: var(--amber); }
+  .btn--primary:hover { background: var(--amber-deep); transform: translateY(-2px); }
+  .btn--ghost:hover { border-color: var(--amber); color: var(--amber); }
+  .btn .arrow { transition: transform .25s ease; }
+  .btn:hover .arrow { transform: translateX(4px); }
+
+  /* ---------- header ---------- */
+  header {
+    position: fixed; inset: 0 0 auto 0; z-index: 100;
+    transition: background .3s ease, border-color .3s ease, padding .3s ease;
+    border-bottom: 1px solid transparent;
+    padding-block: 1.25rem;
+  }
+  header.scrolled {
+    background: rgba(20,17,13,.82);
+    backdrop-filter: blur(12px);
+    border-color: var(--line-solid);
+    padding-block: .8rem;
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+  .brand { display: flex; align-items: center; gap: .7rem; font-family: var(--display); font-size: 1.35rem; letter-spacing: -.01em; text-transform: uppercase; }
+  .brand .mark {
+    width: 30px; height: 30px;
+    background: var(--amber);
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
+  }
+  nav.links { display: flex; gap: 2rem; }
+  nav.links a {
+    font-family: var(--mono); font-size: .8rem; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--muted); transition: color .2s;
+  }
+  nav.links a:hover { color: var(--text); }
+  .nav-cta { display: flex; align-items: center; gap: 1.5rem; }
+  .menu-toggle { display: none; background: none; border: 0; color: var(--text); cursor: pointer; font-family: var(--mono); font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; }
+
+  /* ---------- hero ---------- */
+  .hero { padding-top: clamp(8rem, 16vh, 12rem); min-height: 100vh; display: flex; align-items: center; position: relative; }
+  .hero-media {
+    position: absolute; inset: 0; z-index: -1;
+    background-size: cover; background-position: center;
+  }
+  .hero-media::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(20,17,13,.55) 0%, rgba(20,17,13,.8) 55%, var(--bg) 100%),
+                linear-gradient(90deg, rgba(20,17,13,.85), rgba(20,17,13,.25));
+  }
+  .hero-grid { display: grid; grid-template-columns: 1.4fr .9fr; gap: 3rem; align-items: end; width: 100%; }
+  .hero h1 {
+    font-family: var(--display);
+    font-size: clamp(2.8rem, 8.5vw, 6.4rem);
+    line-height: .92; letter-spacing: -.03em;
+    text-transform: uppercase; margin: 1.4rem 0 1.6rem;
+  }
+  .hero p.sub { font-size: clamp(1.05rem, 1.7vw, 1.3rem); color: var(--concrete); max-width: 46ch; }
+  .hero-actions { display: flex; gap: 1rem; margin-top: 2.4rem; flex-wrap: wrap; }
+  .hero-side { border-left: 1px solid var(--line-solid); padding-left: 2rem; align-self: end; padding-bottom: .5rem; }
+  .hero-side .lic { font-family: var(--mono); font-size: .78rem; color: var(--muted); letter-spacing: .1em; }
+  .scroll-cue { position: absolute; bottom: 2rem; left: var(--pad); font-family: var(--mono); font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: .6rem; }
+  .scroll-cue::after { content:""; width: 40px; height: 1px; background: var(--muted); animation: cue 2s ease-in-out infinite; }
+  @keyframes cue { 0%,100%{ transform: scaleX(.4); opacity:.4 } 50%{ transform: scaleX(1); opacity:1 } }
+
+  /* ---------- stats ---------- */
+  .stats { background: var(--bg-2); border-block: 1px solid var(--line-solid); padding-block: 0; }
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .stat { padding: 2.6rem 1.5rem; border-left: 1px solid var(--line-solid); }
+  .stat:first-child { border-left: 0; }
+  .stat .num { font-family: var(--display); font-size: clamp(2.2rem, 4.5vw, 3.4rem); line-height: 1; color: var(--amber); }
+  .stat .num .suffix { font-size: .45em; color: var(--text); margin-left: .15em; }
+  .stat .lbl { font-family: var(--mono); font-size: .76rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-top: .8rem; }
+
+  /* ---------- services ---------- */
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line-solid); border-left: 1px solid var(--line-solid); }
+  .service {
+    padding: 2.4rem 2rem 2.8rem;
+    border-right: 1px solid var(--line-solid);
+    border-bottom: 1px solid var(--line-solid);
+    transition: background .25s ease;
+    position: relative;
+  }
+  .service:hover { background: var(--panel); }
+  .service .code { font-family: var(--mono); font-size: .8rem; color: var(--amber); letter-spacing: .1em; }
+  .service h3 { font-family: var(--sans); font-weight: 700; font-size: 1.35rem; margin: 1rem 0 .7rem; letter-spacing: -.01em; }
+  .service p { color: var(--muted); font-size: .98rem; }
+  .service::after { content:""; position:absolute; left:0; bottom:-1px; height:2px; width:0; background:var(--amber); transition:width .3s ease; }
+  .service:hover::after { width:100%; }
+
+  /* ---------- work / projects ---------- */
+  #work { background: var(--bg-2); }
+  .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.4rem; }
+  .project {
+    position: relative; overflow: hidden;
+    border: 1px solid var(--line-solid);
+    aspect-ratio: 16 / 11;
+    display: flex; align-items: flex-end;
+    background: var(--panel);
+  }
+  .project.span2 { grid-column: span 2; aspect-ratio: 21 / 9; }
+  .project .ph { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+  .project:hover .ph { transform: scale(1.05); }
+  /* fallback blueprint pattern when image missing */
+  .project .ph[data-fallback="1"] {
+    background-image:
+      repeating-linear-gradient(45deg, rgba(245,166,35,.06) 0 2px, transparent 2px 22px),
+      linear-gradient(135deg, #2a251c, #181510);
+  }
+  .project .veil { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(15,12,8,.92) 0%, rgba(15,12,8,.15) 60%, transparent 100%); }
+  .project .info { position: relative; padding: 1.8rem; width: 100%; }
+  .project .meta { display: flex; gap: .8rem; font-family: var(--mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--amber); margin-bottom: .7rem; }
+  .project .meta span:not(:first-child)::before { content:"/ "; color: var(--muted); }
+  .project h3 { font-family: var(--display); font-size: clamp(1.3rem, 2.5vw, 1.9rem); text-transform: uppercase; line-height: 1; letter-spacing: -.01em; }
+  .project .scope { color: var(--concrete); font-size: .92rem; margin-top: .5rem; }
+
+  /* ---------- process ---------- */
+  .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  .pstep { border-top: 2px solid var(--amber); padding-top: 1.4rem; }
+  .pstep .n { font-family: var(--display); font-size: 2.6rem; line-height: 1; color: var(--fog); -webkit-text-stroke: 1px var(--line-solid); }
+  .pstep h3 { font-size: 1.3rem; font-weight: 700; margin: .6rem 0 .6rem; letter-spacing: -.01em; }
+  .pstep p { color: var(--muted); font-size: .96rem; }
+
+  /* ---------- about ---------- */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+  .about-copy h2 { font-family: var(--display); font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1; text-transform: uppercase; letter-spacing: -.02em; margin: 1rem 0 1.6rem; }
+  .about-copy p { color: var(--concrete); margin-bottom: 1.1rem; }
+  .about-points { list-style: none; margin-top: 2rem; display: grid; gap: .9rem; }
+  .about-points li { display: flex; gap: .8rem; font-family: var(--mono); font-size: .9rem; color: var(--text); }
+  .about-points li::before { content: "▸"; color: var(--amber); }
+  .about-media { position: relative; aspect-ratio: 4/5; border: 1px solid var(--line-solid); overflow: hidden; }
+  .about-media .ph { position:absolute; inset:0; background-size: cover; background-position: center; }
+  .about-media .ph[data-fallback="1"] { background-image: repeating-linear-gradient(45deg, rgba(245,166,35,.06) 0 2px, transparent 2px 22px), linear-gradient(135deg, #2a251c, #181510); }
+  .about-media .tag { position: absolute; bottom: 1.2rem; left: 1.2rem; font-family: var(--mono); font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; color: var(--amber); background: rgba(15,12,8,.7); padding: .5rem .8rem; border: 1px solid var(--line-solid); }
+
+  /* ---------- testimonials ---------- */
+  #voices { background: var(--bg-2); border-block: 1px solid var(--line-solid); }
+  .quotes { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.4rem; }
+  .quote { border: 1px solid var(--line-solid); padding: 2.4rem; background: var(--bg); }
+  .quote .mark { font-family: var(--display); font-size: 3rem; line-height: .6; color: var(--amber); }
+  .quote blockquote { font-size: 1.18rem; line-height: 1.5; margin: 1rem 0 1.8rem; }
+  .quote .who { font-family: var(--mono); font-size: .82rem; letter-spacing: .04em; }
+  .quote .who b { color: var(--text); font-weight: 600; }
+  .quote .who span { color: var(--muted); display: block; }
+
+  /* ---------- contact ---------- */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem,5vw,4rem); }
+  .contact-copy h2 { font-family: var(--display); font-size: clamp(2.1rem, 5vw, 3.6rem); line-height: 1; text-transform: uppercase; letter-spacing: -.02em; margin: 1rem 0 1.4rem; }
+  .contact-copy p { color: var(--concrete); max-width: 42ch; }
+  .contact-rows { margin-top: 2.4rem; display: grid; gap: 0; }
+  .crow { display: flex; justify-content: space-between; gap: 1rem; padding: 1.1rem 0; border-top: 1px solid var(--line-solid); font-family: var(--mono); font-size: .92rem; }
+  .crow:last-child { border-bottom: 1px solid var(--line-solid); }
+  .crow .k { color: var(--muted); letter-spacing: .1em; text-transform: uppercase; font-size: .76rem; align-self: center; }
+  .crow .v { text-align: right; white-space: pre-line; }
+  .crow a:hover { color: var(--amber); }
+  .form { background: var(--panel); border: 1px solid var(--line-solid); padding: 2rem; }
+  .field { margin-bottom: 1.1rem; }
+  .field label { font-family: var(--mono); font-size: .74rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: .5rem; }
+  .field input, .field textarea, .field select {
+    width: 100%; background: var(--bg); border: 1px solid var(--line-solid);
+    color: var(--text); font-family: var(--sans); font-size: 1rem; padding: .85rem 1rem;
+  }
+  .field input:focus, .field textarea:focus, .field select:focus { outline: none; border-color: var(--amber); }
+  .field textarea { resize: vertical; min-height: 120px; }
+  .form .btn { width: 100%; justify-content: center; }
+  .form-note { font-family: var(--mono); font-size: .76rem; color: var(--muted); margin-top: 1rem; text-align: center; }
+
+  /* ---------- footer ---------- */
+  footer { padding-top: clamp(3.5rem,7vw,5.5rem); padding-bottom: 2.5rem; border-top: 1px solid var(--line-solid); }
+  .foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 2.5rem; }
+  .foot-brand .brand { margin-bottom: 1.2rem; }
+  .foot-brand p { color: var(--muted); font-size: .95rem; max-width: 34ch; }
+  .foot-col h4 { font-family: var(--mono); font-size: .76rem; letter-spacing: .14em; text-transform: uppercase; color: var(--amber); margin-bottom: 1.1rem; }
+  .foot-col a { display: block; color: var(--muted); font-size: .95rem; padding: .35rem 0; transition: color .2s; }
+  .foot-col a:hover { color: var(--text); }
+  .foot-bottom { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 3.5rem; padding-top: 1.6rem; border-top: 1px solid var(--line-solid); flex-wrap: wrap; }
+  .foot-bottom .legal { font-family: var(--mono); font-size: .76rem; color: var(--muted); }
+  .foot-social { display: flex; gap: 1.4rem; }
+  .foot-social a { font-family: var(--mono); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .foot-social a:hover { color: var(--amber); }
+
+  /* ---------- reveal animation ---------- */
+  [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+  [data-reveal].in { opacity: 1; transform: none; }
+
+  /* ---------- error state ---------- */
+  #boot-error { display:none; position:fixed; inset:auto 1rem 1rem 1rem; z-index:200; background:var(--panel); border:1px solid var(--amber); padding:1.2rem 1.4rem; font-family:var(--mono); font-size:.85rem; max-width:520px; margin-inline:auto; }
+  #boot-error b { color: var(--amber); }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 980px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-side { border-left: 0; padding-left: 0; border-top: 1px solid var(--line-solid); padding-top: 1.2rem; }
+    .stats-grid { grid-template-columns: repeat(2,1fr); }
+    .stat:nth-child(odd) { border-left: 0; }
+    .stat:nth-child(3), .stat:nth-child(4) { border-top: 1px solid var(--line-solid); }
+    .services-grid { grid-template-columns: repeat(2,1fr); }
+    .process-grid { grid-template-columns: repeat(2,1fr); }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .quotes { grid-template-columns: 1fr; }
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    nav.links, .nav-cta .btn { display: none; }
+    .menu-toggle { display: block; }
+    .services-grid, .projects, .process-grid, .foot-grid { grid-template-columns: 1fr; }
+    .project.span2 { grid-column: span 1; }
+    nav.links.open { display: flex; position: absolute; top: 100%; left:0; right:0; flex-direction: column; background: var(--bg-2); border-bottom: 1px solid var(--line-solid); padding: 1rem var(--pad); }
+  }
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top"><span class="mark"></span><span data-bind="company.name">Bedrock</span></a>
+    <nav class="links" id="nav-links"></nav>
+    <div class="nav-cta">
+      <a class="btn btn--primary" id="nav-cta" href="#contact">Start a project</a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Menu">Menu</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-media" id="hero-media"></div>
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow" data-bind="hero.eyebrow"></span>
+        <h1 data-bind="hero.headline"></h1>
+        <p class="sub" data-bind="hero.subheadline"></p>
+        <div class="hero-actions" id="hero-actions"></div>
+      </div>
+      <aside class="hero-side">
+        <div class="lic" id="hero-lic"></div>
+      </aside>
+    </div>
+    <div class="scroll-cue">Scroll</div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats" id="stats" style="padding:0">
+    <div class="wrap" style="padding:0">
+      <div class="stats-grid" id="stats-grid"></div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">Selected Work</span>
+        <h2>Things we've put in the ground.</h2>
+      </div>
+      <div class="projects" id="projects-grid"></div>
+    </div>
+  </section>
+
+  <div class="hazard"></div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">Capabilities</span>
+        <h2>Everything from footing to finish.</h2>
+      </div>
+      <div class="services-grid" id="services-grid"></div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">How we work</span>
+        <h2>Four phases. Zero surprises.</h2>
+      </div>
+      <div class="process-grid" id="process-grid"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap about-grid">
+      <div class="about-copy" data-reveal>
+        <span class="eyebrow" data-bind="about.eyebrow"></span>
+        <h2 data-bind="about.headline"></h2>
+        <div id="about-body"></div>
+        <ul class="about-points" id="about-points"></ul>
+      </div>
+      <div class="about-media" data-reveal>
+        <div class="ph" id="about-media"></div>
+        <span class="tag" data-bind="company.fullName"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="voices">
+    <div class="wrap">
+      <div class="quotes" id="quotes-grid"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap contact-grid">
+      <div class="contact-copy" data-reveal>
+        <span class="eyebrow" data-bind="contact.eyebrow"></span>
+        <h2 data-bind="contact.headline"></h2>
+        <p data-bind="contact.body"></p>
+        <div class="contact-rows" id="contact-rows"></div>
+      </div>
+      <div class="form" data-reveal>
+        <div class="field">
+          <label for="f-name">Name</label>
+          <input id="f-name" type="text" placeholder="Your name" />
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" type="email" placeholder="you@company.com" />
+        </div>
+        <div class="field">
+          <label for="f-scope">Project type</label>
+          <select id="f-scope"></select>
+        </div>
+        <div class="field">
+          <label for="f-msg">Tell us about the project</label>
+          <textarea id="f-msg" placeholder="Scope, location, target completion date…"></textarea>
+        </div>
+        <a class="btn btn--primary" id="form-submit" href="#">Send inquiry <span class="arrow">→</span></a>
+        <p class="form-note">This is a static demo form — wire it to your handler of choice.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top"><span class="mark"></span><span data-bind="company.name"></span></a>
+        <p data-bind="footer.blurb"></p>
+      </div>
+      <div id="foot-cols" style="display:contents"></div>
+      <div class="foot-col" id="foot-contact"></div>
+    </div>
+    <div class="foot-bottom">
+      <span class="legal" data-bind="footer.legal"></span>
+      <div class="foot-social" id="foot-social"></div>
+    </div>
+  </div>
+</footer>
+
+<div id="boot-error">
+  <b>Content failed to load.</b><br />
+  This page reads <code>content.json</code> over HTTP. If you opened the file directly,
+  run a local server (<code>python3 -m http.server</code>) and visit the localhost URL.
+</div>
+
+<script>
+/* ============================================================
+   RENDERER — fetches content.json and populates the page.
+   The external GitHub Actions service only needs to overwrite
+   content.json and drop matching files into /images.
+   ============================================================ */
+(function () {
+  "use strict";
+
+  const $  = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+  // safely read a dotted path like "company.name" from an object
+  const get = (obj, path) =>
+    path.split(".").reduce((o, k) => (o == null ? o : o[k]), obj);
+
+  // set a background image with graceful fallback when the file 404s
+  function setImage(el, url) {
+    if (!el) return;
+    if (!url) { el.dataset.fallback = "1"; return; }
+    const probe = new Image();
+    probe.onload  = () => { el.style.backgroundImage = `url("${url}")`; el.removeAttribute("data-fallback"); };
+    probe.onerror = () => { el.dataset.fallback = "1"; };
+    probe.src = url;
+  }
+
+  function el(tag, cls, html) {
+    const n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (html != null) n.innerHTML = html;
+    return n;
+  }
+
+  function render(data) {
+    // <title> + meta + favicon
+    if (get(data, "meta.title")) document.title = data.meta.title;
+    const desc = $('meta[name="description"]');
+    if (desc && get(data, "meta.description")) desc.setAttribute("content", data.meta.description);
+    if (get(data, "meta.favicon")) {
+      const link = el("link"); link.rel = "icon"; link.href = data.meta.favicon;
+      document.head.appendChild(link);
+    }
+
+    // simple [data-bind] text fills
+    $$("[data-bind]").forEach((node) => {
+      const v = get(data, node.dataset.bind);
+      if (v != null) node.textContent = v;
+    });
+
+    // nav
+    const nav = $("#nav-links");
+    (data.nav || []).forEach((item) => {
+      const a = el("a"); a.href = item.href; a.textContent = item.label;
+      nav.appendChild(a);
+    });
+    if (get(data, "cta.label")) {
+      const c = $("#nav-cta"); c.textContent = data.cta.label; c.href = data.cta.href || "#contact";
+    }
+
+    // hero
+    setImage($("#hero-media"), get(data, "hero.image"));
+    const ha = $("#hero-actions");
+    [["hero.primaryCta", "btn btn--primary"], ["hero.secondaryCta", "btn btn--ghost"]].forEach(([p, c]) => {
+      const cta = get(data, p);
+      if (cta && cta.label) {
+        const a = el("a", c); a.href = cta.href || "#";
+        a.innerHTML = `${cta.label} <span class="arrow">→</span>`;
+        ha.appendChild(a);
+      }
+    });
+    const lic = $("#hero-lic");
+    if (lic) {
+      const parts = [];
+      if (get(data, "company.established")) parts.push("Founded " + data.company.established);
+      if (get(data, "company.license")) parts.push(data.company.license);
+      lic.textContent = parts.join("  ·  ");
+    }
+
+    // stats
+    const sg = $("#stats-grid");
+    (data.stats || []).forEach((s) => {
+      const cell = el("div", "stat");
+      cell.innerHTML =
+        `<div class="num">${s.value || ""}<span class="suffix">${s.suffix || ""}</span></div>
+         <div class="lbl">${s.label || ""}</div>`;
+      sg.appendChild(cell);
+    });
+
+    // projects (featured ones span the full width)
+    const pg = $("#projects-grid");
+    (data.projects || []).forEach((p) => {
+      const card = el("div", "project" + (p.featured ? " span2" : ""));
+      const meta = [p.category, p.location, p.year].filter(Boolean)
+        .map((m) => `<span>${m}</span>`).join("");
+      card.innerHTML =
+        `<div class="ph" data-fallback="1"></div>
+         <div class="veil"></div>
+         <div class="info">
+           <div class="meta">${meta}</div>
+           <h3>${p.title || ""}</h3>
+           ${p.scope ? `<div class="scope">${p.scope}</div>` : ""}
+         </div>`;
+      pg.appendChild(card);
+      setImage($(".ph", card), p.image);
+    });
+
+    // services
+    const svg = $("#services-grid");
+    (data.services || []).forEach((s) => {
+      const cell = el("div", "service");
+      cell.innerHTML =
+        `<span class="code">${s.code || ""}</span>
+         <h3>${s.title || ""}</h3>
+         <p>${s.description || ""}</p>`;
+      svg.appendChild(cell);
+    });
+
+    // process
+    const prg = $("#process-grid");
+    (data.process || []).forEach((s) => {
+      const cell = el("div", "pstep");
+      cell.innerHTML =
+        `<div class="n">${s.step || ""}</div>
+         <h3>${s.title || ""}</h3>
+         <p>${s.description || ""}</p>`;
+      prg.appendChild(cell);
+    });
+
+    // about
+    const ab = $("#about-body");
+    (get(data, "about.body") || []).forEach((para) => ab.appendChild(el("p", null, para)));
+    const apts = $("#about-points");
+    (get(data, "about.points") || []).forEach((pt) => apts.appendChild(el("li", null, pt)));
+    setImage($("#about-media"), get(data, "about.image"));
+
+    // testimonials
+    const qg = $("#quotes-grid");
+    (data.testimonials || []).forEach((t) => {
+      const q = el("div", "quote");
+      q.innerHTML =
+        `<div class="mark">“</div>
+         <blockquote>${t.quote || ""}</blockquote>
+         <div class="who"><b>${t.author || ""}</b><span>${t.role || ""}</span></div>`;
+      qg.appendChild(q);
+    });
+
+    // contact rows + form select
+    const cr = $("#contact-rows");
+    const c = data.contact || {};
+    const rows = [
+      ["Phone", c.phone ? `<a href="tel:${(c.phone||"").replace(/[^0-9+]/g,"")}">${c.phone}</a>` : null],
+      ["Email", c.email ? `<a href="mailto:${c.email}">${c.email}</a>` : null],
+      ["Office", c.address || null],
+      ["Hours", c.hours || null]
+    ];
+    rows.forEach(([k, v]) => {
+      if (!v) return;
+      const row = el("div", "crow");
+      row.innerHTML = `<span class="k">${k}</span><span class="v">${v}</span>`;
+      cr.appendChild(row);
+    });
+    const sel = $("#f-scope");
+    if (sel) {
+      sel.appendChild(el("option", null, "Select…"));
+      (data.services || []).forEach((s) => sel.appendChild(el("option", null, s.title)));
+    }
+
+    // footer columns
+    const fc = $("#foot-cols");
+    (get(data, "footer.columns") || []).forEach((col) => {
+      const c2 = el("div", "foot-col");
+      c2.appendChild(el("h4", null, col.title));
+      (col.links || []).forEach((l) => {
+        const a = el("a"); a.href = l.href || "#"; a.textContent = l.label; c2.appendChild(a);
+      });
+      fc.appendChild(c2);
+    });
+    // footer contact column
+    const fcc = $("#foot-contact");
+    fcc.appendChild(el("h4", null, "Get in touch"));
+    if (c.phone) { const a = el("a"); a.href = `tel:${(c.phone||"").replace(/[^0-9+]/g,"")}`; a.textContent = c.phone; fcc.appendChild(a); }
+    if (c.email) { const a = el("a"); a.href = `mailto:${c.email}`; a.textContent = c.email; fcc.appendChild(a); }
+    // footer social
+    const fs = $("#foot-social");
+    (get(data, "footer.social") || []).forEach((s) => {
+      const a = el("a"); a.href = s.href || "#"; a.textContent = s.label; fs.appendChild(a);
+    });
+
+    initInteractions();
+  }
+
+  function initInteractions() {
+    // header background on scroll
+    const header = $("#site-header");
+    const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    // mobile menu
+    $("#menu-toggle")?.addEventListener("click", () => $("#nav-links").classList.toggle("open"));
+    $$("#nav-links a").forEach((a) => a.addEventListener("click", () => $("#nav-links").classList.remove("open")));
+
+    // reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    $$("[data-reveal]").forEach((n) => io.observe(n));
+
+    // demo form
+    $("#form-submit")?.addEventListener("click", (ev) => {
+      ev.preventDefault();
+      const name = $("#f-name").value.trim();
+      $("#form-submit").innerHTML = name ? `Thanks, ${name.split(" ")[0]} — we'll be in touch ✓` : "Please add your name";
+    });
+  }
+
+  // boot
+  fetch("content.json", { cache: "no-store" })
+    .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(render)
+    .catch((err) => {
+      console.error("Failed to load content.json:", err);
+      $("#boot-error").style.display = "block";
+    });
+})();
+</script>
+</body>
+</html>
