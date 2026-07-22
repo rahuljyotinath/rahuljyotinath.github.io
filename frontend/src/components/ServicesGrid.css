@@ -1,0 +1,28 @@
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.service-card {
+  padding: 1.5rem;
+}
+
+.service-card .code {
+  font-size: .72rem;
+  color: var(--amber);
+  letter-spacing: .1em;
+}
+
+.service-card h3 {
+  font-family: var(--display);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  margin: .6rem 0 .5rem;
+  letter-spacing: -.01em;
+}
+
+.service-card p {
+  color: var(--concrete);
+  font-size: .92rem;
+}

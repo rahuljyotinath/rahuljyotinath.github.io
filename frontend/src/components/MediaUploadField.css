@@ -1,0 +1,44 @@
+.media-upload-field input[type='file'] {
+  width: 100%;
+  font-family: var(--mono);
+  font-size: .72rem;
+  color: var(--muted);
+}
+
+.media-upload-hint {
+  margin: .35rem 0 0;
+  font-size: .65rem;
+  color: var(--muted);
+}
+
+.media-upload-list {
+  list-style: none;
+  margin: .75rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: .45rem;
+}
+
+.media-upload-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  padding: .45rem .65rem;
+  background: rgba(255, 255, 255, .03);
+  border: 1px solid var(--line-solid);
+  font-size: .78rem;
+}
+
+.media-upload-list button {
+  background: none;
+  border: 0;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.media-upload-list button:hover {
+  color: var(--text);
+}

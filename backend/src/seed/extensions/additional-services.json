@@ -1,0 +1,416 @@
+{
+  "services": [
+    {
+      "code": "07",
+      "slug": "pu-injection",
+      "title": "PU Injection Grouting",
+      "description": "Stop active water leaks through cracks — polyurethane injection expands with water to seal basements, terraces, and joints."
+    },
+    {
+      "code": "08",
+      "slug": "epoxy-injection",
+      "title": "Epoxy Injection",
+      "description": "Restore structural strength in dry cracks — epoxy bonds concrete in columns and beams for load-bearing repair."
+    },
+    {
+      "code": "09",
+      "slug": "carbon-fibre",
+      "title": "Carbon Fibre Strengthening",
+      "description": "CFRP wrapping adds earthquake strength without bulky columns — ideal for Guwahati apartment retrofits."
+    },
+    {
+      "code": "11",
+      "slug": "structural-repairs",
+      "title": "Structural Repairs",
+      "description": "Spalling repair, rebarring, micro concreting, and jacketing — fix damaged concrete before it fails."
+    },
+    {
+      "code": "12",
+      "slug": "micro-concreting",
+      "title": "Micro Concreting",
+      "description": "Fill honeycomb and voids inside columns and slabs without breaking open the structure."
+    },
+    {
+      "code": "13",
+      "slug": "seismic-jacketing",
+      "title": "Seismic Jacketing",
+      "description": "Column and beam jacketing per IS codes — confinement steel and high-strength grout for Zone V buildings."
+    },
+    {
+      "code": "14",
+      "slug": "concrete-cancer-treatment",
+      "title": "Concrete Cancer Treatment",
+      "description": "Treat corroded steel, delaminated concrete, and chloride damage before spalling spreads."
+    }
+  ],
+  "servicePages": [
+    {
+      "slug": "pu-injection",
+      "title": "PU Injection Grouting",
+      "headline": "Stop active leaks at the source",
+      "intro": "Polyurethane injection is our go-to when water is actively pushing through cracks — in basements, terrace slabs, and expansion joints across Guwahati.",
+      "awareness": {
+        "headline": "PU injection reacts with water — rigid fillers do not",
+        "body": "When water is moving through a crack under pressure, cement or paint fails immediately. PU grout travels into the crack, reacts with moisture, and expands to form a flexible watertight seal."
+      },
+      "offerings": [
+        {
+          "name": "Crack injection",
+          "description": "Packers placed along crack path deliver PU under controlled pressure.",
+          "whenUsed": "Active basement and terrace leaks",
+          "whyItMatters": "Stopping water prevents steel corrosion that weakens the whole member."
+        },
+        {
+          "name": "Joint injection",
+          "description": "Expansion and construction joints injected with hydrophilic PU.",
+          "whenUsed": "Parking podium and block junction leaks",
+          "whyItMatters": "Joint leaks saturate columns from inside — invisible until spalling."
+        }
+      ],
+      "sections": [
+        {
+          "title": "When PU beats epoxy",
+          "body": "Use PU when crack is wet or leaking. Use epoxy when crack is dry and structural capacity must be restored."
+        }
+      ],
+      "ctaMessage": "Leaking crack? Book inspection — we test whether PU, epoxy, or both are needed."
+    },
+    {
+      "slug": "epoxy-injection",
+      "title": "Epoxy Injection",
+      "headline": "Restore strength in structural cracks",
+      "intro": "Epoxy injection structurally welds cracked concrete back together — used in columns, beams, and foundations when water is controlled.",
+      "awareness": {
+        "headline": "Epoxy is structural glue — not a leak plug",
+        "body": "Low-viscosity epoxy penetrates hairline cracks and restores monolithic behaviour. It is not for gushing leaks — those need PU first, then epoxy once dry."
+      },
+      "offerings": [
+        {
+          "name": "Low-viscosity epoxy injection",
+          "description": "Epoxy injected under pressure along crack plane.",
+          "whenUsed": "Dry structural cracks in columns and beams",
+          "whyItMatters": "Unrepaired structural cracks concentrate earthquake force at one point."
+        },
+        {
+          "name": "Crack stitching",
+          "description": "Steel staples or CFRP strips across crack to prevent reopening.",
+          "whenUsed": "Masonry and concrete cracks that move seasonally",
+          "whyItMatters": "Injection alone may reopen if underlying movement continues."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Epoxy injection process",
+          "bullets": [
+            "Crack mapping and marking",
+            "Surface sealing and port installation",
+            "Low-viscosity epoxy injection under pressure",
+            "Port removal and finish"
+          ]
+        }
+      ],
+      "ctaMessage": "Column crack? Get structural assessment before monsoon widens it."
+    },
+    {
+      "slug": "carbon-fibre",
+      "title": "Carbon Fibre Strengthening",
+      "headline": "Add earthquake strength without bulk",
+      "intro": "CFRP wrapping strengthens weakened columns and beams with minimal thickness — preferred in occupied Guwahati flats where space and aesthetics matter.",
+      "awareness": {
+        "headline": "CFRP is engineering fabric — not cosmetic wrap",
+        "body": "Carbon fibre sheets are epoxy-bonded after surface prep and designed for required capacity increase. Wrong application fails in first tremor."
+      },
+      "offerings": [
+        {
+          "name": "Column CFRP wrapping",
+          "description": "Full or partial wrap increases confinement and shear capacity.",
+          "whenUsed": "Under-strength or cracked columns in retrofit projects",
+          "whyItMatters": "Weak columns are first to fail in progressive collapse."
+        },
+        {
+          "name": "Beam flexural strengthening",
+          "description": "CFRP strips on beam soffit increase bending capacity.",
+          "whenUsed": "Beams with insufficient steel or load additions",
+          "whyItMatters": "Beam failure drops slabs — high casualty risk."
+        }
+      ],
+      "sections": [
+        {
+          "title": "CFRP vs steel jacketing",
+          "body": "CFRP is thinner and faster in occupied buildings. Steel jacketing suits heavy industrial loads. We specify based on NDT and structural calc."
+        }
+      ],
+      "ctaMessage": "Weak column identified in NDT? CFRP may avoid costly demolition."
+    },
+    {
+      "slug": "structural-repairs",
+      "title": "Structural Repairs",
+      "headline": "Fix spalling before chunks fall",
+      "intro": "Comprehensive structural repair — expose corroded steel, treat rust, reinstate cover, and restore load path in Guwahati buildings damaged by age, leaks, or tremors.",
+      "awareness": {
+        "headline": "Patching spalled concrete without treating steel fails in one monsoon",
+        "body": "Proper repair follows IS 15988 principles: remove loose material, clean steel to bright metal, passivate, and rebuild with structural repair mortar."
+      },
+      "offerings": [
+        {
+          "name": "Spalling repair",
+          "description": "Full depth repair to rebar with compatible mortar.",
+          "whenUsed": "Balconies, parapets, columns with exposed rust",
+          "whyItMatters": "Falling concrete is life safety hazard."
+        },
+        {
+          "name": "Rebarring",
+          "description": "Supplement or replace corroded bars.",
+          "whenUsed": "Section loss exceeds acceptable limits",
+          "whyItMatters": "Corroded bar may have lost 50% capacity silently."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Repair vs replace decision",
+          "body": "NDT and cover survey determine whether local repair suffices or full member strengthening (CFRP/jacket) is required."
+        }
+      ],
+      "ctaMessage": "Spalling on balcony edge? Treat as urgent — book inspection."
+    },
+    {
+      "slug": "micro-concreting",
+      "title": "Micro Concreting",
+      "headline": "Fill voids inside hollow concrete",
+      "intro": "High-strength grout injection fills honeycomb and voids in columns and slabs — common in rushed Guwahati construction from 2000–2015.",
+      "awareness": {
+        "headline": "Hollow columns sound fine until they are not",
+        "body": "Tap test and UPV reveal voids. Micro concreting packs voids under pressure without demolishing the member."
+      },
+      "offerings": [
+        {
+          "name": "Pressure grouting",
+          "description": "Low-shrink grout injected through drilled ports.",
+          "whenUsed": "Honeycomb in columns, beam pockets, slab voids",
+          "whyItMatters": "Void leaves steel unprotected — corrosion accelerates."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Often combined with CFRP",
+          "body": "After void fill, CFRP wrap restores confinement if section was weakened."
+        }
+      ],
+      "ctaMessage": "Hollow sound on column? NDT first, then micro concreting if confirmed."
+    },
+    {
+      "slug": "seismic-jacketing",
+      "title": "Seismic Jacketing",
+      "headline": "Zone V retrofit for older RCC frames",
+      "intro": "Column and beam jacketing with steel angles, ties, and high-strength grout — brings pre-code Guwahati buildings closer to modern ductile behaviour.",
+      "awareness": {
+        "headline": "Pre-2005 buildings often lack ductile detailing",
+        "body": "Jacketing adds confinement reinforcement so columns can deform without brittle shear failure during earthquake."
+      },
+      "offerings": [
+        {
+          "name": "RC jacketing",
+          "description": "Additional concrete and steel around existing column.",
+          "whenUsed": "Severely under-strength columns with space available",
+          "whyItMatters": "Brittle column failure causes pancake collapse."
+        },
+        {
+          "name": "Steel jacketing",
+          "description": "Steel cage with grout fill for rapid retrofit.",
+          "whenUsed": "Occupied buildings needing faster execution",
+          "whyItMatters": "Delaying retrofit in Zone V is gambling with lives."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Works with NDT and structural audit",
+          "body": "Jacketing scope driven by capacity calculation — not one-size template."
+        }
+      ],
+      "ctaMessage": "Old building in Guwahati? Seismic screening before next tremor season."
+    },
+    {
+      "slug": "concrete-cancer-treatment",
+      "title": "Concrete Cancer Treatment",
+      "headline": "Stop corrosion before it spreads",
+      "intro": "Concrete cancer is advanced rebar corrosion — treat chloride ingress, carbonation, and ongoing moisture to stop spread across the facade and structure.",
+      "awareness": {
+        "headline": "Rust stains today, spalling tomorrow",
+        "body": "Half-cell potential and chloride testing map active corrosion zones. Treatment includes removal, passivation, and protective systems."
+      },
+      "offerings": [
+        {
+          "name": "Corrosion mapping",
+          "description": "Half-cell and cover survey across affected zones.",
+          "whenUsed": "Multiple rust stains or early spalling",
+          "whyItMatters": "Corrosion front moves faster than visible damage."
+        },
+        {
+          "name": "Cathodic protection & inhibitors",
+          "description": "Where appropriate, slow remaining corrosion in sound cover.",
+          "whenUsed": "Large facades and industrial structures",
+          "whyItMatters": "Replacing every bar is not always feasible — arrest matters."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Must fix leak first",
+          "body": "Corrosion treatment without stopping water ingress wastes money — moisture source first, then steel treatment."
+        }
+      ],
+      "ctaMessage": "Rust on columns or balcony? Do not paint over — diagnose."
+    }
+  ],
+  "projects": [
+    {
+      "slug": "beltola-residential-tower",
+      "title": "Beltola Residential Tower",
+      "category": "Residential",
+      "location": "Beltola, Guwahati",
+      "year": 2024,
+      "scope": "Full terrace waterproofing with slope correction and parapet upturn for 48-unit society",
+      "featured": true,
+      "image": "images/project-1.jpg",
+      "outcome": "Zero ceiling leak complaints post-monsoon 2024",
+      "services": [
+        "waterproofing",
+        "expansion-joints"
+      ]
+    },
+    {
+      "slug": "chandmari-apartment-complex",
+      "title": "Chandmari Apartment Complex",
+      "category": "Residential",
+      "location": "Chandmari, Guwahati",
+      "year": 2023,
+      "scope": "Bathroom seepage repair, PU injection at slab joints, expansion joint reseal",
+      "featured": true,
+      "image": "images/project-2.jpg",
+      "outcome": "Resolved inter-floor leakage affecting 12 flats",
+      "services": [
+        "pu-injection",
+        "waterproofing"
+      ]
+    },
+    {
+      "slug": "hpcl-regional-facility",
+      "title": "HPCL Regional Facility",
+      "category": "Industrial",
+      "location": "Guwahati",
+      "year": 2024,
+      "scope": "Basement waterproofing, hydrostatic barrier, column spalling repair",
+      "featured": false,
+      "image": "images/project-3.jpg",
+      "outcome": "Dry basement storage through peak monsoon",
+      "services": [
+        "waterproofing",
+        "structural-repairs"
+      ]
+    },
+    {
+      "slug": "dispur-government-office",
+      "title": "Dispur Government Office",
+      "category": "Institutional",
+      "location": "Dispur, Guwahati",
+      "year": 2023,
+      "scope": "Column crack mapping, epoxy injection, CFRP wrap on critical members",
+      "featured": true,
+      "image": "images/project-1.jpg",
+      "outcome": "Structural audit clearance for occupancy continuation",
+      "services": [
+        "epoxy-injection",
+        "carbon-fibre",
+        "ndt"
+      ]
+    },
+    {
+      "slug": "industrial-warehouse-paltan-bazar",
+      "title": "Paltan Bazar Warehouse",
+      "category": "Industrial",
+      "location": "Paltan Bazar, Guwahati",
+      "year": 2022,
+      "scope": "Foundation grouting for settlement under warehouse slab",
+      "featured": false,
+      "image": "images/project-2.jpg",
+      "outcome": "Settlement stabilised — slab movement arrested",
+      "services": [
+        "pu-injection"
+      ]
+    },
+    {
+      "slug": "gs-road-commercial-block",
+      "title": "GS Road Commercial Block",
+      "category": "Commercial",
+      "location": "GS Road, Guwahati",
+      "year": 2024,
+      "scope": "Podium waterproofing and parking expansion joint treatment",
+      "featured": false,
+      "image": "images/project-3.jpg",
+      "outcome": "Dry parking level through monsoon",
+      "services": [
+        "waterproofing",
+        "expansion-joints"
+      ]
+    },
+    {
+      "slug": "six-mile-school-campus",
+      "title": "Six Mile School Campus",
+      "category": "Institutional",
+      "location": "Six Mile, Guwahati",
+      "year": 2023,
+      "scope": "Seismic screening and column jacketing on 1998 block",
+      "featured": false,
+      "image": "images/project-1.jpg",
+      "outcome": "Retrofit completed during summer break",
+      "services": [
+        "seismic-jacketing",
+        "ndt"
+      ]
+    },
+    {
+      "slug": "zoo-road-hotel-terrace",
+      "title": "Zoo Road Hotel Terrace",
+      "category": "Hospitality",
+      "location": "Zoo Road, Guwahati",
+      "year": 2024,
+      "scope": "Terrace PU membrane, heat reflective coating, drain redesign",
+      "featured": true,
+      "image": "images/project-2.jpg",
+      "outcome": "Guest room leak complaints eliminated",
+      "services": [
+        "waterproofing",
+        "heatproofing"
+      ]
+    },
+    {
+      "slug": "noonmati-housing-retrofit",
+      "title": "Noonmati Housing Retrofit",
+      "category": "Residential",
+      "location": "Noonmati, Guwahati",
+      "year": 2022,
+      "scope": "CFRP column wrap and micro concreting on honeycombed columns",
+      "featured": false,
+      "image": "images/project-3.jpg",
+      "outcome": "NDT strength targets met post-repair",
+      "services": [
+        "carbon-fibre",
+        "micro-concreting"
+      ]
+    },
+    {
+      "slug": "bhangagarh-hospital-basement",
+      "title": "Bhangagarh Hospital Basement",
+      "category": "Institutional",
+      "location": "Bhangagarh, Guwahati",
+      "year": 2023,
+      "scope": "Basement tanking, PU injection, humidity control coordination",
+      "featured": false,
+      "image": "images/project-1.jpg",
+      "outcome": "Medical storage area humidity within spec",
+      "services": [
+        "waterproofing",
+        "pu-injection"
+      ]
+    }
+  ]
+}

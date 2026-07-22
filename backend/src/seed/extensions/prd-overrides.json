@@ -1,0 +1,72 @@
+{
+  "meta": {
+    "title": "91SkylineWorks — Building Doctor | Structural Repair Guwahati",
+    "description": "Building problems? We diagnose first, then fix. Waterproofing, retrofitting, PU injection, NDT & structural repair in Guwahati & Northeast India. Free inspection."
+  },
+  "problemCategories": [
+    { "slug": "water-leakage", "title": "Water Leakage", "icon": "💧" },
+    { "slug": "cracks", "title": "Cracks & Structural Damage", "icon": "🏗️" },
+    { "slug": "dampness", "title": "Dampness & Moisture", "icon": "🌧️" },
+    { "slug": "foundation", "title": "Foundation Issues", "icon": "⬇️" },
+    { "slug": "roof", "title": "Roof & Terrace", "icon": "🏠" }
+  ],
+  "homeProblemGrid": {
+    "headline": "What building problem are you facing?",
+    "subhead": "Most homeowners search for symptoms, not solutions. Start here — we'll help you understand what's wrong before you spend money fixing it.",
+    "ctaLabel": "View all problems"
+  },
+  "doctorPositioning": {
+    "headline": "We diagnose before we prescribe",
+    "subhead": "Contractors sell solutions. We find the root cause first — like a doctor for your building.",
+    "points": [
+      { "title": "Inspection first", "body": "Every project starts with a site visit and diagnosis — not an instant quote over WhatsApp." },
+      { "title": "Evidence-based repair", "body": "NDT, moisture mapping, and crack mapping before we recommend PU injection, waterproofing, or retrofitting." },
+      { "title": "Long-term fix", "body": "We fix the cause, not the symptom. No paint-over-leak patches that fail next monsoon." }
+    ],
+    "ctaLabel": "Book free inspection",
+    "ctaHref": "/contact"
+  },
+  "hero": {
+    "eyebrow": "Building doctor · Guwahati",
+    "headline": "Your building has a problem. We find out why.",
+    "subheadline": "Water leaking? Cracks spreading? Damp walls every monsoon? Don't guess — get a proper diagnosis from Guwahati's building rehabilitation specialists.",
+    "primaryCta": { "label": "Book free inspection", "href": "/contact#inspection-form" },
+    "secondaryCta": { "label": "What's wrong with my building?", "href": "/problems" }
+  },
+  "homeSections": {
+    "problemGrid": true,
+    "doctorPositioning": true,
+    "inspectionCta": {
+      "headline": "Not sure what's causing the problem?",
+      "body": "Upload photos or book a site visit. We'll inspect, diagnose, and give you a clear repair plan — before you commit to any work.",
+      "primaryLabel": "Book inspection",
+      "primaryHref": "/contact#inspection-form",
+      "secondaryLabel": "Try self-assessment",
+      "secondaryHref": "/assessment"
+    },
+    "earthquakes": { "eyebrow": "Live map", "headline": "Recent tremors near Guwahati." },
+    "capabilities": { "eyebrow": "Solutions", "headline": "Technical services after diagnosis." },
+    "work": { "eyebrow": "Projects", "headline": "Buildings we've rehabilitated." },
+    "process": { "eyebrow": "How we work", "headline": "Diagnose first. Fix properly." },
+    "team": { "eyebrow": "About", "headline": "Engineering-led, not sales-led." },
+    "clients": { "eyebrow": "Clients", "headline": "Trusted across Guwahati & NE." },
+    "backing": { "eyebrow": "Backing", "headline": "Assam Startup · MSME registered." },
+    "contact": { "eyebrow": "Contact", "headline": "Book your free inspection." }
+  },
+  "nav": [
+    { "label": "Home", "href": "/" },
+    { "label": "Problems", "href": "/problems" },
+    { "label": "Services", "href": "/services" },
+    { "label": "Projects", "href": "/portfolio" },
+    { "label": "Knowledge", "href": "/knowledge" },
+    { "label": "Earthquakes", "href": "/earthquakes" }
+  ],
+  "navTools": [
+    { "label": "Analyzer", "href": "/analyzer" },
+    { "label": "Assessment", "href": "/assessment" }
+  ],
+  "navMore": [
+    { "label": "About", "href": "/about" },
+    { "label": "Contact", "href": "/contact" }
+  ]
+}

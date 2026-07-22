@@ -1,0 +1,21 @@
+:root {
+  --bg: #14110d;
+  --bg-2: #1b1812;
+  --panel: #221e17;
+  --line-solid: #372f23;
+  --concrete: #b9b1a3;
+  --fog: #79716237;
+  --text: #ece6da;
+  --muted: #9a9183;
+  --amber: #f5a623;
+  --amber-deep: #cf8511;
+  --threat: #ff6b6b;
+  --threat-bg: #5a1818;
+  --ok: #28a745;
+  --max: 1240px;
+  --pad: clamp(1.25rem, 5vw, 4rem);
+  --display: 'Archivo Black', system-ui, sans-serif;
+  --sans: 'Archivo', system-ui, sans-serif;
+  --mono: 'Spline Sans Mono', ui-monospace, monospace;
+  --footer-h: 56px;
+}

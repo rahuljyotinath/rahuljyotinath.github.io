@@ -1,0 +1,56 @@
+RewriteEngine On
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "geolocation=(self), camera=(self), microphone=()"
+  Header set Content-Security-Policy "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.tile.openstreetmap.org https://tile.openstreetmap.org; connect-src 'self' https://earthquake.usgs.gov; font-src 'self';"
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+RewriteCond %{HTTP_HOST} ^www\.91skylineworks\.com [NC]
+RewriteRule ^ https://91skylineworks.com%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=307,L]
+
+RewriteRule ^api/leads/?$ api/leads.php [L,QSA]
+RewriteRule ^api/content/?$ api/content.php [L,QSA]
+RewriteRule ^api/diagnose/?$ api/diagnose.php [L,QSA]
+RewriteRule ^api/earthquakes/?$ api/earthquakes.php [L,QSA]
+
+RewriteCond %{REQUEST_METHOD} GET
+RewriteRule ^capabilities/?$ /services [R=301,L]
+
+RewriteCond %{REQUEST_METHOD} GET
+RewriteRule ^process/?$ / [R=301,L]
+
+RewriteCond %{REQUEST_METHOD} GET
+RewriteRule ^clients/?$ /portfolio [R=301,L]
+
+RewriteCond %{REQUEST_METHOD} GET
+RewriteRule ^backing/?$ /about [R=301,L]
+
+RewriteCond %{REQUEST_METHOD} GET
+RewriteRule ^telemetry/?$ /earthquakes [R=301,L]
+
+RewriteCond %{REQUEST_METHOD} GET
+RewriteRule ^hydrostatic/?$ /knowledge [R=301,L]
+
+RewriteCond %{REQUEST_METHOD} GET
+RewriteRule ^education/?$ /knowledge [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/api/
+RewriteRule ^ index.html [L]

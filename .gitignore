@@ -1,0 +1,7 @@
+node_modules/
+backend/uploads/
+backend/.env
+dist/
+release/
+.DS_Store
+deploy/php/config.php

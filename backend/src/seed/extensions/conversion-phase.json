@@ -1,0 +1,104 @@
+{
+  "contact": {
+    "whatsapp": "+91 60038 79490",
+    "whatsappMessage": "Hi, I have a building issue I'd like inspected"
+  },
+  "hero": {
+    "primaryCta": {
+      "label": "Book free inspection",
+      "href": "/contact#inspection-form"
+    }
+  },
+  "homeSections": {
+    "contact": {
+      "eyebrow": "Contact",
+      "headline": "Ready for a free inspection?",
+      "body": "Tell us what's worrying you — leak, crack, or damp wall. We'll inspect and advise honestly."
+    },
+    "googleReviews": {
+      "eyebrow": "Google reviews",
+      "headline": "Rated by Guwahati customers"
+    },
+    "guides": {
+      "eyebrow": "Guides",
+      "headline": "Guwahati homeowner guides"
+    }
+  },
+  "contactTeaser": {
+    "ctaLabel": "Book inspection",
+    "ctaHref": "/contact#inspection-form"
+  },
+  "googleReviewsData": {
+    "profileUrl": "https://maps.app.goo.gl/ogPYnKhJLep1R5hD9",
+    "businessName": "91Skylineworks pvt ltd.",
+    "rating": 5,
+    "reviewCount": 13,
+    "reviews": [
+      {
+        "authorName": "Karanjal Das",
+        "rating": 5,
+        "text": "Very good service, value for money with best quality.",
+        "relativeTime": "4 years ago",
+        "snapshot": "/images/reviews/review-karanjal-das.webp",
+        "snapshotAlt": "Google review by Karanjal Das — 5 stars"
+      },
+      {
+        "authorName": "Rupjyoti Barkataki",
+        "rating": 5,
+        "text": "Very impressive and good quality or quick response with Excellent service",
+        "relativeTime": "3 years ago",
+        "snapshot": "/images/reviews/review-rupjyoti-barkataki.webp",
+        "snapshotAlt": "Google review by Rupjyoti Barkataki — 5 stars"
+      },
+      {
+        "authorName": "Sthapana Sharma",
+        "rating": 5,
+        "text": "Responsiveness, Punctuality, Quality, Professionalism, Value",
+        "relativeTime": "4 years ago",
+        "snapshot": "/images/reviews/review-sthapana-sharma.webp",
+        "snapshotAlt": "Google review by Sthapana Sharma — 5 stars"
+      },
+      {
+        "authorName": "tanushree basnet",
+        "rating": 5,
+        "text": "Professionalism",
+        "relativeTime": "5 years ago",
+        "snapshot": "/images/reviews/review-tanushree-basnet.webp",
+        "snapshotAlt": "Google review by tanushree basnet — 5 stars"
+      },
+      {
+        "authorName": "swayam prava",
+        "rating": 5,
+        "text": "Responsiveness, Punctuality, Quality, Professionalism, Value",
+        "relativeTime": "5 years ago",
+        "snapshot": "/images/reviews/review-swayam-prava.webp",
+        "snapshotAlt": "Google review by swayam prava — 5 stars"
+      }
+    ]
+  },
+  "homeownerFaq": {
+    "eyebrow": "FAQ",
+    "headline": "Common questions before you call",
+    "items": [
+      {
+        "q": "How much does waterproofing cost?",
+        "a": "Depends on area size, leak severity, and whether terrace, bathroom, or basement. A typical Guwahati flat terrace starts around ₹80–150 per sq ft for proper membrane work — but we quote after inspection, not over the phone. Free site visit first.",
+        "link": { "href": "/services/waterproofing", "label": "Waterproofing services →" }
+      },
+      {
+        "q": "How long does an inspection take?",
+        "a": "Most home inspections take 45–90 minutes. We check the problem area, trace water paths or crack patterns, and explain findings in plain language. You get a clear recommendation — repair now, monitor, or no action needed.",
+        "link": { "href": "/contact#inspection-form", "label": "Book free inspection →" }
+      },
+      {
+        "q": "Do you work during monsoon season?",
+        "a": "Yes — monsoon is when most Guwahati homeowners notice leaks. Emergency leak-stopping (PU injection, temporary sealing) can be done during rain. Full terrace waterproofing is usually scheduled between showers or in dry windows so the membrane bonds properly.",
+        "link": { "href": "/problems/terrace-roof-leakage", "label": "Terrace leak guide →" }
+      }
+    ]
+  },
+  "navMore": [
+    { "label": "About", "href": "/about" },
+    { "label": "Contact", "href": "/contact" }
+  ]
+}

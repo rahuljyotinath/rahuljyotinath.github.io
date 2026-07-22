@@ -1,0 +1,29 @@
+.telemetry-widget--standalone {
+  padding-block: 0 3rem;
+  margin-top: -2rem;
+}
+
+.telemetry-widget--embedded {
+  padding-block: 0 2rem;
+}
+
+.telemetry-terminal {
+  padding: 1.5rem 1.75rem;
+  overflow-x: auto;
+}
+
+.telemetry-header {
+  font-size: .72rem;
+  letter-spacing: .14em;
+  color: var(--amber);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.telemetry-output {
+  font-size: clamp(.68rem, 2.5vw, .82rem);
+  line-height: 1.85;
+  color: var(--concrete);
+  white-space: pre-wrap;
+  word-break: break-word;
+}

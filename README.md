@@ -1,21 +1,156 @@
-# images/
+# 91SkylineWorks Digital Terminal
 
-This folder is populated by the external GitHub Actions service, alongside the
-`content.json` it generates. The site loads gracefully (showing a blueprint
-placeholder pattern) for any image that is missing, so deploys never break.
+React + Vite frontend with API backend. Seismic diagnostics terminal UI with mobile WebRTC camera upload.
 
-## Files referenced by the current content.json
+## Structure
 
-| File                | Used for            | Suggested size        |
-| ------------------- | ------------------- | --------------------- |
-| `hero.jpg`          | Hero background     | 2400 × 1400 (landscape) |
-| `project-1.jpg`     | Featured project    | 2000 × 900 (wide)     |
-| `project-2.jpg`     | Featured project    | 2000 × 900 (wide)     |
-| `project-3.jpg`     | Project card        | 1600 × 1100           |
-| `project-4.jpg`     | Project card        | 1600 × 1100           |
-| `about.jpg`         | About section       | 1200 × 1500 (portrait)|
-| `favicon.png`       | Browser tab icon    | 512 × 512             |
+```
+frontend/     Vite + React SPA (build locally)
+backend/      Express API + MariaDB (local dev only)
+deploy/       PHP API + release pack script (MilesWeb production)
+docker-compose.yml   Local MariaDB
+release/      Generated upload folder (gitignored)
+```
 
-Image paths are **driven entirely by `content.json`** — to add, remove, or rename
-an image, change the corresponding `image` field in the JSON. The scaffolding in
-`index.html` does not hardcode any filenames.
+---
+
+## MilesWeb Shared Hosting (Production)
+
+Build on your Mac, upload static files + PHP to `public_html/`. No Node.js on server.
+
+### 1. Build release package (Mac)
+
+```bash
+npm run release
+```
+
+This creates `release/` containing:
+- `index.html`, `assets/` — built React app
+- `api/*.php` — PHP API endpoints
+- `.htaccess` — rewrites `/api/*` to PHP + SPA fallback for page routes
+- `uploads/` — camera image storage (writable)
+
+`deploy/seed.sql` is generated locally for phpMyAdmin import — **not** included in `release/` (do not upload to `public_html`).
+
+### 2. cPanel setup (one-time)
+
+1. **MySQL Database** → create database + user; note hostname (usually `localhost`), name, user, password
+2. **phpMyAdmin** → Import `deploy/seed.sql` (from your Mac, after `npm run release`)
+3. **Upload** all files from `release/` to `public_html/` (File Manager or FTP)
+4. On server: copy `api/config.example.php` → `api/config.php` and fill in cPanel + SMTP credentials:
+
+```php
+return [
+    'db_host' => 'localhost',
+    'db_name' => 'cpaneluser_skylineworks',
+    'db_user' => 'cpaneluser_skyline',
+    'db_pass' => 'your_db_password',
+    'uploads_dir' => dirname(__DIR__) . '/uploads',
+    'max_upload_bytes' => 12 * 1024 * 1024,
+    'mail_to' => 'contact@91skylineworks.com',
+    'mail_from' => 'website@91skylineworks.com',
+    'mail_from_name' => '91SkylineWorks Website',
+    'smtp_host' => 'mail.91skylineworks.com',
+    'smtp_port' => 587,
+    'smtp_user' => 'website@91skylineworks.com',
+    'smtp_pass' => 'your_smtp_password',
+];
+```
+
+Contact form submissions are saved to the `leads` table **and** emailed to `mail_to` via SMTP.
+
+5. Set `uploads/` folder permissions to **755** or **775**
+6. Enable **SSL** (Let's Encrypt) — required for mobile camera
+
+### 3. Verify
+
+- `https://yourdomain.com/` — terminal UI loads
+- `https://yourdomain.com/api/content` — returns JSON
+- Mobile camera scan over HTTPS — image saved to `uploads/`, row in `diagnostic_submissions`
+- Form submit — row in `leads` table
+
+### Updating site copy
+
+Edit `site_content.payload` JSON in phpMyAdmin, or re-run `npm run release` and re-import `deploy/seed.sql`.
+
+### Subfolder deploy
+
+If not at domain root, set `base: '/yourfolder/'` in `frontend/vite.config.js` before `npm run release`.
+
+---
+
+## Local Development
+
+### Database (optional)
+
+```bash
+docker compose up -d
+```
+
+MariaDB: `127.0.0.1:3306`, db `skylineworks`, user `skyline` / `skylinepass`
+
+### API server (Node)
+
+```bash
+cd backend
+npm install
+npm run dev
+```
+
+Runs on `http://localhost:3001`
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Runs on `http://localhost:5173` — proxies `/api` to Node backend.
+
+---
+
+## Site routes (multi-page SPA)
+
+| Path | Page |
+|------|------|
+| `/` | Home — marketing landing with section previews |
+| `/capabilities` | Full services grid |
+| `/portfolio` | Project showcase |
+| `/process` | Four-step process |
+| `/about` | Team / about |
+| `/clients` | Institution clients |
+| `/backing` | Incubation & support |
+| `/telemetry` | Regional tectonic telemetry (full content) |
+| `/earthquakes` | Live USGS earthquake feed — NE India map + event details |
+| `/education` | Forensic engineering + buyer advisory |
+| `/analyzer` | Structural camera scan |
+| `/assessment` | Self-diagnostic quiz |
+| `/contact` | Contact form |
+
+Client-side routing via `react-router-dom`. MilesWeb `.htaccess` includes SPA fallback so direct URLs (e.g. `/analyzer`) work.
+
+---
+
+## API routes
+
+| Method | Path | Local dev | Production |
+|--------|------|-----------|------------|
+| GET | `/api/content` | Node | PHP |
+| POST | `/api/diagnose` | Node | PHP |
+| POST | `/api/leads` | Node | PHP |
+
+---
+
+## Mobile camera
+
+- Requires **HTTPS** in production
+- Rear camera via `facingMode: environment`
+- Images stored in `uploads/` (PHP) or `backend/uploads/` (Node dev)
+
+---
+
+## Legacy static site
+
+Root `index.html` and `content.json` are superseded. Production uses React build + PHP API.

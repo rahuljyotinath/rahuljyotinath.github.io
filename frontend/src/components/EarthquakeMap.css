@@ -1,0 +1,15 @@
+.leaflet-container {
+  background: #1a1712;
+  font-family: var(--sans);
+}
+
+.leaflet-popup-content-wrapper {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--line-solid);
+  border-radius: 0;
+}
+
+.leaflet-popup-tip {
+  background: var(--panel);
+}

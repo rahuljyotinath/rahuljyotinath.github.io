@@ -1,0 +1,88 @@
+{
+  "retrofitting": {
+    "sections": [
+      {
+        "title": "Column crack vs paint crack — know the difference",
+        "body": "A fine crack in plaster between two rooms is usually cosmetic — the brick partition carries no load. A crack that follows a column line, runs diagonally across a wall-ceiling joint, or widens after each tremor is structural. If you can fit a coin into the crack and it goes deep, or if the crack reappears after repainting, call us."
+      },
+      {
+        "title": "Even new flats in Guwahati aren't automatically safe",
+        "body": "Building codes exist — but enforcement and construction quality vary. Many flats built in the last 10 years have the same hidden problems: honeycombed concrete, insufficient steel, and rushed curing. A 'new' tag on a property listing doesn't mean earthquake-safe. A building strength test takes a few hours and tells you the truth."
+      },
+      {
+        "title": "Retrofitting process — how we work",
+        "bullets": [
+          "Site visit and crack mapping",
+          "NDT on suspect columns and beams",
+          "Structural assessment and repair design",
+          "CFRP wrap, jacketing, or injection as specified",
+          "Final test and handover report"
+        ]
+      },
+      {
+        "title": "What happens in the next tremor — treated vs untreated",
+        "body": "An untreated home with a cracked column: the tremor shakes the building, stress concentrates at the crack, the column shears, upper floors lose support. A retrofitted home: the same tremor is absorbed by strengthened columns — cracks may not grow, floors stay supported."
+      }
+    ]
+  },
+  "waterproofing": {
+    "sections": [
+      {
+        "title": "The Guwahati monsoon trap",
+        "body": "From May to September, Guwahati gets heavy rain almost daily. Flat terraces, shared apartment roofs, and old drainage systems can't cope. If your upstairs neighbour's terrace isn't waterproofed, your ceiling pays the price. If your own terrace has cracks, your columns absorb the water."
+      },
+      {
+        "title": "Signs you need waterproofing now",
+        "bullets": [
+          "Yellow-brown stains on ceiling or walls after rain",
+          "Peeling paint or bubbling plaster in bathroom or terrace-adjacent rooms",
+          "Musty smell that returns every monsoon",
+          "White powder (efflorescence) on ground-floor walls",
+          "Water dripping from terrace drain areas"
+        ]
+      },
+      {
+        "title": "Diagnosis before coating",
+        "body": "We flood-test terraces, map moisture on ceilings, and check parapet and drain details before specifying membrane type. Coating over active cracks or ponding water fails within one season — diagnosis first saves repeat cost."
+      },
+      {
+        "title": "Systems we specify",
+        "bullets": [
+          "PU liquid membrane for trafficked terraces",
+          "Bituminous multilayer with protection course",
+          "Crystalline systems for basements",
+          "Bathroom membranes before tiling",
+          "Parapet upturn and penetration detailing"
+        ]
+      }
+    ]
+  },
+  "pu-injection": {
+    "sections": [
+      {
+        "title": "When PU injection is the right call",
+        "body": "Active water through a crack or joint — basement during monsoon, terrace slab, expansion joint, pipe penetration. PU reacts with water and expands to seal. Dry structural cracks need epoxy, not PU alone."
+      },
+      {
+        "title": "PU injection process",
+        "bullets": [
+          "Locate leak path — not just visible drip point",
+          "Drill packers along crack or joint at set spacing",
+          "Inject hydrophilic or hydrophobic PU under pressure",
+          "Verify seal with water test",
+          "Finish surface and recommend permanent waterproofing where needed"
+        ]
+      },
+      {
+        "title": "Common Guwahati applications",
+        "bullets": [
+          "Basement retaining wall seepage",
+          "Terrace slab hairline leaks before membrane",
+          "Expansion joint active leakage",
+          "Construction joint between blocks",
+          "Pipe sleeve and penetration leaks"
+        ]
+      }
+    ]
+  }
+}
