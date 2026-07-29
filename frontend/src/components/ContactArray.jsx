@@ -1,17 +1,32 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import SectionReveal from './SectionReveal';
 import FormSuccessModal from './FormSuccessModal';
 import MediaUploadField from './MediaUploadField';
+import FieldSelect from './FieldSelect';
 import { submitLead, successMessage } from '../lib/submitLead';
 import { trackLead } from '../utils/analytics';
 import './ContactArray.css';
 
-export default function ContactArray({ contact, services }) {
+function buildCategoryOptions(serviceCategories, navServices) {
+  if (serviceCategories?.length) {
+    return serviceCategories.map((c) => ({ value: c.label, label: c.label }));
+  }
+  return (navServices || [])
+    .filter((item) => item.label !== 'All services')
+    .map((item) => ({ value: item.label, label: item.label }));
+}
+
+export default function ContactArray({ contact, serviceCategories, navServices }) {
   const [error, setError] = useState(null);
   const [successOpen, setSuccessOpen] = useState(false);
   const [successMessageText, setSuccessMessageText] = useState('');
   const [files, setFiles] = useState([]);
   const [form, setForm] = useState({ name: '', phone: '', email: '', scope: '', msg: '' });
+
+  const categoryOptions = useMemo(
+    () => buildCategoryOptions(serviceCategories, navServices),
+    [serviceCategories, navServices]
+  );
 
   if (!contact) return null;
 
@@ -118,19 +133,14 @@ export default function ContactArray({ contact, services }) {
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
               />
             </div>
-            <div className="field">
-              <label htmlFor="f-scope">What do you need help with?</label>
-              <select
-                id="f-scope"
-                value={form.scope}
-                onChange={(e) => setForm({ ...form, scope: e.target.value })}
-              >
-                <option value="">Select…</option>
-                {(services || []).map((s) => (
-                  <option key={s.code} value={s.title}>{s.title}</option>
-                ))}
-              </select>
-            </div>
+            <FieldSelect
+              id="f-scope"
+              label="What do you need help with?"
+              value={form.scope}
+              onChange={(scope) => setForm({ ...form, scope })}
+              options={categoryOptions}
+              placeholder="Select…"
+            />
             <div className="field">
               <label htmlFor="f-msg">Tell us more</label>
               <textarea

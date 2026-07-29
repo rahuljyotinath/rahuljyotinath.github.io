@@ -2,6 +2,10 @@ import { useEffect } from 'react';
 
 export default function usePageTitle(title, baseTitle = '91SkylineWorks') {
   useEffect(() => {
-    document.title = title ? `${title} — ${baseTitle}` : baseTitle;
+    if (!title) {
+      document.title = baseTitle || '91SkylineWorks';
+      return;
+    }
+    document.title = baseTitle ? `${title} — ${baseTitle}` : title;
   }, [title, baseTitle]);
 }

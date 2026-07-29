@@ -1,4 +1,4 @@
-import { useOutletContext } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 import HeroLanding from '../components/HeroLanding';
 import StatsBar from '../components/StatsBar';
 import ProblemGrid from '../components/ProblemGrid';
@@ -39,6 +39,22 @@ export default function HomePage() {
         />
       )}
       {hs.doctorPositioning && <DoctorPositioning data={content.doctorPositioning} showCta={false} />}
+      <section className="local-seo-links">
+        <div className="wrap">
+          <p className="local-seo-links-label">Popular in Guwahati</p>
+          <ul>
+            <li>
+              <Link to="/guwahati/waterproofing">Waterproofing in Guwahati</Link>
+            </li>
+            <li>
+              <Link to="/guwahati/building-crack-repair">Building crack repair in Guwahati</Link>
+            </li>
+            <li>
+              <Link to="/services/retrofitting">Building retrofitting in Guwahati</Link>
+            </li>
+          </ul>
+        </div>
+      </section>
       <section className="inspection-form-section">
         <div className="wrap">
           <SectionHead

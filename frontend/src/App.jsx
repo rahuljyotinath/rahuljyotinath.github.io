@@ -4,6 +4,7 @@ import AppLayout from './layouts/AppLayout';
 import HomePage from './pages/HomePage';
 
 const PortfolioPage = lazy(() => import('./pages/PortfolioPage'));
+const ProjectDetailPage = lazy(() => import('./pages/ProjectDetailPage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const EarthquakesPage = lazy(() => import('./pages/EarthquakesPage'));
 const EducationPage = lazy(() => import('./pages/EducationPage'));
@@ -11,11 +12,13 @@ const AnalyzerPage = lazy(() => import('./pages/AnalyzerPage'));
 const AssessmentPage = lazy(() => import('./pages/AssessmentPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const ServicesIndexPage = lazy(() => import('./pages/ServicesIndexPage'));
+const ServiceCategoryPage = lazy(() => import('./pages/ServiceCategoryPage'));
 const ServicePage = lazy(() => import('./pages/ServicePage'));
 const ProblemsIndexPage = lazy(() => import('./pages/ProblemsIndexPage'));
 const ProblemPage = lazy(() => import('./pages/ProblemPage'));
 const KnowledgeIndexPage = lazy(() => import('./pages/KnowledgeIndexPage'));
 const KnowledgeArticlePage = lazy(() => import('./pages/KnowledgeArticlePage'));
+const GuwahatiLandingPage = lazy(() => import('./pages/GuwahatiLandingPage'));
 
 function PageFallback() {
   return <div className="loading-screen">[ LOADING... ]</div>;
@@ -32,12 +35,15 @@ export default function App() {
           <Route path="industries/*" element={<Navigate to="/services" replace />} />
           <Route path="knowledge" element={<KnowledgeIndexPage />} />
           <Route path="knowledge/:slug" element={<KnowledgeArticlePage />} />
+          <Route path="guwahati/:slug" element={<GuwahatiLandingPage />} />
           <Route path="services" element={<ServicesIndexPage />} />
+          <Route path="services/category/:categorySlug" element={<ServiceCategoryPage />} />
           <Route path="services/industrial-flooring" element={<Navigate to="/services" replace />} />
           <Route path="services/facade-restoration" element={<Navigate to="/services" replace />} />
           <Route path="services/:slug" element={<ServicePage />} />
           <Route path="capabilities" element={<Navigate to="/services" replace />} />
           <Route path="portfolio" element={<PortfolioPage />} />
+          <Route path="portfolio/:slug" element={<ProjectDetailPage />} />
           <Route path="projects" element={<Navigate to="/portfolio" replace />} />
           <Route path="process" element={<Navigate to="/#process" replace />} />
           <Route path="about" element={<AboutPage />} />
@@ -46,7 +52,7 @@ export default function App() {
           <Route path="telemetry" element={<Navigate to="/earthquakes#telemetry" replace />} />
           <Route path="earthquakes" element={<EarthquakesPage />} />
           <Route path="hydrostatic" element={<Navigate to="/knowledge" replace />} />
-          <Route path="education" element={<Navigate to="/knowledge" replace />} />
+          <Route path="education" element={<EducationPage />} />
           <Route path="analyzer" element={<AnalyzerPage />} />
           <Route path="assessment" element={<AssessmentPage />} />
           <Route path="contact" element={<ContactPage />} />

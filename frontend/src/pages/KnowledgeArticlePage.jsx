@@ -2,6 +2,7 @@ import { Link, useOutletContext, useParams } from 'react-router-dom';
 import SectionHead from '../components/SectionHead';
 import InspectionCTA from '../components/InspectionCTA';
 import usePageTitle from '../hooks/usePageTitle';
+import { buildKnowledgePageTitle } from '../lib/pageTitle';
 
 export default function KnowledgeArticlePage() {
   const { slug } = useParams();
@@ -12,7 +13,7 @@ export default function KnowledgeArticlePage() {
     .filter((a) => a.slug !== slug && a.cluster === article?.cluster)
     .slice(0, 3);
 
-  usePageTitle(article?.title || 'Article');
+  usePageTitle(buildKnowledgePageTitle(article), '');
 
   if (!article) {
     return (

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import SectionHead from './SectionHead';
+import ProblemCategoryIcon from './ProblemCategoryIcon';
 
 export default function ProblemGrid({ grid, categories, problems, limit = 6 }) {
   if (!grid || !problems?.length) return null;
@@ -13,9 +14,10 @@ export default function ProblemGrid({ grid, categories, problems, limit = 6 }) {
         {categories?.length > 0 && (
           <div className="problem-categories">
             {categories.map((cat) => (
-              <span key={cat.slug} className="problem-category-chip">
-                {cat.icon} {cat.title}
-              </span>
+              <Link key={cat.slug} to={`/problems#${cat.slug}`} className="problem-category-chip">
+                <ProblemCategoryIcon slug={cat.slug} />
+                {cat.title}
+              </Link>
             ))}
           </div>
         )}

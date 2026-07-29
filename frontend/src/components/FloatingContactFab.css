@@ -1,0 +1,59 @@
+.floating-contact-fab {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 150;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.65rem;
+}
+
+.floating-contact-fab-trigger {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.floating-contact-fab-trigger:hover {
+  transform: translateY(-2px);
+}
+
+.floating-contact-fab-menu {
+  min-width: 11.5rem;
+  background: var(--panel, #1c1813);
+  border: 1px solid var(--line-solid, rgba(255, 255, 255, 0.08));
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.floating-contact-fab-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 44px;
+  padding: 0.65rem 1rem;
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text, #f5f0e8);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line-solid, rgba(255, 255, 255, 0.08));
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.floating-contact-fab-item:last-child {
+  border-bottom: none;
+}
+
+.floating-contact-fab-item:hover {
+  color: var(--amber, #e8952a);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.floating-contact-fab-item svg {
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .floating-contact-fab {
+    display: none;
+  }
+}

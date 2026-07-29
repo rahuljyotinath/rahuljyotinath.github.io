@@ -9,6 +9,9 @@ const NE_BBOX = {
   maxLon: 97.8,
 };
 
+const NE_DAYS = 30;
+const MAX_MIN = 20;
+
 const cache = new Map();
 const TTL_MS = 5 * 60 * 1000;
 
@@ -22,7 +25,7 @@ function buildUsgsUrl(scope) {
   }
 
   const end = new Date().toISOString();
-  const start = new Date(Date.now() - 7 * 24 * 3600 * 1000).toISOString();
+  const start = new Date(Date.now() - NE_DAYS * 24 * 3600 * 1000).toISOString();
   const params = new URLSearchParams({
     format: "geojson",
     starttime: start,
@@ -62,6 +65,75 @@ function normalizeFeature(feature) {
   };
 }
 
+function mergeEventsToMinimum(primary, supplemental, minCount) {
+  const seen = new Set(primary.map((e) => e.id));
+  const merged = [...primary];
+  for (const event of supplemental) {
+    if (merged.length >= minCount) break;
+    if (!seen.has(event.id)) {
+      merged.push(event);
+      seen.add(event.id);
+    }
+  }
+  return merged.sort((a, b) => (b.time || 0) - (a.time || 0));
+}
+
+async function fetchScopeEvents(scope) {
+  const cached = cache.get(scope);
+  if (cached && Date.now() - cached.fetchedAt < TTL_MS) {
+    return cached;
+  }
+
+  const url = buildUsgsUrl(scope);
+  const response = await fetch(url, {
+    headers: {
+      "User-Agent": "91SkylineWorks/1.0 (seismic-feed; contact@91skylineworks.com)",
+    },
+  });
+
+  if (!response.ok) {
+    if (cached) return { ...cached, stale: true };
+    throw new Error("USGS feed unavailable");
+  }
+
+  const data = await response.json();
+  const events = (data.features || [])
+    .map(normalizeFeature)
+    .filter(Boolean)
+    .sort((a, b) => (b.time || 0) - (a.time || 0));
+
+  const payload = {
+    events,
+    fetchedAt: Date.now(),
+    source: "USGS",
+    scope,
+  };
+
+  cache.set(scope, payload);
+  return payload;
+}
+
+async function applyMinBackfill(payload, min) {
+  if (min <= 0 || payload.scope !== "ne" || payload.events.length >= min) {
+    return { ...payload, backfilled: false };
+  }
+
+  const before = payload.events.length;
+  let globalPayload;
+  try {
+    globalPayload = await fetchScopeEvents("global");
+  } catch {
+    return { ...payload, backfilled: false };
+  }
+
+  const events = mergeEventsToMinimum(payload.events, globalPayload.events, min);
+  return {
+    ...payload,
+    events,
+    backfilled: events.length > before,
+  };
+}
+
 router.get("/", async (req, res) => {
   const scope = req.query.scope || "ne";
   const allowed = ["ne", "global", "significant"];
@@ -69,45 +141,13 @@ router.get("/", async (req, res) => {
     return res.status(400).json({ error: "Invalid scope" });
   }
 
-  const cached = cache.get(scope);
-  if (cached && Date.now() - cached.fetchedAt < TTL_MS) {
-    return res.json(cached);
-  }
+  const min = Math.min(Math.max(parseInt(req.query.min, 10) || 0, 0), MAX_MIN);
 
   try {
-    const url = buildUsgsUrl(scope);
-    const response = await fetch(url, {
-      headers: {
-        "User-Agent": "91SkylineWorks/1.0 (seismic-feed; contact@91skylineworks.com)",
-      },
-    });
-
-    if (!response.ok) {
-      if (cached) {
-        return res.json({ ...cached, stale: true });
-      }
-      return res.status(502).json({ error: "USGS feed unavailable" });
-    }
-
-    const data = await response.json();
-    const events = (data.features || [])
-      .map(normalizeFeature)
-      .filter(Boolean)
-      .sort((a, b) => (b.time || 0) - (a.time || 0));
-
-    const payload = {
-      events,
-      fetchedAt: Date.now(),
-      source: "USGS",
-      scope,
-    };
-
-    cache.set(scope, payload);
-    res.json(payload);
+    const payload = await fetchScopeEvents(scope);
+    const result = await applyMinBackfill(payload, min);
+    res.json(result);
   } catch (err) {
-    if (cached) {
-      return res.json({ ...cached, stale: true });
-    }
     res.status(502).json({ error: err.message });
   }
 });

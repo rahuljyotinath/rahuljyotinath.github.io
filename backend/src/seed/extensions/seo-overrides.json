@@ -1,0 +1,31 @@
+{
+  "servicePages": {
+    "waterproofing": {
+      "seoTitle": "Waterproofing in Guwahati",
+      "seoHeadline": "Waterproofing in Guwahati"
+    },
+    "retrofitting": {
+      "seoTitle": "Building retrofitting in Guwahati",
+      "seoHeadline": "Building retrofitting in Guwahati"
+    }
+  },
+  "problems": {
+    "column-cracks": {
+      "seoTitle": "Building column cracks in Guwahati"
+    },
+    "wall-cracks": {
+      "seoTitle": "Building wall cracks in Guwahati"
+    },
+    "terrace-roof-leakage": {
+      "seoTitle": "Terrace leak repair Guwahati"
+    }
+  },
+  "serviceCategories": {
+    "waterproofing": {
+      "seoTitle": "Waterproofing services in Guwahati"
+    },
+    "retrofitting": {
+      "seoTitle": "Retrofitting in Guwahati"
+    }
+  }
+}

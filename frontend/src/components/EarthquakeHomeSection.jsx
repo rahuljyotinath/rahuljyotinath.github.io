@@ -1,6 +1,7 @@
 import { lazy, Suspense, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useEarthquakes from '../hooks/useEarthquakes';
+import { MIN_EARTHQUAKE_LIST } from '../lib/earthquakes';
 import useInView from '../hooks/useInView';
 import EarthquakeList from './EarthquakeList';
 import './Earthquakes.css';
@@ -10,7 +11,10 @@ const EarthquakeMap = lazy(() => import('./EarthquakeMap'));
 export default function EarthquakeHomeSection({ copy = {}, limit = 5 }) {
   const [selectedId, setSelectedId] = useState(null);
   const [sectionRef, inView] = useInView();
-  const { events, loading, error } = useEarthquakes('ne', { enabled: inView });
+  const { events, loading, error, backfilled } = useEarthquakes('ne', {
+    enabled: inView,
+    minCount: MIN_EARTHQUAKE_LIST,
+  });
   const items = useMemo(() => events.slice(0, limit), [events, limit]);
 
   return (
@@ -33,7 +37,12 @@ export default function EarthquakeHomeSection({ copy = {}, limit = 5 }) {
               compact
             />
           </Suspense>
-          <EarthquakeList events={items} selectedId={selectedId} onSelect={setSelectedId} />
+          <EarthquakeList
+            events={items}
+            selectedId={selectedId}
+            onSelect={setSelectedId}
+            backfilled={backfilled}
+          />
         </div>
       )}
       {copy.disclaimer && <p className="earthquake-disclaimer">{copy.disclaimer}</p>}

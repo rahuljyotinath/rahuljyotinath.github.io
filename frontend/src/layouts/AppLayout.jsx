@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import Header from '../components/Header';
 import SiteFooter from '../components/SiteFooter';
 import WhatsAppCTA from '../components/WhatsAppCTA';
+import FloatingContactFab from '../components/FloatingContactFab';
 import ConsentBanner from '../components/ConsentBanner';
 import GtmLoader from '../components/GtmLoader';
 import useContent from '../hooks/useContent';
@@ -33,6 +34,7 @@ export default function AppLayout() {
       </main>
       <SiteFooter content={content} />
       <WhatsAppCTA content={content} />
+      <FloatingContactFab contact={content.contact} />
       <ConsentBanner />
     </>
   );

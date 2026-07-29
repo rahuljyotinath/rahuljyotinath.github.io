@@ -32,11 +32,34 @@ This creates `release/` containing:
 
 `deploy/seed.sql` is generated locally for phpMyAdmin import — **not** included in `release/` (do not upload to `public_html`).
 
-### 2. cPanel setup (one-time)
+### 2. Upload to MilesWeb (incremental FTP)
+
+One-time: copy FTP credentials into `deploy/.deploy.env`:
+
+```bash
+cp deploy/.deploy.env.example deploy/.deploy.env
+# edit deploy/.deploy.env — FTP_HOST, FTP_USER, FTP_PASS, FTP_REMOTE
+```
+
+After each release, a changed-files list is written to `deploy/files-to-upload.txt`. Upload **only those files**:
+
+```bash
+npm run release                 # builds release/ + writes files-to-upload.txt
+cat deploy/files-to-upload.txt  # inspect what will upload
+npm run upload                  # upload listed files only
+npm run upload -- --dry-run     # preview without FTP
+npm run upload -- --full        # emergency: upload entire release/
+```
+
+Or: `./upload-ftp.sh` (same as `npm run upload`).
+
+Typical deploy: a few JS/CSS files + `index.html` — not the full release folder.
+
+### 3. cPanel setup (one-time)
 
 1. **MySQL Database** → create database + user; note hostname (usually `localhost`), name, user, password
 2. **phpMyAdmin** → Import `deploy/seed.sql` (from your Mac, after `npm run release`)
-3. **Upload** all files from `release/` to `public_html/` (File Manager or FTP)
+3. **Upload** — use `npm run upload` after `npm run release`, or upload `release/` via File Manager (first time only)
 4. On server: copy `api/config.example.php` → `api/config.php` and fill in cPanel + SMTP credentials:
 
 ```php
@@ -62,7 +85,7 @@ Contact form submissions are saved to the `leads` table **and** emailed to `mail
 5. Set `uploads/` folder permissions to **755** or **775**
 6. Enable **SSL** (Let's Encrypt) — required for mobile camera
 
-### 3. Verify
+### 4. Verify
 
 - `https://yourdomain.com/` — terminal UI loads
 - `https://yourdomain.com/api/content` — returns JSON

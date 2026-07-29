@@ -73,6 +73,30 @@
         "relativeTime": "5 years ago",
         "snapshot": "/images/reviews/review-swayam-prava.webp",
         "snapshotAlt": "Google review by swayam prava — 5 stars"
+      },
+      {
+        "authorName": "Amit Nath",
+        "rating": 5,
+        "text": "Responsiveness, Punctuality, Quality, Professionalism, Value",
+        "relativeTime": "5 years ago",
+        "snapshot": "/images/reviews/review-amit-nath.webp",
+        "snapshotAlt": "Google review by Amit Nath — 5 stars"
+      },
+      {
+        "authorName": "Manasi Bora",
+        "rating": 5,
+        "text": "Responsiveness, Quality, Professionalism",
+        "relativeTime": "5 years ago",
+        "snapshot": "/images/reviews/review-manasi-bora.webp",
+        "snapshotAlt": "Google review by Manasi Bora — 5 stars"
+      },
+      {
+        "authorName": "RAVI RANJAN",
+        "rating": 5,
+        "text": "",
+        "relativeTime": "4 years ago",
+        "snapshot": "/images/reviews/review-ravi-ranjan.webp",
+        "snapshotAlt": "Google review by RAVI RANJAN — 5 stars"
       }
     ]
   },
@@ -98,6 +122,7 @@
     ]
   },
   "navMore": [
+    { "label": "Education", "href": "/education" },
     { "label": "About", "href": "/about" },
     { "label": "Contact", "href": "/contact" }
   ]

@@ -2,6 +2,11 @@ import SectionReveal from './SectionReveal';
 import useBackgroundImage from '../hooks/useBackgroundImage';
 import SectionHead from './SectionHead';
 
+function teamImageSrc(image) {
+  if (!image) return null;
+  return image.startsWith('/') ? image : `/${image}`;
+}
+
 export default function TeamSection({ team, heading }) {
   if (!team?.length) return null;
 
@@ -20,7 +25,7 @@ export default function TeamSection({ team, heading }) {
 }
 
 function TeamCard({ member }) {
-  const imgRef = useBackgroundImage(member.image);
+  const imgRef = useBackgroundImage(teamImageSrc(member.image));
 
   return (
     <SectionReveal className="team-card">

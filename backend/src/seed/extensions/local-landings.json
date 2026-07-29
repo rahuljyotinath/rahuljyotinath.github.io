@@ -1,0 +1,88 @@
+{
+  "localLandings": [
+    {
+      "slug": "waterproofing",
+      "seoTitle": "Waterproofing in Guwahati",
+      "headline": "Waterproofing in Guwahati",
+      "intro": "Terrace leaks, bathroom seepage, and basement damp are the top monsoon complaints we see across Beltola, Chandmari, Hatigaon, and Dispur. 91SkylineWorks diagnoses the water path first — then specifies membrane, PU injection, or joint repair that lasts beyond one season.",
+      "serviceSchemaName": "Waterproofing in Guwahati",
+      "sections": [
+        {
+          "title": "Terrace & roof waterproofing",
+          "body": "Flat terraces need correct slope, parapet upturn, and a membrane suited to foot traffic. We flood-test before coating — patching over ponding water fails every monsoon."
+        },
+        {
+          "title": "Bathroom & kitchen slab leaks",
+          "body": "Inter-floor seepage in apartment blocks often starts at trap penetrations or failed tile-bed membranes. Targeted repair avoids breaking every tile when diagnosis is precise."
+        },
+        {
+          "title": "Basement & plinth waterproofing",
+          "body": "Guwahati's shallow water table pushes hydrostatic pressure through ground floors in Ulubari, Bhangagarh, and low-lying plots. Internal tanking, external cutoff, or PU injection depends on access and soil."
+        },
+        {
+          "title": "Typical cost range",
+          "body": "Terrace waterproofing for a Guwahati flat often runs ₹80–150 per sq ft after inspection — varies with area, leak severity, slope correction, and protection course. We quote after site visit, not over WhatsApp guesses."
+        }
+      ],
+      "linkedServices": ["waterproofing", "pu-injection", "expansion-joints", "heatproofing"],
+      "linkedProblems": ["terrace-roof-leakage", "bathroom-seepage", "basement-water-leakage"],
+      "faqs": [
+        {
+          "q": "Who does waterproofing in Guwahati?",
+          "a": "Look for building rehabilitation specialists who diagnose first — not painters offering a single coat. Proper work includes slope, penetrations, parapet details, and flood test."
+        },
+        {
+          "q": "How long does terrace waterproofing take?",
+          "a": "Most residential terraces take 7–14 days including surface prep, membrane cure time, and protection course — weather dependent."
+        },
+        {
+          "q": "Can waterproofing be done during monsoon?",
+          "a": "Emergency leak-stopping with PU injection can run in rain. Full membrane work is usually scheduled between monsoons for best adhesion."
+        }
+      ],
+      "ctaMessage": "Monsoon leak? Book a free inspection — we'll trace the water path before quoting."
+    },
+    {
+      "slug": "building-crack-repair",
+      "seoTitle": "Building crack repair in Guwahati",
+      "headline": "Building crack repair in Guwahati",
+      "intro": "A crack in a partition wall is often cosmetic. A crack through a column in Seismic Zone V is not. We help Guwahati homeowners and RWAs tell the difference — then repair with crack mapping, NDT, epoxy injection, CFRP wrap, or jacketing as the structure requires.",
+      "serviceSchemaName": "Building crack repair in Guwahati",
+      "sections": [
+        {
+          "title": "Column & beam-column cracks",
+          "body": "Vertical or diagonal cracks through columns and X-patterns at beam-column joints need urgent assessment in Zone V. Putty and paint hide risk — they do not restore capacity."
+        },
+        {
+          "title": "Wall cracks — structural vs cosmetic",
+          "body": "Stair-step cracks in masonry, cracks wider than 3mm, or doors that stick may indicate settlement or load-path change. We monitor width and prescribe stitching, injection, or flexible fillers accordingly."
+        },
+        {
+          "title": "Retrofitting after diagnosis",
+          "body": "When NDT shows lost strength, we specify CFRP wrapping, micro concreting for honeycomb, or seismic jacketing — not a one-size contractor template."
+        },
+        {
+          "title": "Areas we serve",
+          "body": "Residential towers in Beltola and Chandmari, institutional blocks in Dispur and Six Mile, and commercial buildings on GS Road — anywhere Guwahati RCC needs honest structural assessment."
+        }
+      ],
+      "linkedServices": ["retrofitting", "ndt", "epoxy-injection", "carbon-fibre", "seismic-jacketing"],
+      "linkedProblems": ["column-cracks", "wall-cracks", "beam-column-junction-cracks", "concrete-spalling"],
+      "faqs": [
+        {
+          "q": "How much does building crack repair cost in Guwahati?",
+          "a": "Cosmetic wall crack repair may be a few thousand rupees. Structural column repair with NDT, injection, and CFRP can run lakhs — depends on member count and severity. Inspection first."
+        },
+        {
+          "q": "Should I worry about cracks after a tremor?",
+          "a": "New or widening cracks after seismic activity should be inspected before the next season. Guwahati is in India's highest earthquake zone."
+        },
+        {
+          "q": "Can I sell a flat with column cracks?",
+          "a": "Disclosure and structural report affect resale value. NDT before listing gives buyers confidence — or flags work needed before sale."
+        }
+      ],
+      "ctaMessage": "Seen a crack? Book structural assessment before monsoon water reaches the steel."
+    }
+  ]
+}

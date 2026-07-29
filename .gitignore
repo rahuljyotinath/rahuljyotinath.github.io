@@ -5,3 +5,8 @@ dist/
 release/
 .DS_Store
 deploy/php/config.php
+deploy/.deploy.env
+deploy/.release-manifest.json
+deploy/.ftp-manifest.json
+deploy/files-to-upload.txt
+upload-ftp.sh

@@ -31,6 +31,10 @@ const prdOverrides = loadJson('prd-overrides.json') || {};
 const servicePatches = loadJson('service-patches.json') || {};
 const conversionPhase = loadJson('conversion-phase.json') || {};
 const conversionKnowledge = loadJson('conversion-knowledge.json') || [];
+const earthquakesSeo = loadJson('earthquakes-seo.json') || {};
+const serviceCategoriesExt = loadJson('service-categories.json') || {};
+const seoOverrides = loadJson('seo-overrides.json') || {};
+const localLandingsExt = loadJson('local-landings.json') || {};
 
 const merged = {
   ...base,
@@ -86,11 +90,16 @@ if (conversionKnowledge.length) {
 }
 
 if (additionalServices.servicePages?.length) {
-  const slugs = new Set((merged.servicePages || []).map((p) => p.slug));
   merged.servicePages = merged.servicePages || [];
+  const bySlug = new Map(merged.servicePages.map((p) => [p.slug, p]));
   for (const page of additionalServices.servicePages) {
-    if (REMOVED_SERVICE_SLUGS.has(page.slug) || slugs.has(page.slug)) continue;
-    merged.servicePages.push(page);
+    if (REMOVED_SERVICE_SLUGS.has(page.slug)) continue;
+    if (bySlug.has(page.slug)) {
+      Object.assign(bySlug.get(page.slug), page);
+    } else {
+      merged.servicePages.push(page);
+      bySlug.set(page.slug, page);
+    }
   }
 }
 
@@ -103,10 +112,55 @@ for (const page of merged.servicePages || []) {
   if (patch.awareness) page.awareness = { ...page.awareness, ...patch.awareness };
   if (patch.intro) page.intro = patch.intro;
   if (patch.headline) page.headline = patch.headline;
+  if (patch.seoTitle) page.seoTitle = patch.seoTitle;
+  if (patch.seoHeadline) page.seoHeadline = patch.seoHeadline;
+}
+
+for (const page of merged.servicePages || []) {
+  const seo = seoOverrides.servicePages?.[page.slug];
+  if (!seo) continue;
+  if (seo.seoTitle) page.seoTitle = seo.seoTitle;
+  if (seo.seoHeadline) page.seoHeadline = seo.seoHeadline;
+}
+
+for (const problem of merged.problems || []) {
+  const seo = seoOverrides.problems?.[problem.slug];
+  if (!seo) continue;
+  if (seo.seoTitle) problem.seoTitle = seo.seoTitle;
 }
 
 if (additionalServices.projects?.length) {
   merged.projects = additionalServices.projects;
+}
+
+if (earthquakesSeo.earthquakes) {
+  merged.earthquakes = { ...merged.earthquakes, ...earthquakesSeo.earthquakes };
+}
+
+if (serviceCategoriesExt.serviceCategories) {
+  merged.serviceCategories = serviceCategoriesExt.serviceCategories;
+  for (const cat of merged.serviceCategories) {
+    const seo = seoOverrides.serviceCategories?.[cat.slug];
+    if (seo?.seoTitle) cat.seoTitle = seo.seoTitle;
+  }
+}
+
+if (localLandingsExt.localLandings?.length) {
+  merged.localLandings = localLandingsExt.localLandings;
+}
+if (serviceCategoriesExt.navServices) {
+  merged.navServices = serviceCategoriesExt.navServices;
+}
+const categoryMap = serviceCategoriesExt.serviceCategoryMap || {};
+if (Object.keys(categoryMap).length) {
+  for (const svc of merged.services) {
+    if (categoryMap[svc.slug]) {
+      svc.category = categoryMap[svc.slug];
+    }
+  }
+}
+if (merged.nav) {
+  merged.nav = merged.nav.filter((item) => item.href !== '/services' && item.label !== 'Services');
 }
 
 fs.writeFileSync(contentPath, `${JSON.stringify(merged, null, 2)}\n`);

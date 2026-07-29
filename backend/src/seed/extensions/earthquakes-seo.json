@@ -1,0 +1,28 @@
+{
+  "earthquakes": {
+    "seoTitle": "Earthquakes Near Guwahati Today — Live Map | Assam & Northeast India",
+    "seoDescription": "Recent earthquakes near Guwahati, Assam and Northeast India. Live USGS seismic map — enable location to see tremors near you. Seismic Zone V building guidance from 91SkylineWorks.",
+    "faq": [
+      {
+        "q": "Where can I see earthquakes near Guwahati today?",
+        "a": "91SkylineWorks publishes a live earthquake map for Northeast India using verified USGS data. Open the Earthquakes page to view recent tremors near Guwahati, Assam and surrounding states, or enable location to centre the map on you."
+      },
+      {
+        "q": "Is Guwahati in a high earthquake zone?",
+        "a": "Yes. Guwahati is in IS seismic Zone V — India's highest earthquake hazard category. Small tremors are common and each event can stress existing cracks in columns, beams and walls."
+      },
+      {
+        "q": "How often do earthquakes happen in Northeast India?",
+        "a": "The Northeast India region records frequent minor and moderate seismic activity. USGS typically lists multiple events above magnitude 2.5 each week across Assam, Meghalaya, Arunachal Pradesh and neighbouring areas."
+      },
+      {
+        "q": "Should I worry about small tremors near my home?",
+        "a": "Small tremors rarely cause new damage in well-built structures, but they can widen existing structural cracks. If you notice cracks at beam-column joints or diagonal wall cracks, book a structural inspection rather than waiting for a larger event."
+      },
+      {
+        "q": "Where does the earthquake data come from?",
+        "a": "Event data is sourced from the US Geological Survey (USGS) public feed, with roughly a five-minute delay. For official India alerts, refer to the National Centre for Seismology (NCS) and IMD."
+      }
+    ]
+  }
+}

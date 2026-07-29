@@ -44,7 +44,7 @@ export default function RelatedLinks({ services, problems, projects, content, ti
         <div className="related-group">
           <h3>Case study</h3>
           <p>
-            <Link to="/portfolio">{project.title}</Link> — {project.scope}
+            <Link to={`/portfolio/${project.slug}`}>{project.title}</Link> — {project.scope}
           </p>
         </div>
       )}

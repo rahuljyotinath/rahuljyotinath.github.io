@@ -6,6 +6,7 @@
     "dev:backend": "npm run dev --prefix backend",
     "build": "npm run build --prefix frontend",
     "start:backend": "npm start --prefix backend",
-    "release": "bash deploy/build-release.sh"
+    "release": "bash deploy/build-release.sh",
+    "upload": "bash deploy/upload-ftp.sh"
   }
 }

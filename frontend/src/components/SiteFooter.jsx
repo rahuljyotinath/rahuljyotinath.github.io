@@ -21,6 +21,20 @@ export default function SiteFooter({ content }) {
           <p>{footer?.tagline || company?.tagline}</p>
         </div>
         <div>
+          <p className="site-footer-label">Guwahati services</p>
+          <ul>
+            <li>
+              <Link to="/guwahati/waterproofing">Waterproofing in Guwahati</Link>
+            </li>
+            <li>
+              <Link to="/guwahati/building-crack-repair">Building crack repair</Link>
+            </li>
+            <li>
+              <Link to="/services/retrofitting">Retrofitting in Guwahati</Link>
+            </li>
+          </ul>
+        </div>
+        <div>
           <p className="site-footer-label">Services</p>
           <ul>
             {(services || []).slice(0, 6).map((s) => (

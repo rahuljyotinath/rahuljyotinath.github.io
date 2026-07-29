@@ -5,6 +5,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { fetchNeEarthquakes, formatEventTime } from './lib/fetch-earthquakes.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
@@ -15,6 +16,13 @@ const ogImage = `${siteUrl}/images/logo.png`;
 
 const content = JSON.parse(fs.readFileSync(contentPath, 'utf8'));
 
+/** @type {{ events: object[], fetchedAt: number, source: string } | null} */
+let earthquakeSnapshot = null;
+
+const SERVICE_CATEGORY_ROUTES = (content.serviceCategories || []).map(
+  (c) => `/services/category/${c.slug}`,
+);
+
 const ROUTES = [
   '/',
   '/problems',
@@ -22,8 +30,11 @@ const ROUTES = [
   '/knowledge',
   ...(content.knowledgeArticles || []).map((a) => `/knowledge/${a.slug}`),
   '/services',
+  ...SERVICE_CATEGORY_ROUTES,
   ...(content.servicePages || []).map((p) => `/services/${p.slug}`),
   '/portfolio',
+  ...(content.projects || []).map((p) => `/portfolio/${p.slug}`),
+  ...(content.localLandings || []).map((l) => `/guwahati/${l.slug}`),
   '/about',
   '/earthquakes',
   '/education',
@@ -44,27 +55,89 @@ function statLabel(stat) {
   return `${stat.value}${stat.suffix} ${stat.label}`;
 }
 
+function buildEarthquakeEventsHtml(events, { limit = 15, heading = 'Recent earthquakes near Guwahati & Northeast India' } = {}) {
+  if (!events?.length) {
+    return `<h2>${escapeHtml(heading)}</h2><p>No recent USGS events in the last 7 days for Northeast India.</p>`;
+  }
+
+  const rows = events.slice(0, limit).map((event) => {
+    const mag = event.mag != null ? `M${Number(event.mag).toFixed(1)}` : '—';
+    const depth = event.depth != null ? `${Math.round(event.depth)} km deep` : '';
+    const when = formatEventTime(event.time);
+    const link = event.url
+      ? ` <a href="${escapeHtml(event.url)}" rel="noopener noreferrer">USGS details</a>`
+      : '';
+    return `<li><strong>${escapeHtml(mag)}</strong> — ${escapeHtml(event.place)} — ${escapeHtml(when)}${depth ? ` — ${escapeHtml(depth)}` : ''}${link}</li>`;
+  });
+
+  return `<h2>${escapeHtml(heading)}</h2><ol>${rows.join('')}</ol>`;
+}
+
+function buildEarthquakeFaqHtml() {
+  const faqs = content.earthquakes?.faq || [];
+  if (!faqs.length) return '';
+  return `<h2>Frequently asked questions</h2>${faqs.map((f) => `<h3>${escapeHtml(f.q)}</h3><p>${escapeHtml(f.a)}</p>`).join('')}`;
+}
+
+function buildHomeEarthquakeSection() {
+  const eq = content.earthquakes || {};
+  const hs = content.homeSections?.earthquakes || {};
+  const events = earthquakeSnapshot?.events || [];
+  const eventsHtml = buildEarthquakeEventsHtml(events, { limit: 5, heading: 'Latest tremors near Guwahati' });
+
+  return `<h2>${escapeHtml(hs.headline || eq.headline || 'Recent earthquakes near Guwahati')}</h2>
+      <p>${escapeHtml(eq.homeIntro || eq.subhead || '')}</p>
+      ${eventsHtml}
+      <p><a href="/earthquakes">View live earthquake map near Guwahati →</a></p>`;
+}
+
+function buildPageTitle(headline, seoTitle) {
+  const TITLE_MAX = 60;
+  const BRAND_SUFFIX = ' | 91SkylineWorks';
+  const base = seoTitle || headline;
+  const full = base + BRAND_SUFFIX;
+  if (full.length <= TITLE_MAX) return full;
+  const trimAt = TITLE_MAX - BRAND_SUFFIX.length - 1;
+  return `${base.slice(0, trimAt).trim()}…${BRAND_SUFFIX}`;
+}
+
 function routeMeta(route) {
   const base = content.meta;
   const problem = (content.problems || []).find((p) => route === `/problems/${p.slug}`);
   if (problem) {
     return {
-      title: `${problem.title} — Causes & Diagnosis | 91SkylineWorks Guwahati`,
+      title: buildPageTitle(problem.title, problem.seoTitle),
       description: problem.intro.slice(0, 160),
     };
   }
   const article = (content.knowledgeArticles || []).find((a) => route === `/knowledge/${a.slug}`);
   if (article) {
     return {
-      title: `${article.title} | 91SkylineWorks Knowledge`,
+      title: buildPageTitle(article.title, article.seoTitle),
       description: article.excerpt.slice(0, 160),
     };
   }
   const servicePage = (content.servicePages || []).find((p) => route === `/services/${p.slug}`);
   if (servicePage) {
     return {
-      title: `${servicePage.title} — 91SkylineWorks Guwahati`,
+      title: buildPageTitle(servicePage.title, servicePage.seoTitle),
       description: servicePage.intro.slice(0, 160),
+    };
+  }
+  const serviceCategory = (content.serviceCategories || []).find(
+    (c) => route === `/services/category/${c.slug}`,
+  );
+  if (serviceCategory) {
+    return {
+      title: buildPageTitle(`${serviceCategory.label} services in Guwahati`, serviceCategory.seoTitle),
+      description: serviceCategory.intro.slice(0, 160),
+    };
+  }
+  const localLanding = (content.localLandings || []).find((l) => route === `/guwahati/${l.slug}`);
+  if (localLanding) {
+    return {
+      title: buildPageTitle(localLanding.headline, localLanding.seoTitle),
+      description: localLanding.intro.slice(0, 160),
     };
   }
   const map = {
@@ -90,8 +163,10 @@ function routeMeta(route) {
       description: content.about.body[0],
     },
     '/earthquakes': {
-      title: 'Earthquakes — Live Seismic Activity Near Guwahati',
-      description: `${content.telemetry.engineNote.slice(0, 80)}… ${content.earthquakes.subhead}`,
+      title: content.earthquakes?.seoTitle || 'Earthquakes Near Guwahati Today — Live Map | Northeast India',
+      description:
+        content.earthquakes?.seoDescription ||
+        `Live earthquake map for Guwahati, Assam and Northeast India. ${content.earthquakes?.subhead || ''}`.slice(0, 160),
     },
     '/education': {
       title: 'Education — Forensic Structural Engineering',
@@ -123,8 +198,25 @@ function buildRouteBody(route) {
       return `<h1>Portfolio</h1>${content.projects.map((p) => `<h2>${escapeHtml(p.title)}</h2><p>${escapeHtml(p.category)} · ${escapeHtml(p.location)} · ${p.year}</p><p>${escapeHtml(p.scope)}</p>`).join('')}<h2>${escapeHtml(content.homeSections?.clients?.headline || 'Clients')}</h2><ul>${content.clients.map((c) => `<li>${escapeHtml(c.name)} — ${escapeHtml(c.location)}</li>`).join('')}</ul>`;
     case '/about':
       return `<h1>${escapeHtml(content.about.headline)}</h1>${content.about.body.map((p) => `<p>${escapeHtml(p)}</p>`).join('')}<ul>${content.about.points.map((p) => `<li>${escapeHtml(p)}</li>`).join('')}</ul><h2>${escapeHtml(content.homeSections?.backing?.headline || 'Our Backing')}</h2>${content.backing.map((b) => `<h3>${escapeHtml(b.title)}</h3><p>${escapeHtml(b.body)}</p>`).join('')}`;
-    case '/earthquakes':
-      return `<h1>${escapeHtml(content.earthquakes.headline)}</h1><p>${escapeHtml(content.earthquakes.bridgeNote || content.earthquakes.subhead)}</p><h2>Regional Telemetry</h2><p>Station: ${escapeHtml(content.telemetry.station)}</p><p>${escapeHtml(content.telemetry.alertStatus)}</p><p>${escapeHtml(content.telemetry.engineNote)}</p><h2>USGS Feed</h2><p>${escapeHtml(content.earthquakes.subhead)}</p><p>${escapeHtml(content.earthquakes.disclaimer)}</p>`;
+    case '/earthquakes': {
+      const eq = content.earthquakes || {};
+      const events = earthquakeSnapshot?.events || [];
+      const eventsHtml = buildEarthquakeEventsHtml(events);
+      const fetchedNote = earthquakeSnapshot
+        ? `<p><em>USGS data pre-rendered ${escapeHtml(formatEventTime(earthquakeSnapshot.fetchedAt))}.</em></p>`
+        : '';
+      return `<h1>${escapeHtml(eq.headline || 'Earthquakes near Guwahati today')}</h1>
+      <p>${escapeHtml(eq.bridgeNote || eq.subhead || '')}</p>
+      <p>${escapeHtml(eq.subhead || '')}</p>
+      ${eventsHtml}
+      ${fetchedNote}
+      <h2>Regional seismic monitoring</h2>
+      <p>Station: ${escapeHtml(content.telemetry.station)} · ${escapeHtml(content.telemetry.alertStatus)}</p>
+      <p>${escapeHtml(content.telemetry.engineNote)}</p>
+      <p>${escapeHtml(eq.disclaimer || '')}</p>
+      <p><a href="/services/seismic-jacketing">Seismic retrofitting for Zone V buildings →</a> · <a href="/knowledge/seismic-zone-5-guwahati-homeowner">Zone V homeowner guide →</a></p>
+      ${buildEarthquakeFaqHtml()}`;
+    }
     case '/education':
       return `<h1>Forensic Engineering Education</h1>${content.education.sections.map((s) => `<h2>${escapeHtml(s.title)}</h2>${s.body ? `<p>${escapeHtml(s.body)}</p>` : ''}${s.stages ? `<ul>${s.stages.map((st) => `<li><strong>${escapeHtml(st.label)}</strong> ${escapeHtml(st.text)}</li>`).join('')}</ul>` : ''}`).join('')}<h2>${escapeHtml(content.advisory.title)}</h2>${content.advisory.points.map((p) => `<h3>${escapeHtml(p.title)}</h3><p>${escapeHtml(p.body)}</p>`).join('')}`;
     case '/analyzer':
@@ -147,8 +239,21 @@ function buildRouteBody(route) {
       if (art) {
         return `<h1>${escapeHtml(art.title)}</h1><p>${escapeHtml(art.excerpt)}</p><p>${escapeHtml(art.body)}</p>`;
       }
+      const serviceCategory = (content.serviceCategories || []).find(
+        (c) => route === `/services/category/${c.slug}`,
+      );
+      if (serviceCategory) {
+        const items = (content.services || []).filter((s) => s.category === serviceCategory.slug);
+        return `<h1>${escapeHtml(serviceCategory.headline)}</h1><p>${escapeHtml(serviceCategory.intro)}</p><ul>${items.map((s) => `<li><a href="/services/${s.slug}"><strong>${escapeHtml(s.title)}</strong></a> — ${escapeHtml(s.description)}</li>`).join('')}</ul>`;
+      }
+      const proj = (content.projects || []).find((p) => route === `/portfolio/${p.slug}`);
+      if (proj) {
+        const body = proj.body ? `<p>${escapeHtml(proj.body.replace(/\n\n/g, ' '))}</p>` : '';
+        return `<h1>${escapeHtml(proj.title)}</h1><p>${escapeHtml(proj.scope || '')}</p>${body}<p><strong>Outcome:</strong> ${escapeHtml(proj.outcome || '')}</p>`;
+      }
       const sp = (content.servicePages || []).find((p) => route === `/services/${p.slug}`);
       if (sp) {
+        const h1 = sp.seoHeadline || sp.headline;
         const awareness = sp.awareness
           ? `<h2>${escapeHtml(sp.awareness.headline)}</h2><p>${escapeHtml(sp.awareness.body)}</p>`
           : '';
@@ -164,7 +269,29 @@ function buildRouteBody(route) {
               `<h2>${escapeHtml(sec.title)}</h2>${sec.body ? `<p>${escapeHtml(sec.body)}</p>` : ''}${sec.bullets ? `<ul>${sec.bullets.map((b) => `<li>${escapeHtml(b)}</li>`).join('')}</ul>` : ''}`,
           )
           .join('');
-        return `<h1>${escapeHtml(sp.headline)}</h1><p>${escapeHtml(sp.intro)}</p>${awareness}${offerings ? `<h2>Services</h2>${offerings}` : ''}${sections}${sp.ctaMessage ? `<p>${escapeHtml(sp.ctaMessage)}</p>` : ''}`;
+        return `<h1>${escapeHtml(h1)}</h1><p>${escapeHtml(sp.intro)}</p>${awareness}${offerings ? `<h2>Services</h2>${offerings}` : ''}${sections}${sp.ctaMessage ? `<p>${escapeHtml(sp.ctaMessage)}</p>` : ''}`;
+      }
+      const landing = (content.localLandings || []).find((l) => route === `/guwahati/${l.slug}`);
+      if (landing) {
+        const sections = (landing.sections || [])
+          .map((sec) => `<h2>${escapeHtml(sec.title)}</h2><p>${escapeHtml(sec.body)}</p>`)
+          .join('');
+        const faqs = (landing.faqs || [])
+          .map((f) => `<h3>${escapeHtml(f.q)}</h3><p>${escapeHtml(f.a)}</p>`)
+          .join('');
+        const serviceLinks = (landing.linkedServices || [])
+          .map((slug) => {
+            const svc = (content.services || []).find((s) => s.slug === slug);
+            return svc ? `<li><a href="/services/${slug}">${escapeHtml(svc.title)}</a></li>` : '';
+          })
+          .join('');
+        const problemLinks = (landing.linkedProblems || [])
+          .map((slug) => {
+            const prob = (content.problems || []).find((p) => p.slug === slug);
+            return prob ? `<li><a href="/problems/${slug}">${escapeHtml(prob.title)}</a></li>` : '';
+          })
+          .join('');
+        return `<h1>${escapeHtml(landing.headline)}</h1><p>${escapeHtml(landing.intro)}</p>${sections}${serviceLinks ? `<h2>Related services</h2><ul>${serviceLinks}</ul>` : ''}${problemLinks ? `<h2>Common problems</h2><ul>${problemLinks}</ul>` : ''}${faqs ? `<h2>FAQ</h2>${faqs}` : ''}${landing.ctaMessage ? `<p>${escapeHtml(landing.ctaMessage)}</p>` : ''}`;
       }
       return buildHomeBody();
     }
@@ -183,8 +310,9 @@ function buildHomeBody() {
     .map((f) => `<h3>${escapeHtml(f.q)}</h3><p>${escapeHtml(f.a)}</p>`)
     .join('');
 
-  return `<h1>${escapeHtml(content.company.fullName)} — Building Doctor, Guwahati</h1>
+  return `<h2>${escapeHtml(content.company.fullName)} — Building Doctor, Guwahati</h2>
       <p>${escapeHtml(content.meta.description)}</p>
+      ${buildHomeEarthquakeSection()}
       <h2>Stats</h2>
       <ul>${stats}</ul>
       <h2>Services</h2>
@@ -259,6 +387,10 @@ function buildJsonLd(route) {
     knowsAbout: [
       ...content.services.map((s) => s.title),
       ...(content.problems || []).map((p) => p.title),
+      'Earthquake monitoring',
+      'Seismic activity near Guwahati',
+      'Seismic Zone V',
+      'Northeast India earthquakes',
     ],
     ...(openingHours ? { openingHoursSpecification: openingHours } : {}),
     ...(googleReviewsAggregate ? { aggregateRating: googleReviewsAggregate } : {}),
@@ -269,26 +401,65 @@ function buildJsonLd(route) {
     if (route === '/' && content.homeownerFaq?.items?.length) {
       return content.homeownerFaq.items;
     }
+    if (route === '/earthquakes' && content.earthquakes?.faq?.length) {
+      return content.earthquakes.faq;
+    }
+    const localLanding = (content.localLandings || []).find((l) => route === `/guwahati/${l.slug}`);
+    if (localLanding?.faqs?.length) return localLanding.faqs;
     const problem = (content.problems || []).find((p) => route === `/problems/${p.slug}`);
     return problem?.faqs || [];
   })();
 
-  if (faqItems.length) {
-    return [
-      localBusiness,
-      {
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        mainEntity: faqItems.map((faq) => ({
-          '@type': 'Question',
-          name: faq.q,
-          acceptedAnswer: { '@type': 'Answer', text: faq.a },
-        })),
-      },
-    ];
+  const serviceSchemaNames = {
+    '/services/waterproofing': 'Waterproofing in Guwahati',
+    '/services/retrofitting': 'Building retrofitting in Guwahati',
+  };
+  const localLandingRoute = (content.localLandings || []).find((l) => route === `/guwahati/${l.slug}`);
+  const serviceSchemaName = serviceSchemaNames[route] || localLandingRoute?.serviceSchemaName;
+
+  const graphs = [localBusiness];
+
+  if (serviceSchemaName) {
+    graphs.push({
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: serviceSchemaName,
+      provider: { '@id': `${siteUrl}/#localbusiness` },
+      areaServed: { '@type': 'City', name: 'Guwahati' },
+      url: `${siteUrl}${route}`,
+    });
   }
 
-  return localBusiness;
+  if (route === '/earthquakes') {
+    graphs.push({
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': `${siteUrl}/earthquakes#webpage`,
+      name: content.earthquakes?.seoTitle || 'Earthquakes near Guwahati today',
+      description: content.earthquakes?.seoDescription || content.earthquakes?.subhead,
+      url: `${siteUrl}/earthquakes`,
+      isPartOf: { '@type': 'WebSite', name: content.company.fullName, url: siteUrl },
+      about: [
+        { '@type': 'Thing', name: 'Earthquake' },
+        { '@type': 'Place', name: 'Guwahati, Assam, India' },
+        { '@type': 'Place', name: 'Northeast India' },
+      ],
+    });
+  }
+
+  if (faqItems.length) {
+    graphs.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqItems.map((faq) => ({
+        '@type': 'Question',
+        name: faq.q,
+        acceptedAnswer: { '@type': 'Answer', text: faq.a },
+      })),
+    });
+  }
+
+  return graphs.length === 1 ? graphs[0] : graphs;
 }
 
 function heroImagePath() {
@@ -311,7 +482,7 @@ function buildHeroPrerender(route) {
       <div class="wrap hero-grid">
         <div class="hero-copy">
           <span class="eyebrow">${escapeHtml(hero.eyebrow)}</span>
-          <h1>${escapeHtml(hero.headline)}</h1>
+          <p class="hero-headline">${escapeHtml(hero.headline)}</p>
           <p class="hero-sub">${escapeHtml(hero.subheadline)}</p>
         </div>
       </div>
@@ -370,7 +541,12 @@ function buildStaticArticle(route) {
 }
 
 function buildStaticContentHideStyle() {
-  return '<style id="static-content-hide">#static-content{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);clip-path:inset(50%);white-space:nowrap;border:0}</style>';
+  return `<style id="static-content-hide">
+#static-content{max-width:48rem;margin:0 auto;padding:1rem 1.25rem;line-height:1.5;font-size:0.9375rem}
+#static-content a{color:inherit}
+#static-content ol{padding-left:1.25rem}
+body.app-ready #static-content{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);clip-path:inset(50%);white-space:nowrap;border:0}
+</style>`;
 }
 
 function applySeoToHtml(html, route) {
@@ -431,7 +607,11 @@ function writeSitemap() {
   const today = new Date().toISOString().slice(0, 10);
   const urls = ROUTES.map((route) => {
     const loc = route === '/' ? siteUrl : `${siteUrl}${route}`;
-    return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${today}</lastmod>\n  </url>`;
+    if (route === '/earthquakes') {
+      return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>hourly</changefreq>\n    <priority>0.9</priority>\n  </url>`;
+    }
+    const priority = route === '/' ? '1.0' : '0.7';
+    return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>${priority}</priority>\n  </url>`;
   }).join('\n');
 
   fs.writeFileSync(
@@ -445,7 +625,15 @@ ${urls}
 }
 
 function writeLlmsTxt() {
-  const navLinks = [...content.nav, ...(content.navTools || []), ...content.navMore]
+  const navLinks = [
+    ...content.nav,
+    { label: 'Services', href: '/services' },
+    ...(content.navServices || []).filter(
+      (item) => item.href !== '/services' && item.label !== 'All services',
+    ),
+    ...(content.navTools || []),
+    ...content.navMore,
+  ]
     .map((item) => `- [${item.label}](${siteUrl}${item.href})`)
     .join('\n');
 
@@ -488,9 +676,19 @@ ${problemQa}
 
 ${content.services.map((s) => `- [${s.title}](${siteUrl}/services/${s.slug}): ${s.description}`).join('\n')}
 
+## Guwahati local services
+
+${(content.localLandings || []).map((l) => `- [${l.headline}](${siteUrl}/guwahati/${l.slug}): ${l.intro.slice(0, 120)}…`).join('\n')}
+
 ## Knowledge Centre
 
 ${knowledgeList}
+
+## Live earthquakes (Guwahati & Northeast India)
+
+- [Earthquakes near Guwahati today](${siteUrl}/earthquakes): Live USGS map and recent tremors in Assam and Northeast India. Enable location to see earthquakes near you.
+- [Seismic Zone V homeowner guide](${siteUrl}/knowledge/seismic-zone-5-guwahati-homeowner)
+- [Seismic jacketing & retrofitting](${siteUrl}/services/seismic-jacketing)
 
 ## Key Stats
 
@@ -548,11 +746,26 @@ if (!fs.existsSync(indexPath)) {
   process.exit(1);
 }
 
-const baseHtml = fs.readFileSync(indexPath, 'utf8');
+async function main() {
+  try {
+    earthquakeSnapshot = await fetchNeEarthquakes({ limit: 20 });
+    console.log('[seo] pre-rendered', earthquakeSnapshot.events.length, 'USGS events for Northeast India');
+  } catch (err) {
+    console.warn('[seo] USGS fetch failed — earthquake list will be empty in static HTML:', err.message);
+    earthquakeSnapshot = { events: [], fetchedAt: Date.now(), source: 'USGS' };
+  }
 
-writeRobotsTxt();
-writeSitemap();
-writeLlmsTxt();
-writeRoutePages(baseHtml);
+  const baseHtml = fs.readFileSync(indexPath, 'utf8');
 
-console.log('[seo] wrote robots.txt, sitemap.xml, llms.txt, and static HTML for', ROUTES.length, 'routes');
+  writeRobotsTxt();
+  writeSitemap();
+  writeLlmsTxt();
+  writeRoutePages(baseHtml);
+
+  console.log('[seo] wrote robots.txt, sitemap.xml, llms.txt, and static HTML for', ROUTES.length, 'routes');
+}
+
+main().catch((err) => {
+  console.error('[seo] fatal:', err);
+  process.exit(1);
+});

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import useBackgroundImage from '../hooks/useBackgroundImage';
 import SectionHead from './SectionHead';
 
@@ -5,7 +6,7 @@ function ProjectCard({ project }) {
   const phRef = useBackgroundImage(project.image);
 
   return (
-    <article className={`project-card ${project.featured ? 'featured' : ''}`}>
+    <Link to={`/portfolio/${project.slug}`} className={`project-card ${project.featured ? 'featured' : ''}`}>
       <div className="ph" ref={phRef} />
       <div className="veil" />
       <div className="info">
@@ -17,7 +18,7 @@ function ProjectCard({ project }) {
         <h3>{project.title}</h3>
         {project.scope && <div className="scope">{project.scope}</div>}
       </div>
-    </article>
+    </Link>
   );
 }
 
@@ -28,7 +29,7 @@ export default function ProjectsShowcase({ projects, heading, limit, id = 'work'
   const grid = (
     <div className="projects-showcase">
       {items.map((p) => (
-        <ProjectCard key={p.title} project={p} />
+        <ProjectCard key={p.slug || p.title} project={p} />
       ))}
     </div>
   );

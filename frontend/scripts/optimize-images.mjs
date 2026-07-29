@@ -79,7 +79,40 @@ if (!fs.existsSync(imagesDir)) {
   fs.mkdirSync(imagesDir, { recursive: true });
 }
 
+async function optimizeProjectImages() {
+  const projectsRoot = path.join(imagesDir, 'projects');
+  if (!fs.existsSync(projectsRoot)) return;
+
+  const slugs = fs.readdirSync(projectsRoot, { withFileTypes: true })
+    .filter((e) => e.isDirectory())
+    .map((e) => e.name);
+
+  for (const slug of slugs) {
+    const dir = path.join(projectsRoot, slug);
+    for (const name of fs.readdirSync(dir)) {
+      if (!/\.(jpe?g|png|webp)$/i.test(name)) continue;
+      const input = path.join(dir, name);
+      const base = name.replace(/\.(jpe?g|png|webp)$/i, '');
+      const out = path.join(dir, `${base}.webp`);
+      if (name.endsWith('.webp') && fs.statSync(input).size < 400000) continue;
+
+      const temp = path.join(dir, `${base}.optim.webp`);
+      await sharp(input)
+        .rotate()
+        .resize({ width: 1200, withoutEnlargement: true })
+        .webp({ quality: 82, effort: 4 })
+        .toFile(temp);
+
+      if (input !== out) fs.unlinkSync(input);
+      fs.renameSync(temp, out);
+      const stat = fs.statSync(out);
+      console.log(`[images] projects/${slug}/${base}.webp ${(stat.size / 1024).toFixed(1)} KiB`);
+    }
+  }
+}
+
 await optimizeHero();
 await optimizeLogo();
 await optimizeFavicon();
+await optimizeProjectImages();
 console.log('[images] done');

@@ -26,7 +26,7 @@ export default function ProblemsIndexPage() {
         />
         {grouped.map((group) =>
           group.items.length ? (
-            <div key={group.slug} className="hub-group">
+            <div key={group.slug} id={group.slug} className="hub-group">
               <h2>{group.title}</h2>
               <div className="hub-grid">
                 {group.items.map((problem) => (

@@ -14,6 +14,14 @@ function InspectionIcon() {
   );
 }
 
+function ChevronDownIcon() {
+  return (
+    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+      <path d="M6 9l6 6 6-6" />
+    </svg>
+  );
+}
+
 function NavIconTooltip({ tip, children }) {
   return (
     <span className="icon-tooltip" data-tooltip={tip}>
@@ -22,26 +30,50 @@ function NavIconTooltip({ tip, children }) {
   );
 }
 
-function NavDropdown({ label, items, isOpen, setOpen, dropdownRef, onClose }) {
-  if (!items.length) return null;
+function NavDropdown({ label, labelHref, items, isOpen, setOpen, dropdownRef, onClose }) {
+  if (!items.length && !labelHref) return null;
+
+  const toggle = () => setOpen((o) => !o);
 
   return (
     <div ref={dropdownRef} className={`nav-dropdown ${isOpen ? 'open' : ''}`}>
-      <button
-        type="button"
-        className="nav-dropdown-toggle"
-        aria-expanded={isOpen}
-        onClick={() => setOpen((o) => !o)}
-      >
-        {label}
-      </button>
-      <div className="nav-dropdown-menu">
-        {items.map((item) => (
-          <Link key={item.href} to={item.href} onClick={onClose}>
-            {item.label}
+      {labelHref ? (
+        <div className="nav-dropdown-label-row">
+          <Link to={labelHref} className="nav-dropdown-link" onClick={onClose}>
+            {label}
           </Link>
-        ))}
-      </div>
+          {items.length > 0 && (
+            <button
+              type="button"
+              className="nav-dropdown-chevron"
+              aria-expanded={isOpen}
+              aria-label={`${label} categories`}
+              onClick={toggle}
+            >
+              <ChevronDownIcon />
+            </button>
+          )}
+        </div>
+      ) : (
+        <button
+          type="button"
+          className="nav-dropdown-toggle"
+          aria-expanded={isOpen}
+          onClick={toggle}
+        >
+          {label}
+          {items.length > 0 && <ChevronDownIcon />}
+        </button>
+      )}
+      {items.length > 0 && (
+        <div className="nav-dropdown-menu">
+          {items.map((item) => (
+            <Link key={item.href} to={item.href} onClick={onClose}>
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -50,12 +82,17 @@ export default function Header({ content }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
   const toolsRef = useRef(null);
+  const servicesRef = useRef(null);
   const moreRef = useRef(null);
   const location = useLocation();
 
   const primary = content?.nav || [];
+  const servicesNav = (content?.navServices || []).filter(
+    (item) => item.href !== '/services' && item.label !== 'All services',
+  );
   const tools = content?.navTools || [];
   const more = content?.navMore || [];
 
@@ -69,6 +106,7 @@ export default function Header({ content }) {
   useEffect(() => {
     setMenuOpen(false);
     setToolsOpen(false);
+    setServicesOpen(false);
     setMoreOpen(false);
     if (location.hash) {
       const id = location.hash.slice(1);
@@ -94,6 +132,19 @@ export default function Header({ content }) {
   }, [toolsOpen]);
 
   useEffect(() => {
+    if (!servicesOpen) return undefined;
+
+    const onPointerDown = (event) => {
+      if (servicesRef.current && !servicesRef.current.contains(event.target)) {
+        setServicesOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', onPointerDown);
+    return () => document.removeEventListener('mousedown', onPointerDown);
+  }, [servicesOpen]);
+
+  useEffect(() => {
     if (!moreOpen) return undefined;
 
     const onPointerDown = (event) => {
@@ -111,6 +162,7 @@ export default function Header({ content }) {
   const closeMenu = () => {
     setMenuOpen(false);
     setToolsOpen(false);
+    setServicesOpen(false);
     setMoreOpen(false);
   };
 
@@ -121,7 +173,7 @@ export default function Header({ content }) {
           {content.company?.logo ? (
             <picture>
               <source srcSet={content.company.logo.replace(/\.png$/i, '.webp')} type="image/webp" />
-              <img src={content.company.logo} alt={content.company.name} className="brand-logo" width={120} height={40} />
+              <img src={content.company.logo} alt={content.company.name} className="brand-logo" width={141} height={47} />
             </picture>
           ) : (
             <>
@@ -131,11 +183,28 @@ export default function Header({ content }) {
           )}
         </Link>
         <nav className={`nav-links ${menuOpen ? 'open' : ''}`}>
-          {primary.map((item) => (
-            <Link key={item.href} to={item.href} onClick={closeMenu}>
-              {item.label}
-            </Link>
-          ))}
+          {primary.flatMap((item) => {
+            const links = [
+              <Link key={item.href} to={item.href} onClick={closeMenu}>
+                {item.label}
+              </Link>,
+            ];
+            if (item.href === '/problems' && servicesNav.length > 0) {
+              links.push(
+                <NavDropdown
+                  key="services"
+                  label="Services"
+                  labelHref="/services"
+                  items={servicesNav}
+                  isOpen={servicesOpen}
+                  setOpen={setServicesOpen}
+                  dropdownRef={servicesRef}
+                  onClose={closeMenu}
+                />,
+              );
+            }
+            return links;
+          })}
           <NavDropdown
             label={content.navToolsLabel || 'Tools'}
             items={tools}

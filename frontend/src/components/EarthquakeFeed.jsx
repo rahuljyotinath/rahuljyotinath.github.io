@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import useEarthquakes from '../hooks/useEarthquakes';
-import { timeAgo } from '../lib/earthquakes';
+import { MIN_EARTHQUAKE_LIST, timeAgo } from '../lib/earthquakes';
 import EarthquakeMap from './EarthquakeMap';
 import EarthquakeList from './EarthquakeList';
 import EarthquakeDetail from './EarthquakeDetail';
@@ -15,7 +15,8 @@ const TABS = [
 export default function EarthquakeFeed({ copy = {}, defaultScope = 'ne', compact = false }) {
   const [scope, setScope] = useState(defaultScope);
   const [selectedId, setSelectedId] = useState(null);
-  const { events, loading, error, fetchedAt, source } = useEarthquakes(scope);
+  const minCount = scope === 'ne' ? MIN_EARTHQUAKE_LIST : 0;
+  const { events, loading, error, fetchedAt, source, backfilled } = useEarthquakes(scope, { minCount });
 
   const selected = useMemo(
     () => events.find((e) => e.id === selectedId) || null,
@@ -67,7 +68,12 @@ export default function EarthquakeFeed({ copy = {}, defaultScope = 'ne', compact
           locationNote={copy.locationNote}
         />
         <div className="earthquake-side">
-          <EarthquakeList events={events} selectedId={selectedId} onSelect={setSelectedId} />
+          <EarthquakeList
+            events={events}
+            selectedId={selectedId}
+            onSelect={setSelectedId}
+            backfilled={backfilled}
+          />
           <EarthquakeDetail event={selected} />
         </div>
       </div>

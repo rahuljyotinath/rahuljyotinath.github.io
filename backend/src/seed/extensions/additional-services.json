@@ -270,7 +270,7 @@
       "year": 2024,
       "scope": "Full terrace waterproofing with slope correction and parapet upturn for 48-unit society",
       "featured": true,
-      "image": "images/project-1.jpg",
+      "image": "images/projects/beltola-residential-tower/hero.webp",
       "outcome": "Zero ceiling leak complaints post-monsoon 2024",
       "services": [
         "waterproofing",
@@ -285,7 +285,7 @@
       "year": 2023,
       "scope": "Bathroom seepage repair, PU injection at slab joints, expansion joint reseal",
       "featured": true,
-      "image": "images/project-2.jpg",
+      "image": "images/projects/chandmari-apartment-complex/hero.webp",
       "outcome": "Resolved inter-floor leakage affecting 12 flats",
       "services": [
         "pu-injection",
@@ -300,7 +300,7 @@
       "year": 2024,
       "scope": "Basement waterproofing, hydrostatic barrier, column spalling repair",
       "featured": false,
-      "image": "images/project-3.jpg",
+      "image": "images/projects/hpcl-regional-facility/hero.webp",
       "outcome": "Dry basement storage through peak monsoon",
       "services": [
         "waterproofing",
@@ -315,7 +315,7 @@
       "year": 2023,
       "scope": "Column crack mapping, epoxy injection, CFRP wrap on critical members",
       "featured": true,
-      "image": "images/project-1.jpg",
+      "image": "images/projects/dispur-government-office/hero.webp",
       "outcome": "Structural audit clearance for occupancy continuation",
       "services": [
         "epoxy-injection",
@@ -331,7 +331,7 @@
       "year": 2022,
       "scope": "Foundation grouting for settlement under warehouse slab",
       "featured": false,
-      "image": "images/project-2.jpg",
+      "image": "images/projects/industrial-warehouse-paltan-bazar/hero.webp",
       "outcome": "Settlement stabilised — slab movement arrested",
       "services": [
         "pu-injection"
@@ -345,7 +345,7 @@
       "year": 2024,
       "scope": "Podium waterproofing and parking expansion joint treatment",
       "featured": false,
-      "image": "images/project-3.jpg",
+      "image": "images/projects/gs-road-commercial-block/hero.webp",
       "outcome": "Dry parking level through monsoon",
       "services": [
         "waterproofing",
@@ -360,7 +360,7 @@
       "year": 2023,
       "scope": "Seismic screening and column jacketing on 1998 block",
       "featured": false,
-      "image": "images/project-1.jpg",
+      "image": "images/projects/six-mile-school-campus/hero.webp",
       "outcome": "Retrofit completed during summer break",
       "services": [
         "seismic-jacketing",
@@ -375,7 +375,7 @@
       "year": 2024,
       "scope": "Terrace PU membrane, heat reflective coating, drain redesign",
       "featured": true,
-      "image": "images/project-2.jpg",
+      "image": "images/projects/zoo-road-hotel-terrace/hero.webp",
       "outcome": "Guest room leak complaints eliminated",
       "services": [
         "waterproofing",
@@ -390,7 +390,7 @@
       "year": 2022,
       "scope": "CFRP column wrap and micro concreting on honeycombed columns",
       "featured": false,
-      "image": "images/project-3.jpg",
+      "image": "images/projects/noonmati-housing-retrofit/hero.webp",
       "outcome": "NDT strength targets met post-repair",
       "services": [
         "carbon-fibre",
@@ -405,7 +405,7 @@
       "year": 2023,
       "scope": "Basement tanking, PU injection, humidity control coordination",
       "featured": false,
-      "image": "images/project-1.jpg",
+      "image": "images/projects/bhangagarh-hospital-basement/hero.webp",
       "outcome": "Medical storage area humidity within spec",
       "services": [
         "waterproofing",

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import SectionHead from './SectionHead';
 
 function Stars({ rating }) {
@@ -11,22 +11,20 @@ function Stars({ rating }) {
   );
 }
 
-function ReviewCard({ review, profileUrl }) {
+function ReviewCard({ review }) {
+  const alt = review.snapshotAlt || `${review.authorName || 'Google user'} review`;
+
   return (
     <article className="google-review-card panel">
       {review.snapshot ? (
-        <a
-          href={profileUrl || undefined}
-          target={profileUrl ? '_blank' : undefined}
-          rel={profileUrl ? 'noopener noreferrer' : undefined}
-        >
+        <div className="google-review-frame">
           <img
             className="google-review-snapshot"
             src={review.snapshot}
-            alt={review.snapshotAlt || `${review.authorName || 'Google user'} review`}
+            alt={alt}
             loading="lazy"
           />
-        </a>
+        </div>
       ) : (
         <>
           <header>
@@ -44,20 +42,40 @@ function ReviewCard({ review, profileUrl }) {
 export default function GoogleReviews({ heading, data }) {
   if (!data?.rating) return null;
 
-  const reviews = (data.reviews || []).slice(0, 5);
+  const reviews = data.reviews || [];
   const profileUrl = data.profileUrl;
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
 
+  const total = reviews.length;
+  const current = reviews[active];
+
+  const goPrev = useCallback(() => {
+    setActive((i) => (i - 1 + total) % total);
+  }, [total]);
+
+  const goNext = useCallback(() => {
+    setActive((i) => (i + 1) % total);
+  }, [total]);
+
   useEffect(() => {
-    if (reviews.length <= 1 || paused) return undefined;
+    if (total <= 1 || paused) return undefined;
 
-    const id = window.setInterval(() => {
-      setActive((i) => (i + 1) % reviews.length);
-    }, 4500);
-
+    const id = window.setInterval(goNext, 4500);
     return () => window.clearInterval(id);
-  }, [reviews.length, paused]);
+  }, [total, paused, goNext]);
+
+  const onGalleryKeyDown = (event) => {
+    if (total <= 1) return;
+
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      goPrev();
+    } else if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      goNext();
+    }
+  };
 
   return (
     <section className="google-reviews">
@@ -80,11 +98,13 @@ export default function GoogleReviews({ heading, data }) {
             </a>
           )}
         </div>
-        {reviews.length > 0 && (
+        {total > 0 && current && (
           <div
             className="google-reviews-gallery"
+            tabIndex={0}
             aria-roledescription="carousel"
             aria-label="Google reviews"
+            onKeyDown={onGalleryKeyDown}
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
             onFocusCapture={() => setPaused(true)}
@@ -92,19 +112,32 @@ export default function GoogleReviews({ heading, data }) {
               if (!e.currentTarget.contains(e.relatedTarget)) setPaused(false);
             }}
           >
-            <div className="google-reviews-viewport">
-              <div
-                className="google-reviews-track"
-                style={{ transform: `translateX(-${active * 100}%)` }}
-              >
-                {reviews.map((r, i) => (
-                  <div key={r.authorName || i} className="google-reviews-slide">
-                    <ReviewCard review={r} profileUrl={profileUrl} />
-                  </div>
-                ))}
+            <div className="google-reviews-carousel">
+              {total > 1 && (
+                <button
+                  type="button"
+                  className="google-reviews-nav google-reviews-nav--prev"
+                  onClick={goPrev}
+                  aria-label="Previous review"
+                >
+                  ‹
+                </button>
+              )}
+              <div className="google-reviews-viewport" aria-live="polite">
+                <ReviewCard key={active} review={current} />
               </div>
+              {total > 1 && (
+                <button
+                  type="button"
+                  className="google-reviews-nav google-reviews-nav--next"
+                  onClick={goNext}
+                  aria-label="Next review"
+                >
+                  ›
+                </button>
+              )}
             </div>
-            {reviews.length > 1 && (
+            {total > 1 && (
               <div className="google-reviews-dots" aria-hidden="true">
                 {reviews.map((r, i) => (
                   <span

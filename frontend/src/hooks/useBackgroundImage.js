@@ -13,16 +13,17 @@ export default function useBackgroundImage(url) {
       return;
     }
 
+    const src = !url || url.startsWith('/') || /^https?:\/\//.test(url) ? url : `/${url}`;
     const img = new Image();
     img.onload = () => {
-      el.style.backgroundImage = `url("${url}")`;
+      el.style.backgroundImage = `url("${src}")`;
       el.removeAttribute('data-fallback');
     };
     img.onerror = () => {
       el.dataset.fallback = '1';
       el.style.backgroundImage = '';
     };
-    img.src = url;
+    img.src = src;
   }, [url]);
 
   return ref;

@@ -41,7 +41,7 @@
 }
 
 .brand-logo {
-  height: 36px;
+  height: 47px;
   width: auto;
   display: block;
 }
@@ -56,7 +56,8 @@
 }
 
 .nav-links a,
-.nav-dropdown-toggle {
+.nav-dropdown-toggle,
+.nav-dropdown-link {
   font-family: var(--mono);
   font-size: .72rem;
   letter-spacing: .06em;
@@ -64,24 +65,61 @@
   color: var(--muted);
   transition: color .2s;
   white-space: nowrap;
+  line-height: 1.2;
 }
 
 .nav-links a:hover,
 .nav-dropdown-toggle:hover,
+.nav-dropdown-link:hover,
 .nav-dropdown:hover .nav-dropdown-toggle,
-.nav-dropdown.open .nav-dropdown-toggle {
+.nav-dropdown.open .nav-dropdown-toggle,
+.nav-dropdown:hover .nav-dropdown-link,
+.nav-dropdown.open .nav-dropdown-link {
   color: var(--text);
 }
 
 .nav-dropdown {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .nav-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
   background: none;
   border: 0;
   cursor: pointer;
   padding: 0;
+}
+
+.nav-dropdown-label-row {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  line-height: 1.2;
+}
+
+.nav-dropdown-chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  color: var(--muted);
+  transition: color .2s;
+  flex-shrink: 0;
+}
+
+.nav-dropdown-chevron:hover,
+.nav-dropdown:hover .nav-dropdown-chevron,
+.nav-dropdown.open .nav-dropdown-chevron {
+  color: var(--text);
 }
 
 .nav-dropdown-menu {

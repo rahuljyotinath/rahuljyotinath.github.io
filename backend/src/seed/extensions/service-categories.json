@@ -1,0 +1,56 @@
+{
+  "serviceCategories": [
+    {
+      "slug": "retrofitting",
+      "label": "Retrofitting",
+      "headline": "Earthquake strengthening for Guwahati homes",
+      "intro": "Seismic Zone V retrofitting — CFRP wrapping, jacketing, structural repairs, and concrete restoration for columns, beams, and foundations. Older RCC loses strength with time; retrofit before the next tremor, not after collapse."
+    },
+    {
+      "slug": "waterproofing",
+      "label": "Waterproofing",
+      "headline": "Stop leaks before monsoon damage spreads",
+      "intro": "Terrace, bathroom, basement, and joint waterproofing — plus PU injection and expansion joint treatment across Guwahati."
+    },
+    {
+      "slug": "ndt",
+      "label": "NDT Testing",
+      "headline": "Know your building's strength before you buy or repair",
+      "intro": "Non-destructive building strength tests for resale flats, old RCC frames, and pre-retrofit assessment in Northeast India. Other states mandate periodic audits on ageing buildings — Guwahati owners should not wait for law to catch up."
+    },
+    {
+      "slug": "heatproofing",
+      "label": "Heatproofing",
+      "headline": "Cooler top floors in Guwahati summers",
+      "intro": "Heat-reflective roof coatings that cut surface temperature and reduce AC load on terrace slabs."
+    },
+    {
+      "slug": "rainwater-harvesting",
+      "label": "Rain Water Harvesting",
+      "headline": "Capture Guwahati's monsoon rain on your roof",
+      "intro": "Rooftop rainwater harvesting and borewell recharge systems for homes and societies in Assam."
+    }
+  ],
+  "navServices": [
+    { "label": "Retrofitting", "href": "/services/category/retrofitting" },
+    { "label": "Waterproofing", "href": "/services/category/waterproofing" },
+    { "label": "NDT Testing", "href": "/services/category/ndt" },
+    { "label": "Heatproofing", "href": "/services/category/heatproofing" },
+    { "label": "Rain Water Harvesting", "href": "/services/category/rainwater-harvesting" }
+  ],
+  "serviceCategoryMap": {
+    "retrofitting": "retrofitting",
+    "carbon-fibre": "retrofitting",
+    "epoxy-injection": "retrofitting",
+    "structural-repairs": "retrofitting",
+    "micro-concreting": "retrofitting",
+    "seismic-jacketing": "retrofitting",
+    "concrete-cancer-treatment": "retrofitting",
+    "waterproofing": "waterproofing",
+    "pu-injection": "waterproofing",
+    "expansion-joints": "waterproofing",
+    "ndt": "ndt",
+    "heatproofing": "heatproofing",
+    "rainwater-harvesting": "rainwater-harvesting"
+  }
+}

@@ -1,0 +1,77 @@
+.field-select {
+  position: relative;
+}
+
+.field-select-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  background: var(--bg);
+  border: 1px solid var(--line-solid);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  padding: 0.85rem 1rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.field-select-trigger.is-placeholder {
+  color: var(--muted);
+}
+
+.field-select-trigger:focus,
+.field-select-trigger.is-open {
+  outline: none;
+  border-color: var(--amber);
+}
+
+.field-select-chevron {
+  flex-shrink: 0;
+  width: 0.65rem;
+  height: 0.65rem;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.field-select-trigger.is-open .field-select-chevron {
+  transform: rotate(-135deg) translateY(-2px);
+  border-color: var(--amber);
+}
+
+.field-select-menu {
+  position: absolute;
+  z-index: 20;
+  left: 0;
+  right: 0;
+  top: calc(100% + 2px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--bg);
+  border: 1px solid var(--line-solid);
+  max-height: 14rem;
+  overflow-y: auto;
+}
+
+.field-select-option {
+  padding: 0.85rem 1rem;
+  font-family: var(--sans);
+  font-size: 16px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.field-select-option.is-highlighted,
+.field-select-option:hover {
+  background: var(--panel);
+  color: var(--amber);
+}
+
+.field-select-option.is-selected {
+  color: var(--amber);
+}

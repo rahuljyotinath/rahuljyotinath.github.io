@@ -7,6 +7,10 @@ export default function ContactPage() {
   usePageTitle('Contact');
 
   return (
-    <ContactArray contact={content.contact} services={content.services} />
+    <ContactArray
+      contact={content.contact}
+      serviceCategories={content.serviceCategories}
+      navServices={content.navServices}
+    />
   );
 }

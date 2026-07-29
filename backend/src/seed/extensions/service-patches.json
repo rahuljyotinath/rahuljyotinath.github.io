@@ -22,6 +22,40 @@
       {
         "title": "What happens in the next tremor — treated vs untreated",
         "body": "An untreated home with a cracked column: the tremor shakes the building, stress concentrates at the crack, the column shears, upper floors lose support. A retrofitted home: the same tremor is absorbed by strengthened columns — cracks may not grow, floors stay supported."
+      },
+      {
+        "title": "How RCC strength drops over time",
+        "body": "Concrete does not stay at day-one strength forever. Carbonation front moves inward and reduces alkalinity that protects steel. Cover spalls, chlorides from poor mix or leaks reach rebar, and corrosion expands. IS 456 expects durability planning — not build-and-forget. A 25-year column in Guwahati monsoon can test 30–40% below original design assumptions if never maintained."
+      }
+    ]
+  },
+  "ndt": {
+    "sections": [
+      {
+        "title": "Who should get tested?",
+        "bullets": [
+          "Anyone buying a resale flat or house in Guwahati",
+          "Owners of buildings 10+ years old — especially pre-2010 construction",
+          "Flats where cracks appeared after recent tremors",
+          "Housing societies planning major renovation or additional floors",
+          "Landlords who want to protect tenants and avoid liability"
+        ]
+      },
+      {
+        "title": "What you'll receive",
+        "body": "A clear report in plain language — not a 50-page engineering document. We mark which columns passed, which need attention, and what it will cost to fix. You decide whether to proceed with purchase, negotiate price, or walk away."
+      },
+      {
+        "title": "How RCC strength decreases with age",
+        "body": "Carbonation, chloride ingress, and cover loss reduce effective strength over decades — often with no visible warning until spalling or a tremor widens cracks. Rebound hammer and UPV show what paint hides. A building that 'looks fine' at 20 years may have columns below design capacity."
+      },
+      {
+        "title": "When to retest — every 3 to 5 years",
+        "body": "IS 456 and good international practice treat structural health as ongoing. After major tremors, visible new cracks, or completed retrofit work, retest sooner. For older occupied buildings, a 3–5 year NDT cycle catches corrosion and strength loss before emergency repair."
+      },
+      {
+        "title": "Other states already mandate audits",
+        "body": "Maharashtra requires structural audits for certain ageing and dilapidated buildings. Delhi authorities have pushed periodic safety inspections on old structures. Kerala intensified assessments after flood damage. Assam has not yet mandated the same — but owners who wait for law often pay emergency prices after failure."
       }
     ]
   },
@@ -62,6 +96,10 @@
       {
         "title": "When PU injection is the right call",
         "body": "Active water through a crack or joint — basement during monsoon, terrace slab, expansion joint, pipe penetration. PU reacts with water and expands to seal. Dry structural cracks need epoxy, not PU alone."
+      },
+      {
+        "title": "Monsoon urgency",
+        "body": "Active leaks accelerate steel corrosion inside slabs and columns. Every week water reaches reinforcement, rust expands, and repair scope grows. Emergency PU injection can run during rain; full waterproofing follows once the leak path is sealed."
       },
       {
         "title": "PU injection process",

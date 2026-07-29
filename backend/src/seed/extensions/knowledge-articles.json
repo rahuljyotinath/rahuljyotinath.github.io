@@ -17,6 +17,7 @@
     "slug": "pu-injection-vs-epoxy-injection",
     "cluster": "injection",
     "title": "PU injection vs epoxy injection — when to use which",
+    "seoTitle": "PU vs epoxy injection — when to use which",
     "excerpt": "Both fill cracks — but they work differently. Choosing wrong wastes money.",
     "body": "PU (polyurethane) injection reacts with water to expand — ideal for active leaking cracks in basements and terraces. Epoxy injection bonds concrete structurally — used for dry structural cracks in columns and beams where strength restoration is needed. Many projects need both: PU to stop water, epoxy to restore capacity."
   },
@@ -31,6 +32,7 @@
     "slug": "ndt-before-buying-resale-flat",
     "cluster": "ndt",
     "title": "Why get NDT before buying a resale flat in Guwahati",
+    "seoTitle": "NDT before buying a resale flat",
     "excerpt": "Hidden defects cost lakhs after purchase. A building strength test is cheap insurance.",
     "body": "Rebound hammer, UPV, and cover meter tests reveal honeycomb, low strength concrete, and corroding steel — invisible during a normal flat viewing. In Beltola and Chandmari resale markets, 15–30 year buildings often have monsoon damage. NDT report gives negotiation leverage or avoids a bad purchase."
   },
@@ -45,6 +47,7 @@
     "slug": "expansion-joints-apartment-buildings",
     "cluster": "waterproofing",
     "title": "Expansion joints in apartment buildings — why they leak",
+    "seoTitle": "Apartment expansion joint leaks",
     "excerpt": "Movement joints are necessary — but failed seals flood parking levels.",
     "body": "Multi-block complexes need joints to absorb thermal and seismic movement. Sealant loses elasticity after 5–7 years. Rigid fillers crack. Proper repair uses correct joint width, backing rod, and movement-capable sealant — not cheap silicone."
   },
@@ -52,6 +55,7 @@
     "slug": "seismic-zone-5-guwahati-homeowner",
     "cluster": "retrofitting",
     "title": "Seismic Zone V — what Guwahati homeowners should know",
+    "seoTitle": "Seismic Zone V — Guwahati homeowners",
     "excerpt": "Highest earthquake zone in India. What it means for your building.",
     "body": "Guwahati sits in IS seismic Zone V. Older buildings may not meet current ductile detailing standards. Retrofitting — column jacketing, CFRP, joint confinement — reduces collapse risk. It is not optional luxury; it is risk management for your family."
   },
@@ -115,6 +119,7 @@
     "slug": "borewell-recharge-rainwater-harvesting",
     "cluster": "sustainability",
     "title": "Borewell recharge and rainwater harvesting in Guwahati",
+    "seoTitle": "Rainwater harvesting in Guwahati",
     "excerpt": "Heavy rain, falling groundwater — capture and recharge responsibly.",
     "body": "Rooftop rainwater can flush toilets and recharge borewells via soak pits — if soil and contamination risks are assessed. Reduces water bill and helps maintain groundwater in urban Guwahati."
   },
@@ -138,5 +143,29 @@
     "title": "When to call a building doctor vs a contractor",
     "excerpt": "Symptoms vs root cause — who should you call first?",
     "body": "Call a contractor when you know the fix: new tiles, paint job. Call a building rehabilitation specialist when you have symptoms — leak, crack, damp — but unknown cause. Diagnosis-first approach saves money long term."
+  },
+  {
+    "slug": "waterproofing-contractor-guwahati-how-to-choose",
+    "cluster": "waterproofing",
+    "title": "How to choose a waterproofing contractor in Guwahati",
+    "seoTitle": "Waterproofing contractor Guwahati",
+    "excerpt": "Red flags, fair quotes, and what a proper terrace job includes.",
+    "body": "Compare methodology, not just per-sq-ft price. A proper Guwahati terrace job includes drain clearance, slope check, parapet upturn, penetration seals, and flood test — not a single acrylic coat. Ask for warranty in writing, previous society references in Beltola or Chandmari, and whether they diagnose before quoting. Avoid contractors who guarantee a fixed rate without site visit."
+  },
+  {
+    "slug": "building-crack-repair-cost-guwahati",
+    "cluster": "structural",
+    "title": "Building crack repair cost in Guwahati — what to expect",
+    "seoTitle": "Building crack repair cost Guwahati",
+    "excerpt": "Cosmetic plaster vs structural column repair — very different budgets.",
+    "body": "Hairline wall crack filling may cost a few thousand rupees. Structural work — crack mapping, NDT, epoxy injection, CFRP wrap on columns — can run from ₹50,000 for a single member to several lakhs for a building wing. Guwahati Zone V buildings should not treat column cracks as cosmetic. Always get inspection before comparing quotes."
+  },
+  {
+    "slug": "seismic-retrofitting-cost-guwahati",
+    "cluster": "retrofitting",
+    "title": "Seismic retrofitting cost in Guwahati — 2026 guide",
+    "seoTitle": "Retrofitting cost in Guwahati",
+    "excerpt": "CFRP, jacketing, and NDT — what drives price for Guwahati homes.",
+    "body": "Retrofitting cost depends on member count, access, and strength deficit found in NDT. CFRP column wrap on a typical residential column may start around ₹15,000–40,000 per member; full building screening plus multiple jackets scales higher. Cheaper than emergency repair after damage — and far cheaper than life risk in Zone V."
   }
 ]

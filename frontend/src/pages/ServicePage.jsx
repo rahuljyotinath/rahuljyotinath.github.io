@@ -1,13 +1,14 @@
 import { Link, useOutletContext, useParams } from 'react-router-dom';
 import SectionHead from '../components/SectionHead';
 import usePageTitle from '../hooks/usePageTitle';
+import { buildServicePageTitle } from '../lib/pageTitle';
 
 export default function ServicePage() {
   const { slug } = useParams();
   const { content } = useOutletContext();
   const page = content.servicePages?.find((p) => p.slug === slug);
 
-  usePageTitle(page?.title || 'Service');
+  usePageTitle(buildServicePageTitle(page), '');
 
   if (!page) {
     return (
@@ -28,7 +29,7 @@ export default function ServicePage() {
           <span aria-hidden="true"> / </span>
           <span>{page.title}</span>
         </nav>
-        <SectionHead eyebrow={page.title} headline={page.headline} />
+        <SectionHead eyebrow={page.title} headline={page.seoHeadline || page.headline} />
         <p className="service-intro">{page.intro}</p>
 
         {page.awareness && (

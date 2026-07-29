@@ -87,10 +87,6 @@
       "href": "/problems"
     },
     {
-      "label": "Services",
-      "href": "/services"
-    },
-    {
       "label": "Projects",
       "href": "/portfolio"
     },
@@ -115,6 +111,10 @@
     }
   ],
   "navMore": [
+    {
+      "label": "Education",
+      "href": "/education"
+    },
     {
       "label": "About",
       "href": "/about"
@@ -198,7 +198,7 @@
       "role": "Your contact for home assessments",
       "credentials": "M.Sc., University of Bonn · B.Tech, NIT Silchar",
       "bio": "Rahul works directly with Guwahati homeowners and private clients. He explains what's wrong with your building in plain Assamese and English — what must be fixed now, what can wait, and what it will cost. No pressure, no jargon.",
-      "image": "images/about.jpg"
+      "image": "/images/rahul-pic.jpeg"
     }
   ],
   "clients": [
@@ -270,7 +270,31 @@
     "subhead": "Live earthquake map for Northeast India. Tap a dot to see magnitude and location. Enable location to centre the map on you.",
     "bridgeNote": "Our Silpukhuri monitor tracks steady micro-tremor activity in Zone V. Below, verified USGS events show what was recorded near Guwahati — each tremor tests cracks you may already have in your home.",
     "disclaimer": "Data: USGS · ~5 min delay · For information only. Official India alerts: NCS/IMD.",
-    "locationNote": "Map centred on your location when allowed."
+    "locationNote": "Map centred on your location when allowed.",
+    "seoTitle": "Earthquakes Near Guwahati Today — Live Map | Assam & Northeast India",
+    "seoDescription": "Recent earthquakes near Guwahati, Assam and Northeast India. Live USGS seismic map — enable location to see tremors near you. Seismic Zone V building guidance from 91SkylineWorks.",
+    "faq": [
+      {
+        "q": "Where can I see earthquakes near Guwahati today?",
+        "a": "91SkylineWorks publishes a live earthquake map for Northeast India using verified USGS data. Open the Earthquakes page to view recent tremors near Guwahati, Assam and surrounding states, or enable location to centre the map on you."
+      },
+      {
+        "q": "Is Guwahati in a high earthquake zone?",
+        "a": "Yes. Guwahati is in IS seismic Zone V — India's highest earthquake hazard category. Small tremors are common and each event can stress existing cracks in columns, beams and walls."
+      },
+      {
+        "q": "How often do earthquakes happen in Northeast India?",
+        "a": "The Northeast India region records frequent minor and moderate seismic activity. USGS typically lists multiple events above magnitude 2.5 each week across Assam, Meghalaya, Arunachal Pradesh and neighbouring areas."
+      },
+      {
+        "q": "Should I worry about small tremors near my home?",
+        "a": "Small tremors rarely cause new damage in well-built structures, but they can widen existing structural cracks. If you notice cracks at beam-column joints or diagonal wall cracks, book a structural inspection rather than waiting for a larger event."
+      },
+      {
+        "q": "Where does the earthquake data come from?",
+        "a": "Event data is sourced from the US Geological Survey (USGS) public feed, with roughly a five-minute delay. For official India alerts, refer to the National Centre for Seismology (NCS) and IMD."
+      }
+    ]
   },
   "education": {
     "sections": [
@@ -327,7 +351,7 @@
       "year": 2024,
       "scope": "Full terrace waterproofing with slope correction and parapet upturn for 48-unit society",
       "featured": true,
-      "image": "images/project-1.jpg",
+      "image": "images/projects/beltola-residential-tower/hero.webp",
       "outcome": "Zero ceiling leak complaints post-monsoon 2024",
       "services": [
         "waterproofing",
@@ -342,7 +366,7 @@
       "year": 2023,
       "scope": "Bathroom seepage repair, PU injection at slab joints, expansion joint reseal",
       "featured": true,
-      "image": "images/project-2.jpg",
+      "image": "images/projects/chandmari-apartment-complex/hero.webp",
       "outcome": "Resolved inter-floor leakage affecting 12 flats",
       "services": [
         "pu-injection",
@@ -357,7 +381,7 @@
       "year": 2024,
       "scope": "Basement waterproofing, hydrostatic barrier, column spalling repair",
       "featured": false,
-      "image": "images/project-3.jpg",
+      "image": "images/projects/hpcl-regional-facility/hero.webp",
       "outcome": "Dry basement storage through peak monsoon",
       "services": [
         "waterproofing",
@@ -372,7 +396,7 @@
       "year": 2023,
       "scope": "Column crack mapping, epoxy injection, CFRP wrap on critical members",
       "featured": true,
-      "image": "images/project-1.jpg",
+      "image": "images/projects/dispur-government-office/hero.webp",
       "outcome": "Structural audit clearance for occupancy continuation",
       "services": [
         "epoxy-injection",
@@ -388,7 +412,7 @@
       "year": 2022,
       "scope": "Foundation grouting for settlement under warehouse slab",
       "featured": false,
-      "image": "images/project-2.jpg",
+      "image": "images/projects/industrial-warehouse-paltan-bazar/hero.webp",
       "outcome": "Settlement stabilised — slab movement arrested",
       "services": [
         "pu-injection"
@@ -402,7 +426,7 @@
       "year": 2024,
       "scope": "Podium waterproofing and parking expansion joint treatment",
       "featured": false,
-      "image": "images/project-3.jpg",
+      "image": "images/projects/gs-road-commercial-block/hero.webp",
       "outcome": "Dry parking level through monsoon",
       "services": [
         "waterproofing",
@@ -417,7 +441,7 @@
       "year": 2023,
       "scope": "Seismic screening and column jacketing on 1998 block",
       "featured": false,
-      "image": "images/project-1.jpg",
+      "image": "images/projects/six-mile-school-campus/hero.webp",
       "outcome": "Retrofit completed during summer break",
       "services": [
         "seismic-jacketing",
@@ -432,7 +456,7 @@
       "year": 2024,
       "scope": "Terrace PU membrane, heat reflective coating, drain redesign",
       "featured": true,
-      "image": "images/project-2.jpg",
+      "image": "images/projects/zoo-road-hotel-terrace/hero.webp",
       "outcome": "Guest room leak complaints eliminated",
       "services": [
         "waterproofing",
@@ -447,7 +471,7 @@
       "year": 2022,
       "scope": "CFRP column wrap and micro concreting on honeycombed columns",
       "featured": false,
-      "image": "images/project-3.jpg",
+      "image": "images/projects/noonmati-housing-retrofit/hero.webp",
       "outcome": "NDT strength targets met post-repair",
       "services": [
         "carbon-fibre",
@@ -462,7 +486,7 @@
       "year": 2023,
       "scope": "Basement tanking, PU injection, humidity control coordination",
       "featured": false,
-      "image": "images/project-1.jpg",
+      "image": "images/projects/bhangagarh-hospital-basement/hero.webp",
       "outcome": "Medical storage area humidity within spec",
       "services": [
         "waterproofing",
@@ -475,79 +499,92 @@
       "code": "01",
       "slug": "retrofitting",
       "title": "Retrofitting",
-      "description": "Crack in a column? Don't paint over it. We strengthen weak columns and beams so your flat survives the next tremor — carbon fibre wrapping, concrete repair, and foundation work."
+      "description": "Crack in a column? Don't paint over it. We strengthen weak columns and beams so your flat survives the next tremor — carbon fibre wrapping, concrete repair, and foundation work.",
+      "category": "retrofitting"
     },
     {
       "code": "02",
       "slug": "waterproofing",
       "title": "Waterproofing",
-      "description": "Monsoon roof leaks, bathroom seepage, basement damp — common in Guwahati. We stop water before it rusts your steel and weakens your walls from inside."
+      "description": "Monsoon roof leaks, bathroom seepage, basement damp — common in Guwahati. We stop water before it rusts your steel and weakens your walls from inside.",
+      "category": "waterproofing"
     },
     {
       "code": "03",
       "slug": "ndt",
       "title": "Building Strength Test",
-      "description": "Buying a resale flat in Beltola or Chandmari? Get an X-ray for your building first. Non-destructive tests reveal hidden weakness before you sign."
+      "description": "Buying a resale flat in Beltola or Chandmari? Get an X-ray for your building first. Non-destructive tests reveal hidden weakness before you sign.",
+      "category": "ndt"
     },
     {
       "code": "04",
       "slug": "heatproofing",
       "title": "Heatproofing",
-      "description": "Top-floor flat unbearable in April–June? Weather Cool coating drops roof surface temperature by up to 14°C — less AC, lower bills."
+      "description": "Top-floor flat unbearable in April–June? Weather Cool coating drops roof surface temperature by up to 14°C — less AC, lower bills.",
+      "category": "heatproofing"
     },
     {
       "code": "05",
       "slug": "expansion-joints",
       "title": "Expansion Joint Treatment",
-      "description": "Gaps between building blocks let monsoon water in. We seal joints properly so water and cracks don't spread through your apartment complex."
+      "description": "Gaps between building blocks let monsoon water in. We seal joints properly so water and cracks don't spread through your apartment complex.",
+      "category": "waterproofing"
     },
     {
       "code": "06",
       "slug": "rainwater-harvesting",
       "title": "Rainwater Harvesting",
-      "description": "Guwahati gets heavy rain — most of it wasted. Capture rooftop water for flushing and gardening, or recharge your borewell before it runs dry."
+      "description": "Guwahati gets heavy rain — most of it wasted. Capture rooftop water for flushing and gardening, or recharge your borewell before it runs dry.",
+      "category": "rainwater-harvesting"
     },
     {
       "code": "07",
       "slug": "pu-injection",
       "title": "PU Injection Grouting",
-      "description": "Stop active water leaks through cracks — polyurethane injection expands with water to seal basements, terraces, and joints."
+      "description": "Stop active water leaks through cracks — polyurethane injection expands with water to seal basements, terraces, and joints.",
+      "category": "waterproofing"
     },
     {
       "code": "08",
       "slug": "epoxy-injection",
       "title": "Epoxy Injection",
-      "description": "Restore structural strength in dry cracks — epoxy bonds concrete in columns and beams for load-bearing repair."
+      "description": "Restore structural strength in dry cracks — epoxy bonds concrete in columns and beams for load-bearing repair.",
+      "category": "retrofitting"
     },
     {
       "code": "09",
       "slug": "carbon-fibre",
       "title": "Carbon Fibre Strengthening",
-      "description": "CFRP wrapping adds earthquake strength without bulky columns — ideal for Guwahati apartment retrofits."
+      "description": "CFRP wrapping adds earthquake strength without bulky columns — ideal for Guwahati apartment retrofits.",
+      "category": "retrofitting"
     },
     {
       "code": "11",
       "slug": "structural-repairs",
       "title": "Structural Repairs",
-      "description": "Spalling repair, rebarring, micro concreting, and jacketing — fix damaged concrete before it fails."
+      "description": "Spalling repair, rebarring, micro concreting, and jacketing — fix damaged concrete before it fails.",
+      "category": "retrofitting"
     },
     {
       "code": "12",
       "slug": "micro-concreting",
       "title": "Micro Concreting",
-      "description": "Fill honeycomb and voids inside columns and slabs without breaking open the structure."
+      "description": "Fill honeycomb and voids inside columns and slabs without breaking open the structure.",
+      "category": "retrofitting"
     },
     {
       "code": "13",
       "slug": "seismic-jacketing",
       "title": "Seismic Jacketing",
-      "description": "Column and beam jacketing per IS codes — confinement steel and high-strength grout for Zone V buildings."
+      "description": "Column and beam jacketing per IS codes — confinement steel and high-strength grout for Zone V buildings.",
+      "category": "retrofitting"
     },
     {
       "code": "14",
       "slug": "concrete-cancer-treatment",
       "title": "Concrete Cancer Treatment",
-      "description": "Treat corroded steel, delaminated concrete, and chloride damage before spalling spreads."
+      "description": "Treat corroded steel, delaminated concrete, and chloride damage before spalling spreads.",
+      "category": "retrofitting"
     }
   ],
   "servicePages": [
@@ -620,9 +657,15 @@
         {
           "title": "What happens in the next tremor — treated vs untreated",
           "body": "An untreated home with a cracked column: the tremor shakes the building, stress concentrates at the crack, the column shears, upper floors lose support. A retrofitted home: the same tremor is absorbed by strengthened columns — cracks may not grow, floors stay supported."
+        },
+        {
+          "title": "How RCC strength drops over time",
+          "body": "Concrete does not stay at day-one strength forever. Carbonation front moves inward and reduces alkalinity that protects steel. Cover spalls, chlorides from poor mix or leaks reach rebar, and corrosion expands. IS 456 expects durability planning — not build-and-forget. A 25-year column in Guwahati monsoon can test 30–40% below original design assumptions if never maintained."
         }
       ],
-      "ctaMessage": "Seen a crack? Don't wait for the next tremor. Call us for a free consultation — we'll tell you honestly if it's serious."
+      "ctaMessage": "Seen a crack? Don't wait for the next tremor. Call us for a free consultation — we'll tell you honestly if it's serious.",
+      "seoTitle": "Building retrofitting in Guwahati",
+      "seoHeadline": "Building retrofitting in Guwahati"
     },
     {
       "slug": "waterproofing",
@@ -701,7 +744,9 @@
           ]
         }
       ],
-      "ctaMessage": "Monsoon is coming. Fix the leak now — not after your ceiling collapses."
+      "ctaMessage": "Monsoon is coming. Fix the leak now — not after your ceiling collapses.",
+      "seoTitle": "Waterproofing in Guwahati",
+      "seoHeadline": "Waterproofing in Guwahati"
     },
     {
       "slug": "ndt",
@@ -752,6 +797,18 @@
         {
           "title": "What you'll receive",
           "body": "A clear report in plain language — not a 50-page engineering document. We mark which columns passed, which need attention, and what it will cost to fix. You decide whether to proceed with purchase, negotiate price, or walk away."
+        },
+        {
+          "title": "How RCC strength decreases with age",
+          "body": "Carbonation, chloride ingress, and cover loss reduce effective strength over decades — often with no visible warning until spalling or a tremor widens cracks. Rebound hammer and UPV show what paint hides. A building that 'looks fine' at 20 years may have columns below design capacity."
+        },
+        {
+          "title": "When to retest — every 3 to 5 years",
+          "body": "IS 456 and good international practice treat structural health as ongoing. After major tremors, visible new cracks, or completed retrofit work, retest sooner. For older occupied buildings, a 3–5 year NDT cycle catches corrosion and strength loss before emergency repair."
+        },
+        {
+          "title": "Other states already mandate audits",
+          "body": "Maharashtra requires structural audits for certain ageing and dilapidated buildings. Delhi authorities have pushed periodic safety inspections on old structures. Kerala intensified assessments after flood damage. Assam has not yet mandated the same — but owners who wait for law often pay emergency prices after failure."
         }
       ],
       "ctaMessage": "Buying or living in an older flat? Know the truth before it's too late."
@@ -908,6 +965,10 @@
         {
           "title": "When PU injection is the right call",
           "body": "Active water through a crack or joint — basement during monsoon, terrace slab, expansion joint, pipe penetration. PU reacts with water and expands to seal. Dry structural cracks need epoxy, not PU alone."
+        },
+        {
+          "title": "Monsoon urgency",
+          "body": "Active leaks accelerate steel corrosion inside slabs and columns. Every week water reaches reinforcement, rust expands, and repair scope grows. Emergency PU injection can run during rain; full waterproofing follows once the leak path is sealed."
         },
         {
           "title": "PU injection process",
@@ -1180,6 +1241,10 @@
         "body": "NDT, moisture mapping, and crack mapping before we recommend PU injection, waterproofing, or retrofitting."
       },
       {
+        "title": "Ageing RCC needs monitoring",
+        "body": "Concrete strength and steel protection degrade over decades — especially in Guwahati monsoon. Periodic NDT catches hidden loss before emergency repair."
+      },
+      {
         "title": "Long-term fix",
         "body": "We fix the cause, not the symptom. No paint-over-leak patches that fail next monsoon."
       }
@@ -1264,7 +1329,8 @@
           "q": "Should I retile or re-waterproof first?",
           "a": "Always waterproof first. New tiles over a failed membrane waste money — leak returns next monsoon."
         }
-      ]
+      ],
+      "seoTitle": "Terrace leak repair Guwahati"
     },
     {
       "slug": "bathroom-seepage",
@@ -1338,7 +1404,8 @@
           "q": "Can I live in the building with column cracks?",
           "a": "Depends on severity. Active widening cracks need urgent assessment — book inspection before next tremor season."
         }
-      ]
+      ],
+      "seoTitle": "Building column cracks in Guwahati"
     },
     {
       "slug": "wall-cracks",
@@ -1374,7 +1441,8 @@
           "q": "What crack width is dangerous?",
           "a": "Cracks over 3mm in load-bearing walls, or any crack through a column/beam, need professional assessment."
         }
-      ]
+      ],
+      "seoTitle": "Building wall cracks in Guwahati"
     },
     {
       "slug": "damp-walls",
@@ -1947,6 +2015,7 @@
       "slug": "pu-injection-vs-epoxy-injection",
       "cluster": "injection",
       "title": "PU injection vs epoxy injection — when to use which",
+      "seoTitle": "PU vs epoxy injection — when to use which",
       "excerpt": "Both fill cracks — but they work differently. Choosing wrong wastes money.",
       "body": "PU (polyurethane) injection reacts with water to expand — ideal for active leaking cracks in basements and terraces. Epoxy injection bonds concrete structurally — used for dry structural cracks in columns and beams where strength restoration is needed. Many projects need both: PU to stop water, epoxy to restore capacity."
     },
@@ -1961,6 +2030,7 @@
       "slug": "ndt-before-buying-resale-flat",
       "cluster": "ndt",
       "title": "Why get NDT before buying a resale flat in Guwahati",
+      "seoTitle": "NDT before buying a resale flat",
       "excerpt": "Hidden defects cost lakhs after purchase. A building strength test is cheap insurance.",
       "body": "Rebound hammer, UPV, and cover meter tests reveal honeycomb, low strength concrete, and corroding steel — invisible during a normal flat viewing. In Beltola and Chandmari resale markets, 15–30 year buildings often have monsoon damage. NDT report gives negotiation leverage or avoids a bad purchase."
     },
@@ -1975,6 +2045,7 @@
       "slug": "expansion-joints-apartment-buildings",
       "cluster": "waterproofing",
       "title": "Expansion joints in apartment buildings — why they leak",
+      "seoTitle": "Apartment expansion joint leaks",
       "excerpt": "Movement joints are necessary — but failed seals flood parking levels.",
       "body": "Multi-block complexes need joints to absorb thermal and seismic movement. Sealant loses elasticity after 5–7 years. Rigid fillers crack. Proper repair uses correct joint width, backing rod, and movement-capable sealant — not cheap silicone."
     },
@@ -1982,6 +2053,7 @@
       "slug": "seismic-zone-5-guwahati-homeowner",
       "cluster": "retrofitting",
       "title": "Seismic Zone V — what Guwahati homeowners should know",
+      "seoTitle": "Seismic Zone V — Guwahati homeowners",
       "excerpt": "Highest earthquake zone in India. What it means for your building.",
       "body": "Guwahati sits in IS seismic Zone V. Older buildings may not meet current ductile detailing standards. Retrofitting — column jacketing, CFRP, joint confinement — reduces collapse risk. It is not optional luxury; it is risk management for your family."
     },
@@ -2045,6 +2117,7 @@
       "slug": "borewell-recharge-rainwater-harvesting",
       "cluster": "sustainability",
       "title": "Borewell recharge and rainwater harvesting in Guwahati",
+      "seoTitle": "Rainwater harvesting in Guwahati",
       "excerpt": "Heavy rain, falling groundwater — capture and recharge responsibly.",
       "body": "Rooftop rainwater can flush toilets and recharge borewells via soak pits — if soil and contamination risks are assessed. Reduces water bill and helps maintain groundwater in urban Guwahati."
     },
@@ -2068,6 +2141,30 @@
       "title": "When to call a building doctor vs a contractor",
       "excerpt": "Symptoms vs root cause — who should you call first?",
       "body": "Call a contractor when you know the fix: new tiles, paint job. Call a building rehabilitation specialist when you have symptoms — leak, crack, damp — but unknown cause. Diagnosis-first approach saves money long term."
+    },
+    {
+      "slug": "waterproofing-contractor-guwahati-how-to-choose",
+      "cluster": "waterproofing",
+      "title": "How to choose a waterproofing contractor in Guwahati",
+      "seoTitle": "Waterproofing contractor Guwahati",
+      "excerpt": "Red flags, fair quotes, and what a proper terrace job includes.",
+      "body": "Compare methodology, not just per-sq-ft price. A proper Guwahati terrace job includes drain clearance, slope check, parapet upturn, penetration seals, and flood test — not a single acrylic coat. Ask for warranty in writing, previous society references in Beltola or Chandmari, and whether they diagnose before quoting. Avoid contractors who guarantee a fixed rate without site visit."
+    },
+    {
+      "slug": "building-crack-repair-cost-guwahati",
+      "cluster": "structural",
+      "title": "Building crack repair cost in Guwahati — what to expect",
+      "seoTitle": "Building crack repair cost Guwahati",
+      "excerpt": "Cosmetic plaster vs structural column repair — very different budgets.",
+      "body": "Hairline wall crack filling may cost a few thousand rupees. Structural work — crack mapping, NDT, epoxy injection, CFRP wrap on columns — can run from ₹50,000 for a single member to several lakhs for a building wing. Guwahati Zone V buildings should not treat column cracks as cosmetic. Always get inspection before comparing quotes."
+    },
+    {
+      "slug": "seismic-retrofitting-cost-guwahati",
+      "cluster": "retrofitting",
+      "title": "Seismic retrofitting cost in Guwahati — 2026 guide",
+      "seoTitle": "Retrofitting cost in Guwahati",
+      "excerpt": "CFRP, jacketing, and NDT — what drives price for Guwahati homes.",
+      "body": "Retrofitting cost depends on member count, access, and strength deficit found in NDT. CFRP column wrap on a typical residential column may start around ₹15,000–40,000 per member; full building screening plus multiple jackets scales higher. Cheaper than emergency repair after damage — and far cheaper than life risk in Zone V."
     },
     {
       "slug": "monsoon-roof-leak-guwahati",
@@ -2170,7 +2267,193 @@
         "relativeTime": "5 years ago",
         "snapshot": "/images/reviews/review-swayam-prava.webp",
         "snapshotAlt": "Google review by swayam prava — 5 stars"
+      },
+      {
+        "authorName": "Amit Nath",
+        "rating": 5,
+        "text": "Responsiveness, Punctuality, Quality, Professionalism, Value",
+        "relativeTime": "5 years ago",
+        "snapshot": "/images/reviews/review-amit-nath.webp",
+        "snapshotAlt": "Google review by Amit Nath — 5 stars"
+      },
+      {
+        "authorName": "Manasi Bora",
+        "rating": 5,
+        "text": "Responsiveness, Quality, Professionalism",
+        "relativeTime": "5 years ago",
+        "snapshot": "/images/reviews/review-manasi-bora.webp",
+        "snapshotAlt": "Google review by Manasi Bora — 5 stars"
+      },
+      {
+        "authorName": "RAVI RANJAN",
+        "rating": 5,
+        "text": "",
+        "relativeTime": "4 years ago",
+        "snapshot": "/images/reviews/review-ravi-ranjan.webp",
+        "snapshotAlt": "Google review by RAVI RANJAN — 5 stars"
       }
     ]
-  }
+  },
+  "serviceCategories": [
+    {
+      "slug": "retrofitting",
+      "label": "Retrofitting",
+      "headline": "Earthquake strengthening for Guwahati homes",
+      "intro": "Seismic Zone V retrofitting — CFRP wrapping, jacketing, structural repairs, and concrete restoration for columns, beams, and foundations. Older RCC loses strength with time; retrofit before the next tremor, not after collapse.",
+      "seoTitle": "Retrofitting in Guwahati"
+    },
+    {
+      "slug": "waterproofing",
+      "label": "Waterproofing",
+      "headline": "Stop leaks before monsoon damage spreads",
+      "intro": "Terrace, bathroom, basement, and joint waterproofing — plus PU injection and expansion joint treatment across Guwahati.",
+      "seoTitle": "Waterproofing services in Guwahati"
+    },
+    {
+      "slug": "ndt",
+      "label": "NDT Testing",
+      "headline": "Know your building's strength before you buy or repair",
+      "intro": "Non-destructive building strength tests for resale flats, old RCC frames, and pre-retrofit assessment in Northeast India. Other states mandate periodic audits on ageing buildings — Guwahati owners should not wait for law to catch up."
+    },
+    {
+      "slug": "heatproofing",
+      "label": "Heatproofing",
+      "headline": "Cooler top floors in Guwahati summers",
+      "intro": "Heat-reflective roof coatings that cut surface temperature and reduce AC load on terrace slabs."
+    },
+    {
+      "slug": "rainwater-harvesting",
+      "label": "Rain Water Harvesting",
+      "headline": "Capture Guwahati's monsoon rain on your roof",
+      "intro": "Rooftop rainwater harvesting and borewell recharge systems for homes and societies in Assam."
+    }
+  ],
+  "navServices": [
+    {
+      "label": "Retrofitting",
+      "href": "/services/category/retrofitting"
+    },
+    {
+      "label": "Waterproofing",
+      "href": "/services/category/waterproofing"
+    },
+    {
+      "label": "NDT Testing",
+      "href": "/services/category/ndt"
+    },
+    {
+      "label": "Heatproofing",
+      "href": "/services/category/heatproofing"
+    },
+    {
+      "label": "Rain Water Harvesting",
+      "href": "/services/category/rainwater-harvesting"
+    }
+  ],
+  "localLandings": [
+    {
+      "slug": "waterproofing",
+      "seoTitle": "Waterproofing in Guwahati",
+      "headline": "Waterproofing in Guwahati",
+      "intro": "Terrace leaks, bathroom seepage, and basement damp are the top monsoon complaints we see across Beltola, Chandmari, Hatigaon, and Dispur. 91SkylineWorks diagnoses the water path first — then specifies membrane, PU injection, or joint repair that lasts beyond one season.",
+      "serviceSchemaName": "Waterproofing in Guwahati",
+      "sections": [
+        {
+          "title": "Terrace & roof waterproofing",
+          "body": "Flat terraces need correct slope, parapet upturn, and a membrane suited to foot traffic. We flood-test before coating — patching over ponding water fails every monsoon."
+        },
+        {
+          "title": "Bathroom & kitchen slab leaks",
+          "body": "Inter-floor seepage in apartment blocks often starts at trap penetrations or failed tile-bed membranes. Targeted repair avoids breaking every tile when diagnosis is precise."
+        },
+        {
+          "title": "Basement & plinth waterproofing",
+          "body": "Guwahati's shallow water table pushes hydrostatic pressure through ground floors in Ulubari, Bhangagarh, and low-lying plots. Internal tanking, external cutoff, or PU injection depends on access and soil."
+        },
+        {
+          "title": "Typical cost range",
+          "body": "Terrace waterproofing for a Guwahati flat often runs ₹80–150 per sq ft after inspection — varies with area, leak severity, slope correction, and protection course. We quote after site visit, not over WhatsApp guesses."
+        }
+      ],
+      "linkedServices": [
+        "waterproofing",
+        "pu-injection",
+        "expansion-joints",
+        "heatproofing"
+      ],
+      "linkedProblems": [
+        "terrace-roof-leakage",
+        "bathroom-seepage",
+        "basement-water-leakage"
+      ],
+      "faqs": [
+        {
+          "q": "Who does waterproofing in Guwahati?",
+          "a": "Look for building rehabilitation specialists who diagnose first — not painters offering a single coat. Proper work includes slope, penetrations, parapet details, and flood test."
+        },
+        {
+          "q": "How long does terrace waterproofing take?",
+          "a": "Most residential terraces take 7–14 days including surface prep, membrane cure time, and protection course — weather dependent."
+        },
+        {
+          "q": "Can waterproofing be done during monsoon?",
+          "a": "Emergency leak-stopping with PU injection can run in rain. Full membrane work is usually scheduled between monsoons for best adhesion."
+        }
+      ],
+      "ctaMessage": "Monsoon leak? Book a free inspection — we'll trace the water path before quoting."
+    },
+    {
+      "slug": "building-crack-repair",
+      "seoTitle": "Building crack repair in Guwahati",
+      "headline": "Building crack repair in Guwahati",
+      "intro": "A crack in a partition wall is often cosmetic. A crack through a column in Seismic Zone V is not. We help Guwahati homeowners and RWAs tell the difference — then repair with crack mapping, NDT, epoxy injection, CFRP wrap, or jacketing as the structure requires.",
+      "serviceSchemaName": "Building crack repair in Guwahati",
+      "sections": [
+        {
+          "title": "Column & beam-column cracks",
+          "body": "Vertical or diagonal cracks through columns and X-patterns at beam-column joints need urgent assessment in Zone V. Putty and paint hide risk — they do not restore capacity."
+        },
+        {
+          "title": "Wall cracks — structural vs cosmetic",
+          "body": "Stair-step cracks in masonry, cracks wider than 3mm, or doors that stick may indicate settlement or load-path change. We monitor width and prescribe stitching, injection, or flexible fillers accordingly."
+        },
+        {
+          "title": "Retrofitting after diagnosis",
+          "body": "When NDT shows lost strength, we specify CFRP wrapping, micro concreting for honeycomb, or seismic jacketing — not a one-size contractor template."
+        },
+        {
+          "title": "Areas we serve",
+          "body": "Residential towers in Beltola and Chandmari, institutional blocks in Dispur and Six Mile, and commercial buildings on GS Road — anywhere Guwahati RCC needs honest structural assessment."
+        }
+      ],
+      "linkedServices": [
+        "retrofitting",
+        "ndt",
+        "epoxy-injection",
+        "carbon-fibre",
+        "seismic-jacketing"
+      ],
+      "linkedProblems": [
+        "column-cracks",
+        "wall-cracks",
+        "beam-column-junction-cracks",
+        "concrete-spalling"
+      ],
+      "faqs": [
+        {
+          "q": "How much does building crack repair cost in Guwahati?",
+          "a": "Cosmetic wall crack repair may be a few thousand rupees. Structural column repair with NDT, injection, and CFRP can run lakhs — depends on member count and severity. Inspection first."
+        },
+        {
+          "q": "Should I worry about cracks after a tremor?",
+          "a": "New or widening cracks after seismic activity should be inspected before the next season. Guwahati is in India's highest earthquake zone."
+        },
+        {
+          "q": "Can I sell a flat with column cracks?",
+          "a": "Disclosure and structural report affect resale value. NDT before listing gives buyers confidence — or flags work needed before sale."
+        }
+      ],
+      "ctaMessage": "Seen a crack? Book structural assessment before monsoon water reaches the steel."
+    }
+  ]
 }

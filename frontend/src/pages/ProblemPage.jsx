@@ -3,6 +3,7 @@ import SectionHead from '../components/SectionHead';
 import RelatedLinks from '../components/RelatedLinks';
 import InspectionCTA from '../components/InspectionCTA';
 import usePageTitle from '../hooks/usePageTitle';
+import { buildProblemPageTitle } from '../lib/pageTitle';
 
 export default function ProblemPage() {
   const { slug } = useParams();
@@ -10,7 +11,7 @@ export default function ProblemPage() {
   const problem = content.problems?.find((p) => p.slug === slug);
   const inspection = content.homeSections?.inspectionCta;
 
-  usePageTitle(problem?.title || 'Problem');
+  usePageTitle(buildProblemPageTitle(problem), '');
 
   if (!problem) {
     return (
@@ -103,7 +104,7 @@ export default function ProblemPage() {
                 <strong>{project.title}</strong> — {project.scope}
                 {project.outcome && <> · {project.outcome}</>}
               </p>
-              <Link to="/portfolio">View projects →</Link>
+              <Link to={`/portfolio/${project.slug}`}>View case study →</Link>
             </article>
           )}
         </div>
