@@ -24,3 +24,16 @@ Property: https://91skylineworks.com
 
 Verify sitemap is reachable:
   curl -sI https://91skylineworks.com/sitemap.xml | head -3
+
+---
+Automated verification (2026-09-07 — node deploy/verify-gtm.mjs)
+- Sitemap: 85 URLs, no /as/ — PASS
+- Key pages 200: /guwahati/waterproofing/, /guwahati/building-crack-repair/, /contact/, /portfolio/, /services/waterproofing/, /about/ — PASS
+- CSS/JS assets load (no /as/ redirect bug) — PASS
+- Competitive content live: diagnosisPack, 6 case studies, warranty, SLA — PASS
+- NAP on homepage matches GBP action pack — PASS
+
+Manual steps remaining (run: bash deploy/gtm-setup-wizard.sh)
+- [ ] Submit sitemap in Search Console
+- [ ] URL inspection on 3 key pages
+- [ ] Note baseline rankings (Performance tab — first week may show "no data")

@@ -1,9 +1,11 @@
 month,metric,91SkylineWorks,SCS,SS_WaterProofing,Avicon,target,notes
-2026-09,google_reviews,13,32,19,unknown,30,GBP dashboard
-2026-09,gbp_photos,0,unknown,unknown,unknown,20,Count in GBP
+2026-09,google_reviews,13,32,19,unknown,30,Verified on Google Maps 2026-09-07
+2026-09,gbp_photos,unknown,unknown,unknown,unknown,20,Count in GBP dashboard after upload
+2026-09,gbp_category,Civil_engineering_company,unknown,unknown,unknown,Waterproofing_contractor,Change via gtm-setup-wizard.sh stage 1
 2026-09,inspection_bookings,0,unknown,unknown,unknown,track,WhatsApp + form leads
-2026-09,case_studies_live,6,0,0,0,6,portfolio page
-2026-09,oem_applicator,none,Fosroc+Sika,unknown,chemical brands,1,Fosroc or Sika
-2026-09,gsc_waterproofing_guwahati,unknown,unknown,unknown,unknown,monitor,Search Console
-2026-09,gsc_building_cracks_guwahati,unknown,unknown,unknown,unknown,monitor,Search Console
-2026-09,gsc_retrofitting_guwahati,unknown,unknown,unknown,unknown,monitor,Search Console
+2026-09,case_studies_live,6,0,0,0,6,Verified via verify-gtm.mjs
+2026-09,site_verification,17/17_pass,unknown,unknown,unknown,17/17,node deploy/verify-gtm.mjs
+2026-09,oem_applicator,application_ready,Fosroc+Sika,unknown,chemical brands,1,Email template deploy/oem-application-email.txt
+2026-09,gsc_waterproofing_guwahati,no_data_yet,unknown,unknown,unknown,monitor,Submit sitemap via gtm-setup-wizard.sh
+2026-09,gsc_building_cracks_guwahati,no_data_yet,unknown,unknown,unknown,monitor,Search Console Performance tab
+2026-09,gsc_retrofitting_guwahati,no_data_yet,unknown,unknown,unknown,monitor,Search Console Performance tab

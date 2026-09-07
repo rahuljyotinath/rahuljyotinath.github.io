@@ -38,3 +38,10 @@ After approval — site updates
 4. GBP: add "Uses Fosroc systems" or similar in description
 
 Timeline: allow 4–8 weeks for OEM approval. Continue all jobs with manufacturer-spec systems regardless.
+
+Application kickoff (2026-09-07)
+--------------------------------
+- Prerequisites: PASS (6 case studies, diagnosis pack, site live — node deploy/verify-gtm.mjs)
+- Email template: deploy/oem-application-email.txt
+- Interactive steps: bash deploy/gtm-setup-wizard.sh (stage 6)
+- Site badges remain "pending/planned" until Fosroc approves

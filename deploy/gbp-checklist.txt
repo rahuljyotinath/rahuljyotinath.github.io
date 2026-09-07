@@ -40,10 +40,20 @@ Measure monthly
 - Search Console: "waterproofing guwahati", "building cracks guwahati", "retrofitting guwahati"
 
 ---
-Site NAP audit (2026-09-07, post-deploy)
+Site verification (2026-09-07 — node deploy/verify-gtm.mjs)
 - Live API phone: +91 60038 79490 — MATCH
 - Live API address: Senapati Road, Sahar Sarania 2nd part, Silpukhuri, Guwahati 781003 — MATCH
 - Live company name: 91SkylineWorks Private Limited (align GBP display name if needed)
-- Sitemap live: https://91skylineworks.com/sitemap.xml (85 URLs, no /as/) — see deploy/search-console-checklist.txt
+- Sitemap: 85 URLs, no /as/ — PASS
+- CSS/JS assets: PASS (htaccess /as/ redirect fixed)
+- Competitive content live: diagnosis pack, 6 case studies, warranties — PASS
 - GBP copy-paste pack: deploy/gbp-action-pack.txt
-- Remaining manual: categories, 20+ photos, 15+ 2026 reviews, citations, weekly posts
+- Interactive setup: bash deploy/gtm-setup-wizard.sh
+
+Remaining manual (GBP dashboard)
+- [ ] Primary category → Waterproofing contractor
+- [ ] 7 services with descriptions (copy from gbp-action-pack.txt)
+- [ ] 20+ photos uploaded
+- [ ] Review asks on every closed job (WhatsApp template in action pack)
+- [ ] Citations: JustDial, Sulekha, IndiaMART
+- [ ] First weekly GBP post scheduled
