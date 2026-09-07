@@ -1,8 +1,9 @@
 import { lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import AppLayout from './layouts/AppLayout';
 import HomePage from './pages/HomePage';
 import LocalizedNavigate from './components/LocalizedNavigate';
+import { ASSAMESE_ENABLED, stripLocalePrefix } from './lib/i18n';
 
 const PortfolioPage = lazy(() => import('./pages/PortfolioPage'));
 const ProjectDetailPage = lazy(() => import('./pages/ProjectDetailPage'));
@@ -23,6 +24,12 @@ const GuwahatiLandingPage = lazy(() => import('./pages/GuwahatiLandingPage'));
 
 function PageFallback() {
   return <div className="loading-screen">[ LOADING... ]</div>;
+}
+
+function AssameseRedirect() {
+  const location = useLocation();
+  const target = stripLocalePrefix(location.pathname) + location.search + location.hash;
+  return <Navigate to={target} replace />;
 }
 
 function siteRouteElements() {
@@ -61,9 +68,17 @@ export default function App() {
   return (
     <Suspense fallback={<PageFallback />}>
       <Routes>
-        <Route path="/as" element={<AppLayout locale="as" />}>
-          {siteRouteElements()}
-        </Route>
+        {!ASSAMESE_ENABLED && (
+          <>
+            <Route path="/as" element={<AssameseRedirect />} />
+            <Route path="/as/*" element={<AssameseRedirect />} />
+          </>
+        )}
+        {ASSAMESE_ENABLED && (
+          <Route path="/as" element={<AppLayout locale="as" />}>
+            {siteRouteElements()}
+          </Route>
+        )}
         <Route element={<AppLayout locale="en" />}>
           {siteRouteElements()}
         </Route>

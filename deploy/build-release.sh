@@ -3,14 +3,15 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 RELEASE="$ROOT/release"
+ASSAMESE_ENABLED="${ASSAMESE_ENABLED:-0}"
 
 echo "[release] merging PRD content..."
 node "$ROOT/backend/src/seed/generate-extensions.mjs"
 node "$ROOT/backend/src/seed/build-prd-content.mjs"
-if [[ "${SKIP_AS_TRANSLATE:-}" == "1" ]] && [[ -f "$ROOT/backend/src/seed/content.as.json" ]]; then
-  echo "[release] SKIP_AS_TRANSLATE=1 — using existing content.as.json"
-else
+if [[ "$ASSAMESE_ENABLED" == "1" ]]; then
   node "$ROOT/backend/src/seed/build-assamese-content.mjs"
+else
+  echo "[release] ASSAMESE_ENABLED=0 — skipping Assamese translation"
 fi
 
 echo "[release] optimizing images..."
@@ -22,7 +23,7 @@ cd "$ROOT/frontend"
 npm run build
 
 echo "[release] generating SEO files..."
-node "$ROOT/deploy/generate-seo.mjs"
+ASSAMESE_ENABLED="$ASSAMESE_ENABLED" node "$ROOT/deploy/generate-seo.mjs"
 
 echo "[release] generating seed.sql..."
 node "$ROOT/deploy/generate-seed.mjs"
@@ -51,7 +52,7 @@ if [[ ! -f "$RELEASE/api/config.php" ]]; then
   echo "[release] WARNING: deploy/php/config.php missing — copy config.example.php to config.php locally before release"
 fi
 cp "$ROOT/backend/src/seed/content.json" "$RELEASE/api/seed-content.json"
-if [[ -f "$ROOT/backend/src/seed/content.as.json" ]]; then
+if [[ "$ASSAMESE_ENABLED" == "1" ]] && [[ -f "$ROOT/backend/src/seed/content.as.json" ]]; then
   cp "$ROOT/backend/src/seed/content.as.json" "$RELEASE/api/seed-content.as.json"
 fi
 cp "$ROOT/deploy/php/config.example.php" "$RELEASE/api/"

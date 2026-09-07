@@ -16,7 +16,8 @@ const siteUrl = 'https://91skylineworks.com';
 const ogImage = `${siteUrl}/images/logo.png`;
 
 const contentEn = JSON.parse(fs.readFileSync(contentPath, 'utf8'));
-const contentAs = fs.existsSync(contentAsPath)
+const assameseEnabled = process.env.ASSAMESE_ENABLED === '1' || process.env.ASSAMESE_ENABLED === 'true';
+const contentAs = assameseEnabled && fs.existsSync(contentAsPath)
   ? JSON.parse(fs.readFileSync(contentAsPath, 'utf8'))
   : null;
 
