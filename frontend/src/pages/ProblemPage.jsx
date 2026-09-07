@@ -1,4 +1,5 @@
-import { Link, useOutletContext, useParams } from 'react-router-dom';
+import { useOutletContext, useParams } from 'react-router-dom';
+import LocalizedLink from '../components/LocalizedLink';
 import SectionHead from '../components/SectionHead';
 import RelatedLinks from '../components/RelatedLinks';
 import InspectionCTA from '../components/InspectionCTA';
@@ -18,7 +19,7 @@ export default function ProblemPage() {
       <section className="hub-page">
         <div className="wrap">
           <p>Problem not found.</p>
-          <Link to="/problems">← All problems</Link>
+          <LocalizedLink to="/problems">← All problems</LocalizedLink>
         </div>
       </section>
     );
@@ -31,7 +32,7 @@ export default function ProblemPage() {
       <section className="hub-page problem-page">
         <div className="wrap">
           <nav className="service-breadcrumb">
-            <Link to="/problems">Problems</Link>
+            <LocalizedLink to="/problems">Problems</LocalizedLink>
             <span aria-hidden="true"> / </span>
             <span>{problem.title}</span>
           </nav>
@@ -104,7 +105,7 @@ export default function ProblemPage() {
                 <strong>{project.title}</strong> — {project.scope}
                 {project.outcome && <> · {project.outcome}</>}
               </p>
-              <Link to={`/portfolio/${project.slug}`}>View case study →</Link>
+              <LocalizedLink to={`/portfolio/${project.slug}`}>View case study →</LocalizedLink>
             </article>
           )}
         </div>

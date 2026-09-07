@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import LocalizedLink from './LocalizedLink';
 import SectionHead from './SectionHead';
 
 export default function PagePreview({ heading, to, linkLabel = 'Explore full section', children, id, className = '' }) {
@@ -9,9 +9,9 @@ export default function PagePreview({ heading, to, linkLabel = 'Explore full sec
         {children}
         {to && (
           <div className="page-preview-link">
-            <Link to={to} className="btn btn--ghost">
+            <LocalizedLink to={to} className="btn btn--ghost">
               {linkLabel} <span className="arrow">→</span>
-            </Link>
+            </LocalizedLink>
           </div>
         )}
       </div>

@@ -1,5 +1,5 @@
 import { lazy, Suspense, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import LocalizedLink from './LocalizedLink';
 import useEarthquakes from '../hooks/useEarthquakes';
 import { MIN_EARTHQUAKE_LIST } from '../lib/earthquakes';
 import useInView from '../hooks/useInView';
@@ -47,9 +47,9 @@ export default function EarthquakeHomeSection({ copy = {}, limit = 5 }) {
       )}
       {copy.disclaimer && <p className="earthquake-disclaimer">{copy.disclaimer}</p>}
       <div className="page-preview-link">
-        <Link to="/earthquakes" className="btn btn--ghost">
+        <LocalizedLink to="/earthquakes" className="btn btn--ghost">
           View full seismic map <span className="arrow">→</span>
-        </Link>
+        </LocalizedLink>
       </div>
     </div>
   );

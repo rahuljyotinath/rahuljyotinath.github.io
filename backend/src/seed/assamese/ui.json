@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "title": "91SkylineWorks — Building Doctor | Guwahati গঠন মেৰামত",
+    "description": "ঘৰ-বিল্ডিঙৰ সমস্যা? আমি আগতে ৰোগ নির্ণয়, তাৰ পাছত ঠিক কৰো। ৱাটাৰপ্ৰুফিং, ৰিট্ৰ’ফিটিং, PU ইঞ্জেকশন, NDT আৰু গঠনগত মেৰামত — Guwahati আৰু উত্তৰ-পূব ভাৰত। বিনামূলীয়া পৰিদৰ্শন।"
+  },
+  "company": {
+    "tagline": "Guwahati-ত আপোনাৰ ঘৰ — অধিক সুৰক্ষিত, শুকান, মজবুত।",
+    "license": "Building safety & retrofitting — Guwahati"
+  },
+  "nav": [
+    { "label": "মূল পৃষ্ঠা", "href": "/" },
+    { "label": "সমস্যা", "href": "/problems" },
+    { "label": "প্ৰকল্প", "href": "/portfolio" },
+    { "label": "জ্ঞান", "href": "/knowledge" },
+    { "label": "ভূমিকম্প", "href": "/earthquakes" }
+  ],
+  "navToolsLabel": "সঁজুলি",
+  "navTools": [
+    { "label": "Analyzer", "href": "/analyzer" },
+    { "label": "Self-assessment", "href": "/assessment" }
+  ],
+  "navMore": [
+    { "label": "Education", "href": "/education" },
+    { "label": "About", "href": "/about" },
+    { "label": "Contact", "href": "/contact" }
+  ],
+  "footer": {
+    "tagline": "Guwahati-ত building doctor — diagnose first, fix properly.",
+    "legal": "© 91SkylineWorks Private Limited. All rights reserved."
+  }
+}

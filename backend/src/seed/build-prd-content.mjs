@@ -129,6 +129,13 @@ for (const problem of merged.problems || []) {
   if (seo.seoTitle) problem.seoTitle = seo.seoTitle;
 }
 
+for (const article of merged.knowledgeArticles || []) {
+  const seo = seoOverrides.knowledgeArticles?.[article.slug];
+  if (!seo) continue;
+  if (seo.linkedServices) article.linkedServices = seo.linkedServices;
+  if (seo.linkedProblems) article.linkedProblems = seo.linkedProblems;
+}
+
 if (additionalServices.projects?.length) {
   merged.projects = additionalServices.projects;
 }
@@ -150,6 +157,11 @@ if (localLandingsExt.localLandings?.length) {
 }
 if (serviceCategoriesExt.navServices) {
   merged.navServices = serviceCategoriesExt.navServices;
+}
+if (seoOverrides.navServicesHub?.length) {
+  const existing = new Set((merged.navServices || []).map((item) => item.href));
+  const hubItems = seoOverrides.navServicesHub.filter((item) => !existing.has(item.href));
+  merged.navServices = [...hubItems, ...(merged.navServices || [])];
 }
 const categoryMap = serviceCategoriesExt.serviceCategoryMap || {};
 if (Object.keys(categoryMap).length) {

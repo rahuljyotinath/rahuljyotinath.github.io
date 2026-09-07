@@ -22,38 +22,35 @@ RewriteCond %{HTTP_HOST} ^www\.91skylineworks\.com [NC]
 RewriteRule ^ https://91skylineworks.com%{REQUEST_URI} [R=301,L]
 
 RewriteCond %{HTTPS} off
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=307,L]
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
 RewriteRule ^api/leads/?$ api/leads.php [L,QSA]
 RewriteRule ^api/content/?$ api/content.php [L,QSA]
 RewriteRule ^api/diagnose/?$ api/diagnose.php [L,QSA]
 RewriteRule ^api/earthquakes/?$ api/earthquakes.php [L,QSA]
 
-RewriteCond %{REQUEST_METHOD} GET
 RewriteRule ^capabilities/?$ /services [R=301,L]
 
-RewriteCond %{REQUEST_METHOD} GET
 RewriteRule ^process/?$ / [R=301,L]
 
-RewriteCond %{REQUEST_METHOD} GET
 RewriteRule ^clients/?$ /portfolio [R=301,L]
 
-RewriteCond %{REQUEST_METHOD} GET
 RewriteRule ^backing/?$ /about [R=301,L]
 
-RewriteCond %{REQUEST_METHOD} GET
 RewriteRule ^telemetry/?$ /earthquakes [R=301,L]
 
-RewriteCond %{REQUEST_METHOD} GET
 RewriteRule ^hydrostatic/?$ /knowledge [R=301,L]
 
-RewriteCond %{REQUEST_METHOD} GET
-RewriteRule ^education/?$ /knowledge [R=301,L]
+RewriteRule ^projects/?$ /portfolio [R=301,L]
 
-RewriteCond %{REQUEST_METHOD} GET
+RewriteRule ^industries/ /services [R=301,L]
+
+RewriteRule ^services/industrial-flooring/?$ /services [R=301,L]
+
+RewriteRule ^services/facade-restoration/?$ /services [R=301,L]
+
 RewriteRule ^waterproofing-experts/?$ /services/waterproofing [R=301,L]
 
-RewriteCond %{REQUEST_METHOD} GET
 RewriteRule ^expansion-joint-treatment/?$ /services/expansion-joints [R=301,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f

@@ -1,4 +1,5 @@
-import { Link, useOutletContext, useParams } from 'react-router-dom';
+import { useOutletContext, useParams } from 'react-router-dom';
+import LocalizedLink from '../components/LocalizedLink';
 import SectionHead from '../components/SectionHead';
 import usePageTitle from '../hooks/usePageTitle';
 import { buildServicePageTitle } from '../lib/pageTitle';
@@ -15,7 +16,7 @@ export default function ServicePage() {
       <section className="service-page">
         <div className="wrap">
           <p>Service not found.</p>
-          <Link to="/services">← All services</Link>
+          <LocalizedLink to="/services">← All services</LocalizedLink>
         </div>
       </section>
     );
@@ -25,7 +26,7 @@ export default function ServicePage() {
     <section className="service-page">
       <div className="wrap">
         <nav className="service-breadcrumb">
-          <Link to="/services">Services</Link>
+          <LocalizedLink to="/services">Services</LocalizedLink>
           <span aria-hidden="true"> / </span>
           <span>{page.title}</span>
         </nav>
@@ -80,12 +81,12 @@ export default function ServicePage() {
         <div className="service-cta">
           {page.ctaMessage && <p className="service-cta-message">{page.ctaMessage}</p>}
           <div className="service-cta-actions">
-            <Link className="btn btn--primary" to="/contact">
+            <LocalizedLink className="btn btn--primary" to="/contact">
               Call us today <span className="arrow">→</span>
-            </Link>
-            <Link className="btn btn--ghost" to="/assessment">
+            </LocalizedLink>
+            <LocalizedLink className="btn btn--ghost" to="/assessment">
               Free self-assessment
-            </Link>
+            </LocalizedLink>
           </div>
         </div>
       </div>

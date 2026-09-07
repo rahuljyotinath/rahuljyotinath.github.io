@@ -10,3 +10,8 @@ deploy/.release-manifest.json
 deploy/.ftp-manifest.json
 deploy/files-to-upload.txt
 upload-ftp.sh
+rahul-pic.jpeg
+release.zip
+deploy/ftp-upload.log
+deploy/ftp-upload.log
+deploy/ftp-upload.log

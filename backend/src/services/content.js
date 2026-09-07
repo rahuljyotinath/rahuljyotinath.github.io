@@ -18,8 +18,8 @@ export async function seedContentIfEmpty() {
   console.log("[seed] site_content populated from content.json");
 }
 
-export async function getSiteContent() {
-  const rows = await query("SELECT payload FROM site_content WHERE slug = ? LIMIT 1", ["main"]);
+export async function getSiteContent(slug = "main") {
+  const rows = await query("SELECT payload FROM site_content WHERE slug = ? LIMIT 1", [slug]);
   if (!rows.length) return null;
   const payload = rows[0].payload;
   return typeof payload === "string" ? JSON.parse(payload) : payload;

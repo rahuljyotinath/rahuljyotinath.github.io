@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import LocalizedLink from './LocalizedLink';
 import SectionHead from './SectionHead';
 
 export default function HomeownerFaq({ data }) {
@@ -16,7 +16,7 @@ export default function HomeownerFaq({ data }) {
                 <p>{item.a}</p>
                 {item.link && (
                   <p className="faq-link">
-                    <Link to={item.link.href}>{item.link.label}</Link>
+                    <LocalizedLink to={item.link.href}>{item.link.label}</LocalizedLink>
                   </p>
                 )}
               </dd>

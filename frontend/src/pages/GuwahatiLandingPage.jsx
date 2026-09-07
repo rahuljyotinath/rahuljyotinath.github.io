@@ -1,4 +1,5 @@
-import { Link, useOutletContext, useParams } from 'react-router-dom';
+import { useOutletContext, useParams } from 'react-router-dom';
+import LocalizedLink from '../components/LocalizedLink';
 import SectionHead from '../components/SectionHead';
 import RelatedLinks from '../components/RelatedLinks';
 import InspectionCTA from '../components/InspectionCTA';
@@ -18,7 +19,7 @@ export default function GuwahatiLandingPage() {
       <section className="hub-page">
         <div className="wrap">
           <p>Page not found.</p>
-          <Link to="/">← Home</Link>
+          <LocalizedLink to="/">← Home</LocalizedLink>
         </div>
       </section>
     );
@@ -29,7 +30,7 @@ export default function GuwahatiLandingPage() {
       <section className="hub-page local-landing">
         <div className="wrap">
           <nav className="service-breadcrumb">
-            <Link to="/">Home</Link>
+            <LocalizedLink to="/">Home</LocalizedLink>
             <span aria-hidden="true"> / </span>
             <span>Guwahati</span>
             <span aria-hidden="true"> / </span>
@@ -65,7 +66,7 @@ export default function GuwahatiLandingPage() {
 
           {landing.ctaMessage && (
             <p className="service-cta-message">
-              <Link to="/contact#inspection-form">{landing.ctaMessage} →</Link>
+              <LocalizedLink to="/contact#inspection-form">{landing.ctaMessage} →</LocalizedLink>
             </p>
           )}
         </div>

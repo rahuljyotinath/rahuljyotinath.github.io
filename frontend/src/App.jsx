@@ -1,7 +1,8 @@
 import { lazy, Suspense } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import AppLayout from './layouts/AppLayout';
 import HomePage from './pages/HomePage';
+import LocalizedNavigate from './components/LocalizedNavigate';
 
 const PortfolioPage = lazy(() => import('./pages/PortfolioPage'));
 const ProjectDetailPage = lazy(() => import('./pages/ProjectDetailPage'));
@@ -24,38 +25,47 @@ function PageFallback() {
   return <div className="loading-screen">[ LOADING... ]</div>;
 }
 
+function siteRouteElements() {
+  return [
+    <Route key="home" index element={<HomePage />} />,
+    <Route key="problems" path="problems" element={<ProblemsIndexPage />} />,
+    <Route key="problem" path="problems/:slug" element={<ProblemPage />} />,
+    <Route key="industries" path="industries/*" element={<LocalizedNavigate to="/services" replace />} />,
+    <Route key="knowledge" path="knowledge" element={<KnowledgeIndexPage />} />,
+    <Route key="article" path="knowledge/:slug" element={<KnowledgeArticlePage />} />,
+    <Route key="guwahati" path="guwahati/:slug" element={<GuwahatiLandingPage />} />,
+    <Route key="services" path="services" element={<ServicesIndexPage />} />,
+    <Route key="service-category" path="services/category/:categorySlug" element={<ServiceCategoryPage />} />,
+    <Route key="industrial-flooring" path="services/industrial-flooring" element={<LocalizedNavigate to="/services" replace />} />,
+    <Route key="facade-restoration" path="services/facade-restoration" element={<LocalizedNavigate to="/services" replace />} />,
+    <Route key="service" path="services/:slug" element={<ServicePage />} />,
+    <Route key="capabilities" path="capabilities" element={<LocalizedNavigate to="/services" replace />} />,
+    <Route key="portfolio" path="portfolio" element={<PortfolioPage />} />,
+    <Route key="project" path="portfolio/:slug" element={<ProjectDetailPage />} />,
+    <Route key="projects" path="projects" element={<LocalizedNavigate to="/portfolio" replace />} />,
+    <Route key="process" path="process" element={<LocalizedNavigate to="/#process" replace />} />,
+    <Route key="about" path="about" element={<AboutPage />} />,
+    <Route key="clients" path="clients" element={<LocalizedNavigate to="/portfolio#clients" replace />} />,
+    <Route key="backing" path="backing" element={<LocalizedNavigate to="/about#backing" replace />} />,
+    <Route key="telemetry" path="telemetry" element={<LocalizedNavigate to="/earthquakes#telemetry" replace />} />,
+    <Route key="earthquakes" path="earthquakes" element={<EarthquakesPage />} />,
+    <Route key="hydrostatic" path="hydrostatic" element={<LocalizedNavigate to="/knowledge" replace />} />,
+    <Route key="education" path="education" element={<EducationPage />} />,
+    <Route key="analyzer" path="analyzer" element={<AnalyzerPage />} />,
+    <Route key="assessment" path="assessment" element={<AssessmentPage />} />,
+    <Route key="contact" path="contact" element={<ContactPage />} />,
+  ];
+}
+
 export default function App() {
   return (
     <Suspense fallback={<PageFallback />}>
       <Routes>
-        <Route element={<AppLayout />}>
-          <Route index element={<HomePage />} />
-          <Route path="problems" element={<ProblemsIndexPage />} />
-          <Route path="problems/:slug" element={<ProblemPage />} />
-          <Route path="industries/*" element={<Navigate to="/services" replace />} />
-          <Route path="knowledge" element={<KnowledgeIndexPage />} />
-          <Route path="knowledge/:slug" element={<KnowledgeArticlePage />} />
-          <Route path="guwahati/:slug" element={<GuwahatiLandingPage />} />
-          <Route path="services" element={<ServicesIndexPage />} />
-          <Route path="services/category/:categorySlug" element={<ServiceCategoryPage />} />
-          <Route path="services/industrial-flooring" element={<Navigate to="/services" replace />} />
-          <Route path="services/facade-restoration" element={<Navigate to="/services" replace />} />
-          <Route path="services/:slug" element={<ServicePage />} />
-          <Route path="capabilities" element={<Navigate to="/services" replace />} />
-          <Route path="portfolio" element={<PortfolioPage />} />
-          <Route path="portfolio/:slug" element={<ProjectDetailPage />} />
-          <Route path="projects" element={<Navigate to="/portfolio" replace />} />
-          <Route path="process" element={<Navigate to="/#process" replace />} />
-          <Route path="about" element={<AboutPage />} />
-          <Route path="clients" element={<Navigate to="/portfolio#clients" replace />} />
-          <Route path="backing" element={<Navigate to="/about#backing" replace />} />
-          <Route path="telemetry" element={<Navigate to="/earthquakes#telemetry" replace />} />
-          <Route path="earthquakes" element={<EarthquakesPage />} />
-          <Route path="hydrostatic" element={<Navigate to="/knowledge" replace />} />
-          <Route path="education" element={<EducationPage />} />
-          <Route path="analyzer" element={<AnalyzerPage />} />
-          <Route path="assessment" element={<AssessmentPage />} />
-          <Route path="contact" element={<ContactPage />} />
+        <Route path="/as" element={<AppLayout locale="as" />}>
+          {siteRouteElements()}
+        </Route>
+        <Route element={<AppLayout locale="en" />}>
+          {siteRouteElements()}
         </Route>
       </Routes>
     </Suspense>

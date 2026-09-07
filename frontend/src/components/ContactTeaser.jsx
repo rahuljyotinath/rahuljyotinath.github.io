@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import LocalizedLink from './LocalizedLink';
 import SectionReveal from './SectionReveal';
 import SectionHead from './SectionHead';
 
@@ -23,9 +23,9 @@ export default function ContactTeaser({ contact, heading, teaser }) {
           )}
           <div className="contact-teaser">
             <p>{body}</p>
-            <Link to={ctaHref} className="btn-conversion btn-conversion--inspection">
+            <LocalizedLink to={ctaHref} className="btn-conversion btn-conversion--inspection">
               {ctaLabel} <span className="arrow">→</span>
-            </Link>
+            </LocalizedLink>
           </div>
         </SectionReveal>
       </div>

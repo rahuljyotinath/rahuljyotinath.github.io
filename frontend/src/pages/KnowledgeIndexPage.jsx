@@ -1,4 +1,5 @@
-import { Link, useOutletContext } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
+import LocalizedLink from '../components/LocalizedLink';
 import SectionHead from '../components/SectionHead';
 import usePageTitle from '../hooks/usePageTitle';
 
@@ -25,10 +26,10 @@ export default function KnowledgeIndexPage() {
               {articles
                 .filter((a) => a.cluster === cluster)
                 .map((article) => (
-                  <Link key={article.slug} className="hub-card" to={`/knowledge/${article.slug}`}>
+                  <LocalizedLink key={article.slug} className="hub-card" to={`/knowledge/${article.slug}`}>
                     <h3>{article.title}</h3>
                     <p>{article.excerpt}</p>
-                  </Link>
+                  </LocalizedLink>
                 ))}
             </div>
           </div>

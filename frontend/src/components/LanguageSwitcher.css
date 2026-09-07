@@ -1,0 +1,27 @@
+.lang-switcher {
+  display: flex;
+  align-items: center;
+}
+
+.lang-switcher-link {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid var(--line, rgba(255, 255, 255, 0.15));
+  border-radius: 999px;
+  text-decoration: none;
+  color: inherit;
+  white-space: nowrap;
+}
+
+.lang-switcher-link:hover {
+  border-color: var(--accent, #c9a227);
+  color: var(--accent, #c9a227);
+}
+
+@media (max-width: 900px) {
+  .lang-switcher {
+    padding: 0.5rem 0;
+  }
+}

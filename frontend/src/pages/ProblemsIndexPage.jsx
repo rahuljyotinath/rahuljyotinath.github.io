@@ -1,4 +1,5 @@
-import { Link, useOutletContext } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
+import LocalizedLink from '../components/LocalizedLink';
 import SectionHead from '../components/SectionHead';
 import usePageTitle from '../hooks/usePageTitle';
 
@@ -30,10 +31,10 @@ export default function ProblemsIndexPage() {
               <h2>{group.title}</h2>
               <div className="hub-grid">
                 {group.items.map((problem) => (
-                  <Link key={problem.slug} className="hub-card" to={`/problems/${problem.slug}`}>
+                  <LocalizedLink key={problem.slug} className="hub-card" to={`/problems/${problem.slug}`}>
                     <h3>{problem.title}</h3>
                     <p>{problem.headline}</p>
-                  </Link>
+                  </LocalizedLink>
                 ))}
               </div>
             </div>

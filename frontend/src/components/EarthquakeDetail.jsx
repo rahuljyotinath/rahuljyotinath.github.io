@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import LocalizedLink from './LocalizedLink';
 import { formatTime, magColor } from '../lib/earthquakes';
 import './Earthquakes.css';
 
@@ -51,9 +51,9 @@ export default function EarthquakeDetail({ event }) {
             USGS event page <span className="arrow">→</span>
           </a>
         )}
-        <Link to="/assessment" className="btn btn--primary">
+        <LocalizedLink to="/assessment" className="btn btn--primary">
           Get structural assessment
-        </Link>
+        </LocalizedLink>
       </div>
     </div>
   );

@@ -23,6 +23,9 @@ function ReviewCard({ review }) {
             src={review.snapshot}
             alt={alt}
             loading="lazy"
+            decoding="async"
+            width={320}
+            height={200}
           />
         </div>
       ) : (

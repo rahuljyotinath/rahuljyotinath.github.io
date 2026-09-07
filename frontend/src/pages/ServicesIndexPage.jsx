@@ -1,4 +1,5 @@
-import { Link, useOutletContext } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
+import LocalizedLink from '../components/LocalizedLink';
 import SectionHead from '../components/SectionHead';
 import usePageTitle from '../hooks/usePageTitle';
 
@@ -20,12 +21,12 @@ export default function ServicesIndexPage() {
         </p>
         <div className="services-bordered">
           {services.map((s) => (
-            <Link key={s.code} to={`/services/${s.slug}`} className="service-cell service-cell--link">
+            <LocalizedLink key={s.code} to={`/services/${s.slug}`} className="service-cell service-cell--link">
               <span className="code">{s.code}</span>
               <h3>{s.title}</h3>
               <p>{s.description}</p>
               <span className="service-link-label">Learn more →</span>
-            </Link>
+            </LocalizedLink>
           ))}
         </div>
       </div>

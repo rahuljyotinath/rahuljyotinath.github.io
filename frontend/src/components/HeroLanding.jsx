@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import LocalizedLink from './LocalizedLink';
 
 function CtaLink({ cta, className, fallback }) {
   const href = cta?.href || fallback;
@@ -8,7 +8,7 @@ function CtaLink({ cta, className, fallback }) {
     </>
   );
   if (href.startsWith('/')) {
-    return <Link className={className} to={href}>{inner}</Link>;
+    return <LocalizedLink className={className} to={href}>{inner}</LocalizedLink>;
   }
   return <a className={className} href={href}>{inner}</a>;
 }

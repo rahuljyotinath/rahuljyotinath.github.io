@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import LocalizedLink from './LocalizedLink';
 
 export default function RelatedLinks({ services, problems, projects, content, title = 'Related' }) {
   const serviceList = (services || [])
@@ -22,7 +22,7 @@ export default function RelatedLinks({ services, problems, projects, content, ti
           <ul>
             {serviceList.map((s) => (
               <li key={s.slug}>
-                <Link to={`/services/${s.slug}`}>{s.title}</Link>
+                <LocalizedLink to={`/services/${s.slug}`}>{s.title}</LocalizedLink>
               </li>
             ))}
           </ul>
@@ -34,7 +34,7 @@ export default function RelatedLinks({ services, problems, projects, content, ti
           <ul>
             {problemList.map((p) => (
               <li key={p.slug}>
-                <Link to={`/problems/${p.slug}`}>{p.title}</Link>
+                <LocalizedLink to={`/problems/${p.slug}`}>{p.title}</LocalizedLink>
               </li>
             ))}
           </ul>
@@ -44,7 +44,7 @@ export default function RelatedLinks({ services, problems, projects, content, ti
         <div className="related-group">
           <h3>Case study</h3>
           <p>
-            <Link to={`/portfolio/${project.slug}`}>{project.title}</Link> — {project.scope}
+            <LocalizedLink to={`/portfolio/${project.slug}`}>{project.title}</LocalizedLink> — {project.scope}
           </p>
         </div>
       )}

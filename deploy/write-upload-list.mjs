@@ -78,9 +78,15 @@ function main() {
     for (const rel of assetFilesUnderRelease()) {
       uploadSet.add(rel);
     }
+    const projectsDir = join(RELEASE, 'images/projects');
+    if (existsSync(projectsDir)) {
+      for (const rel of walkFiles(projectsDir, RELEASE)) {
+        uploadSet.add(rel);
+      }
+    }
     toUpload.length = 0;
     toUpload.push(...[...uploadSet].sort());
-    console.log('[release] index.html changed — including all assets/ bundles');
+    console.log('[release] index.html changed — including assets/ and images/projects/');
   }
 
   writeFileSync(UPLOAD_LIST, toUpload.length ? `${toUpload.join('\n')}\n` : '');

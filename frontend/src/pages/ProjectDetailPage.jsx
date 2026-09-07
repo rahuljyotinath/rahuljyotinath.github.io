@@ -1,4 +1,5 @@
-import { Link, useOutletContext, useParams } from 'react-router-dom';
+import { useOutletContext, useParams } from 'react-router-dom';
+import LocalizedLink from '../components/LocalizedLink';
 import InspectionCTA from '../components/InspectionCTA';
 import useBackgroundImage from '../hooks/useBackgroundImage';
 import usePageTitle from '../hooks/usePageTitle';
@@ -27,7 +28,7 @@ export default function ProjectDetailPage() {
       <section className="hub-page">
         <div className="wrap">
           <p>Project not found.</p>
-          <Link to="/portfolio">← All projects</Link>
+          <LocalizedLink to="/portfolio">← All projects</LocalizedLink>
         </div>
       </section>
     );
@@ -42,7 +43,7 @@ export default function ProjectDetailPage() {
       <section className="hub-page project-detail">
         <div className="wrap">
           <nav className="service-breadcrumb">
-            <Link to="/portfolio">Projects</Link>
+            <LocalizedLink to="/portfolio">Projects</LocalizedLink>
             <span aria-hidden="true"> / </span>
             <span>{project.title}</span>
           </nav>
@@ -108,7 +109,7 @@ export default function ProjectDetailPage() {
               <ul>
                 {serviceLinks.map((svc) => (
                   <li key={svc.slug}>
-                    <Link to={`/services/${svc.slug}`}>{svc.title}</Link>
+                    <LocalizedLink to={`/services/${svc.slug}`}>{svc.title}</LocalizedLink>
                   </li>
                 ))}
               </ul>
@@ -116,7 +117,7 @@ export default function ProjectDetailPage() {
           )}
 
           <p className="project-detail-back">
-            <Link to="/portfolio">← All projects</Link>
+            <LocalizedLink to="/portfolio">← All projects</LocalizedLink>
           </p>
         </div>
       </section>

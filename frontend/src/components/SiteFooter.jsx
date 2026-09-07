@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import LocalizedLink from './LocalizedLink';
 
 export default function SiteFooter({ content }) {
   if (!content) return null;
@@ -24,13 +24,13 @@ export default function SiteFooter({ content }) {
           <p className="site-footer-label">Guwahati services</p>
           <ul>
             <li>
-              <Link to="/guwahati/waterproofing">Waterproofing in Guwahati</Link>
+              <LocalizedLink to="/guwahati/waterproofing">Waterproofing in Guwahati</LocalizedLink>
             </li>
             <li>
-              <Link to="/guwahati/building-crack-repair">Building crack repair</Link>
+              <LocalizedLink to="/guwahati/building-crack-repair">Building crack repair</LocalizedLink>
             </li>
             <li>
-              <Link to="/services/retrofitting">Retrofitting in Guwahati</Link>
+              <LocalizedLink to="/services/retrofitting">Retrofitting in Guwahati</LocalizedLink>
             </li>
           </ul>
         </div>
@@ -39,7 +39,7 @@ export default function SiteFooter({ content }) {
           <ul>
             {(services || []).slice(0, 6).map((s) => (
               <li key={s.slug}>
-                <Link to={`/services/${s.slug}`}>{s.title}</Link>
+                <LocalizedLink to={`/services/${s.slug}`}>{s.title}</LocalizedLink>
               </li>
             ))}
           </ul>

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import LocalizedLink from './LocalizedLink';
 import SectionHead from './SectionHead';
 
 export default function GuidesTeaser({ articles, heading }) {
@@ -16,14 +16,14 @@ export default function GuidesTeaser({ articles, heading }) {
         <ul className="guides-teaser-list">
           {items.map((a) => (
             <li key={a.slug}>
-              <Link to={`/knowledge/${a.slug}`}>{a.title}</Link>
+              <LocalizedLink to={`/knowledge/${a.slug}`}>{a.title}</LocalizedLink>
               <p>{a.excerpt}</p>
             </li>
           ))}
         </ul>
-        <Link to="/knowledge" className="btn btn--ghost">
+        <LocalizedLink to="/knowledge" className="btn btn--ghost">
           All guides <span className="arrow">→</span>
-        </Link>
+        </LocalizedLink>
       </div>
     </section>
   );

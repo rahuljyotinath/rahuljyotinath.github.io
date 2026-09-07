@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import LocalizedLink from './LocalizedLink';
 import SectionHead from './SectionHead';
 
 function ServiceCell({ service: s }) {
@@ -13,9 +13,9 @@ function ServiceCell({ service: s }) {
 
   if (s.slug) {
     return (
-      <Link to={`/services/${s.slug}`} className="service-cell service-cell--link">
+      <LocalizedLink to={`/services/${s.slug}`} className="service-cell service-cell--link">
         {inner}
-      </Link>
+      </LocalizedLink>
     );
   }
 

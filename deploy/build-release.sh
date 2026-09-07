@@ -7,6 +7,11 @@ RELEASE="$ROOT/release"
 echo "[release] merging PRD content..."
 node "$ROOT/backend/src/seed/generate-extensions.mjs"
 node "$ROOT/backend/src/seed/build-prd-content.mjs"
+if [[ "${SKIP_AS_TRANSLATE:-}" == "1" ]] && [[ -f "$ROOT/backend/src/seed/content.as.json" ]]; then
+  echo "[release] SKIP_AS_TRANSLATE=1 — using existing content.as.json"
+else
+  node "$ROOT/backend/src/seed/build-assamese-content.mjs"
+fi
 
 echo "[release] optimizing images..."
 cd "$ROOT/frontend"
@@ -46,6 +51,9 @@ if [[ ! -f "$RELEASE/api/config.php" ]]; then
   echo "[release] WARNING: deploy/php/config.php missing — copy config.example.php to config.php locally before release"
 fi
 cp "$ROOT/backend/src/seed/content.json" "$RELEASE/api/seed-content.json"
+if [[ -f "$ROOT/backend/src/seed/content.as.json" ]]; then
+  cp "$ROOT/backend/src/seed/content.as.json" "$RELEASE/api/seed-content.as.json"
+fi
 cp "$ROOT/deploy/php/config.example.php" "$RELEASE/api/"
 
 echo "[release] computing changed files..."

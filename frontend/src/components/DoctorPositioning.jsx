@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import LocalizedLink from './LocalizedLink';
 import SectionHead from './SectionHead';
 
 export default function DoctorPositioning({ data, showCta = true }) {
@@ -17,9 +17,9 @@ export default function DoctorPositioning({ data, showCta = true }) {
           ))}
         </div>
         {showCta && data.ctaHref && (
-          <Link className="btn btn--primary" to={data.ctaHref}>
+          <LocalizedLink className="btn btn--primary" to={data.ctaHref}>
             {data.ctaLabel || 'Book inspection'}
-          </Link>
+          </LocalizedLink>
         )}
       </div>
     </section>

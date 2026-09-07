@@ -1,13 +1,25 @@
-import { Link } from 'react-router-dom';
-import useBackgroundImage from '../hooks/useBackgroundImage';
+import LocalizedLink from './LocalizedLink';
 import SectionHead from './SectionHead';
 
+function projectImageSrc(image) {
+  if (!image) return null;
+  const base = image.startsWith('/') ? image : `/${image}`;
+  if (/\.webp$/i.test(base)) return base;
+  return base.replace(/\.(jpe?g|png)$/i, '.webp');
+}
+
 function ProjectCard({ project }) {
-  const phRef = useBackgroundImage(project.image);
+  const src = projectImageSrc(project.image);
 
   return (
-    <Link to={`/portfolio/${project.slug}`} className={`project-card ${project.featured ? 'featured' : ''}`}>
-      <div className="ph" ref={phRef} />
+    <LocalizedLink to={`/portfolio/${project.slug}`} className={`project-card ${project.featured ? 'featured' : ''}`}>
+      {src ? (
+        <picture className="ph">
+          <img src={src} alt={project.title} loading="lazy" decoding="async" width={640} height={440} />
+        </picture>
+      ) : (
+        <div className="ph" data-fallback="1" aria-hidden="true" />
+      )}
       <div className="veil" />
       <div className="info">
         <div className="meta">
@@ -18,7 +30,7 @@ function ProjectCard({ project }) {
         <h3>{project.title}</h3>
         {project.scope && <div className="scope">{project.scope}</div>}
       </div>
-    </Link>
+    </LocalizedLink>
   );
 }
 

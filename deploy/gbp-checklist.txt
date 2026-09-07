@@ -38,3 +38,11 @@ Citations (same NAP)
 Measure monthly
 - GBP Insights: discovery searches, calls, direction requests
 - Search Console: "waterproofing guwahati", "building cracks guwahati", "retrofitting guwahati"
+
+---
+Site NAP audit (2026-09-07, post-deploy)
+- Live API phone: +91 60038 79490 — MATCH
+- Live API address: Senapati Road, Sahar Sarania 2nd part, Silpukhuri, Guwahati 781003 — MATCH
+- Live company name: 91SkylineWorks Private Limited (align GBP display name if needed)
+- Sitemap live: https://91skylineworks.com/sitemap.xml (85 /as/ URLs) — resubmit in Search Console
+- Remaining manual: categories, 20+ photos, 15+ 2026 reviews, citations, weekly posts

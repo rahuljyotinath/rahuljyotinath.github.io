@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import LocalizedLink from './LocalizedLink';
 import SectionHead from './SectionHead';
 import ProblemCategoryIcon from './ProblemCategoryIcon';
 
@@ -14,25 +14,25 @@ export default function ProblemGrid({ grid, categories, problems, limit = 6 }) {
         {categories?.length > 0 && (
           <div className="problem-categories">
             {categories.map((cat) => (
-              <Link key={cat.slug} to={`/problems#${cat.slug}`} className="problem-category-chip">
+              <LocalizedLink key={cat.slug} to={`/problems#${cat.slug}`} className="problem-category-chip">
                 <ProblemCategoryIcon slug={cat.slug} />
                 {cat.title}
-              </Link>
+              </LocalizedLink>
             ))}
           </div>
         )}
         <div className="problem-grid">
           {items.map((problem) => (
-            <Link key={problem.slug} className="problem-card" to={`/problems/${problem.slug}`}>
+            <LocalizedLink key={problem.slug} className="problem-card" to={`/problems/${problem.slug}`}>
               <h3>{problem.title}</h3>
               <p>{problem.intro?.slice(0, 120)}…</p>
               <span className="problem-card-link">Learn more →</span>
-            </Link>
+            </LocalizedLink>
           ))}
         </div>
         {grid.ctaLabel && (
           <p className="problem-grid-more">
-            <Link to="/problems">{grid.ctaLabel} →</Link>
+            <LocalizedLink to="/problems">{grid.ctaLabel} →</LocalizedLink>
           </p>
         )}
       </div>

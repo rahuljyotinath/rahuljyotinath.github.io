@@ -6,9 +6,10 @@ import FloatingContactFab from '../components/FloatingContactFab';
 import ConsentBanner from '../components/ConsentBanner';
 import GtmLoader from '../components/GtmLoader';
 import useContent from '../hooks/useContent';
+import { LocaleProvider } from '../context/LocaleContext';
 
-export default function AppLayout() {
-  const { content, error, loading } = useContent();
+export default function AppLayout({ locale = 'en' }) {
+  const { content, error, loading } = useContent(locale);
 
   if (loading) {
     return <div className="loading-screen">[ INITIALIZING DIGITAL TERMINAL... ]</div>;
@@ -26,16 +27,16 @@ export default function AppLayout() {
   }
 
   return (
-    <>
+    <LocaleProvider locale={locale}>
       <GtmLoader />
-      <Header content={content} />
+      <Header content={content} locale={locale} />
       <main>
-        <Outlet context={{ content }} />
+        <Outlet context={{ content, locale }} />
       </main>
       <SiteFooter content={content} />
       <WhatsAppCTA content={content} />
       <FloatingContactFab contact={content.contact} />
       <ConsentBanner />
-    </>
+    </LocaleProvider>
   );
 }

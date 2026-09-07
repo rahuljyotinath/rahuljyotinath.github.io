@@ -27,5 +27,22 @@
     "retrofitting": {
       "seoTitle": "Retrofitting in Guwahati"
     }
+  },
+  "navServicesHub": [
+    { "label": "Waterproofing in Guwahati", "href": "/guwahati/waterproofing" },
+    { "label": "Building crack repair", "href": "/guwahati/building-crack-repair" },
+    { "label": "Retrofitting in Guwahati", "href": "/services/retrofitting" }
+  ],
+  "knowledgeArticles": {
+    "waterproofing-contractor-guwahati-how-to-choose": {
+      "linkedServices": ["waterproofing", "pu-injection", "expansion-joints"]
+    },
+    "building-crack-repair-cost-guwahati": {
+      "linkedServices": ["retrofitting", "ndt", "epoxy-injection", "carbon-fibre"],
+      "linkedProblems": ["column-cracks", "wall-cracks"]
+    },
+    "seismic-retrofitting-cost-guwahati": {
+      "linkedServices": ["retrofitting", "seismic-jacketing", "carbon-fibre", "ndt"]
+    }
   }
 }

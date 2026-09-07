@@ -1,5 +1,6 @@
 import { useEffect, useId, useRef, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import LocalizedLink from './LocalizedLink';
 import { telHref, trackEvent, whatsappHref } from '../utils/analytics';
 import '../styles/conversion-cta.css';
 import './FloatingContactFab.css';
@@ -65,7 +66,7 @@ export default function FloatingContactFab({ contact }) {
     };
   }, [open]);
 
-  if (pathname === '/contact') return null;
+  if (pathname === '/contact' || pathname === '/as/contact') return null;
   if (!phone && !whatsapp) return null;
 
   const toggle = () => {
@@ -81,7 +82,7 @@ export default function FloatingContactFab({ contact }) {
     <aside className="floating-contact-fab" ref={rootRef} aria-label="Contact us">
       {open && (
         <div id={menuId} className="floating-contact-fab-menu" role="menu">
-          <Link
+          <LocalizedLink
             to="/contact"
             className="floating-contact-fab-item"
             role="menuitem"
@@ -90,7 +91,7 @@ export default function FloatingContactFab({ contact }) {
           >
             <ContactPageIcon />
             Contact page
-          </Link>
+          </LocalizedLink>
           {whatsapp && (
             <a
               href={whatsappHref(whatsapp, message)}

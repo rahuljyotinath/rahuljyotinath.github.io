@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import LocalizedLink from './LocalizedLink';
 import SectionReveal from './SectionReveal';
 import './HeroTerminal.css';
 
@@ -13,9 +13,9 @@ function CtaLink({ cta, className, fallback }) {
 
   if (href.startsWith('/')) {
     return (
-      <Link className={className} to={href}>
+      <LocalizedLink className={className} to={href}>
         {inner}
-      </Link>
+      </LocalizedLink>
     );
   }
 

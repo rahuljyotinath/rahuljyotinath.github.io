@@ -1,4 +1,5 @@
-import { Link, useOutletContext, useParams } from 'react-router-dom';
+import { useOutletContext, useParams } from 'react-router-dom';
+import LocalizedLink from '../components/LocalizedLink';
 import SectionHead from '../components/SectionHead';
 import usePageTitle from '../hooks/usePageTitle';
 import { buildCategoryPageTitle } from '../lib/pageTitle';
@@ -17,7 +18,7 @@ export default function ServiceCategoryPage() {
       <section className="services-index">
         <div className="wrap">
           <p>Service category not found.</p>
-          <Link to="/services">← All services</Link>
+          <LocalizedLink to="/services">← All services</LocalizedLink>
         </div>
       </section>
     );
@@ -27,7 +28,7 @@ export default function ServiceCategoryPage() {
     <section className="services-index">
       <div className="wrap">
         <nav className="service-breadcrumb">
-          <Link to="/services">Services</Link>
+          <LocalizedLink to="/services">Services</LocalizedLink>
           <span aria-hidden="true"> / </span>
           <span>{category.label}</span>
         </nav>
@@ -35,12 +36,12 @@ export default function ServiceCategoryPage() {
         {category.intro && <p className="services-index-lead">{category.intro}</p>}
         <div className="services-bordered">
           {services.map((s) => (
-            <Link key={s.slug} to={`/services/${s.slug}`} className="service-cell service-cell--link">
+            <LocalizedLink key={s.slug} to={`/services/${s.slug}`} className="service-cell service-cell--link">
               <span className="code">{s.displayCode}</span>
               <h3>{s.title}</h3>
               <p>{s.description}</p>
               <span className="service-link-label">Learn more →</span>
-            </Link>
+            </LocalizedLink>
           ))}
         </div>
       </div>

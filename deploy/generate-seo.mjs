@@ -10,38 +10,189 @@ import { fetchNeEarthquakes, formatEventTime } from './lib/fetch-earthquakes.mjs
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
 const contentPath = path.join(root, 'backend/src/seed/content.json');
+const contentAsPath = path.join(root, 'backend/src/seed/content.as.json');
 const distDir = path.join(root, 'frontend/dist');
 const siteUrl = 'https://91skylineworks.com';
 const ogImage = `${siteUrl}/images/logo.png`;
 
-const content = JSON.parse(fs.readFileSync(contentPath, 'utf8'));
+const contentEn = JSON.parse(fs.readFileSync(contentPath, 'utf8'));
+const contentAs = fs.existsSync(contentAsPath)
+  ? JSON.parse(fs.readFileSync(contentAsPath, 'utf8'))
+  : null;
+
+let content = contentEn;
+let activeLocale = 'en';
+let routePrefix = '';
+
+function buildRoutesFromContent(source) {
+  const serviceCategoryRoutes = (source.serviceCategories || []).map(
+    (c) => `/services/category/${c.slug}`,
+  );
+  return [
+    '/',
+    '/problems',
+    ...(source.problems || []).map((p) => `/problems/${p.slug}`),
+    '/knowledge',
+    ...(source.knowledgeArticles || []).map((a) => `/knowledge/${a.slug}`),
+    '/services',
+    ...serviceCategoryRoutes,
+    ...(source.servicePages || []).map((p) => `/services/${p.slug}`),
+    '/portfolio',
+    ...(source.projects || []).map((p) => `/portfolio/${p.slug}`),
+    ...(source.localLandings || []).map((l) => `/guwahati/${l.slug}`),
+    '/about',
+    '/earthquakes',
+    '/education',
+    '/analyzer',
+    '/assessment',
+    '/contact',
+  ];
+}
+
+const ROUTES = buildRoutesFromContent(contentEn);
+
+const SITEMAP_EXCLUDED = new Set(['/analyzer', '/assessment']);
+const SITEMAP_ROUTES = ROUTES.filter((route) => !SITEMAP_EXCLUDED.has(route));
 
 /** @type {{ events: object[], fetchedAt: number, source: string } | null} */
 let earthquakeSnapshot = null;
 
-const SERVICE_CATEGORY_ROUTES = (content.serviceCategories || []).map(
-  (c) => `/services/category/${c.slug}`,
-);
+function setActiveLocale(locale) {
+  activeLocale = locale;
+  routePrefix = locale === 'as' ? '/as' : '';
+  content = locale === 'as' && contentAs ? contentAs : contentEn;
+}
 
-const ROUTES = [
-  '/',
-  '/problems',
-  ...(content.problems || []).map((p) => `/problems/${p.slug}`),
-  '/knowledge',
-  ...(content.knowledgeArticles || []).map((a) => `/knowledge/${a.slug}`),
-  '/services',
-  ...SERVICE_CATEGORY_ROUTES,
-  ...(content.servicePages || []).map((p) => `/services/${p.slug}`),
-  '/portfolio',
-  ...(content.projects || []).map((p) => `/portfolio/${p.slug}`),
-  ...(content.localLandings || []).map((l) => `/guwahati/${l.slug}`),
-  '/about',
-  '/earthquakes',
-  '/education',
-  '/analyzer',
-  '/assessment',
-  '/contact',
-];
+function publicRoute(route) {
+  if (!routePrefix) return route;
+  if (route === '/') return '/as';
+  return `${routePrefix}${route}`;
+}
+
+function localizedHref(route) {
+  return publicRoute(route);
+}
+
+function buildStaticRelatedLinks({ services = [], problems = [], projectSlug, title = 'Related' }) {
+  const serviceList = services
+    .map((slug) => content.services?.find((s) => s.slug === slug))
+    .filter(Boolean);
+  const problemList = problems
+    .map((slug) => content.problems?.find((p) => p.slug === slug))
+    .filter(Boolean);
+  const project = projectSlug
+    ? content.projects?.find((p) => p.slug === projectSlug)
+    : null;
+
+  if (!serviceList.length && !problemList.length && !project) return '';
+
+  let html = `<aside class="static-related"><h2>${escapeHtml(title)}</h2>`;
+  if (serviceList.length) {
+    html += `<h3>Services</h3><ul>${serviceList.map((s) => `<li><a href="${localizedHref(`/services/${s.slug}`)}">${escapeHtml(s.title)}</a></li>`).join('')}</ul>`;
+  }
+  if (problemList.length) {
+    html += `<h3>Problems</h3><ul>${problemList.map((p) => `<li><a href="${localizedHref(`/problems/${p.slug}`)}">${escapeHtml(p.title)}</a></li>`).join('')}</ul>`;
+  }
+  if (project) {
+    html += `<h3>Case study</h3><p><a href="${localizedHref(`/portfolio/${project.slug}`)}">${escapeHtml(project.title)}</a> — ${escapeHtml(project.scope)}</p>`;
+  }
+  return `${html}</aside>`;
+}
+
+function buildStaticBreadcrumb(route) {
+  const prob = (content.problems || []).find((p) => route === `/problems/${p.slug}`);
+  if (prob) {
+    return `<nav aria-label="Breadcrumb"><a href="${localizedHref('/problems')}">Problems</a> / ${escapeHtml(prob.title)}</nav>`;
+  }
+  const art = (content.knowledgeArticles || []).find((a) => route === `/knowledge/${a.slug}`);
+  if (art) {
+    return `<nav aria-label="Breadcrumb"><a href="${localizedHref('/knowledge')}">Knowledge</a> / ${escapeHtml(art.title)}</nav>`;
+  }
+  const sp = (content.servicePages || []).find((p) => route === `/services/${p.slug}`);
+  if (sp) {
+    return `<nav aria-label="Breadcrumb"><a href="${localizedHref('/services')}">Services</a> / ${escapeHtml(sp.title)}</nav>`;
+  }
+  const serviceCategory = (content.serviceCategories || []).find(
+    (c) => route === `/services/category/${c.slug}`,
+  );
+  if (serviceCategory) {
+    return `<nav aria-label="Breadcrumb"><a href="${localizedHref('/services')}">Services</a> / ${escapeHtml(serviceCategory.label)}</nav>`;
+  }
+  const proj = (content.projects || []).find((p) => route === `/portfolio/${p.slug}`);
+  if (proj) {
+    return `<nav aria-label="Breadcrumb"><a href="${localizedHref('/portfolio')}">Portfolio</a> / ${escapeHtml(proj.title)}</nav>`;
+  }
+  const landing = (content.localLandings || []).find((l) => route === `/guwahati/${l.slug}`);
+  if (landing) {
+    return `<nav aria-label="Breadcrumb"><a href="${localizedHref('/')}">Home</a> / ${escapeHtml(landing.headline)}</nav>`;
+  }
+  return '';
+}
+
+function buildStaticFooterNav() {
+  const localLinks = (content.localLandings || [])
+    .map(
+      (l) =>
+        `<li><a href="${localizedHref(`/guwahati/${l.slug}`)}">${escapeHtml(l.headline.split('—')[0].trim() || l.headline)}</a></li>`,
+    )
+    .join('');
+  return `<nav aria-label="Site sections" class="static-site-nav">
+      <h2>Explore 91SkylineWorks</h2>
+      <ul>
+        <li><a href="${localizedHref('/')}">Home</a></li>
+        <li><a href="${localizedHref('/problems')}">Building problems</a></li>
+        <li><a href="${localizedHref('/knowledge')}">Knowledge Centre</a></li>
+        <li><a href="${localizedHref('/services')}">Services</a></li>
+        <li><a href="${localizedHref('/portfolio')}">Portfolio</a></li>
+        ${localLinks}
+        <li><a href="${localizedHref('/guwahati/waterproofing')}">Waterproofing in Guwahati</a></li>
+        <li><a href="${localizedHref('/guwahati/building-crack-repair')}">Building crack repair</a></li>
+        <li><a href="${localizedHref('/earthquakes')}">Earthquakes near Guwahati</a></li>
+        <li><a href="${localizedHref('/education')}">Education</a></li>
+        <li><a href="${localizedHref('/about')}">About</a></li>
+        <li><a href="${localizedHref('/contact')}">Contact</a></li>
+      </ul>
+    </nav>`;
+}
+
+function relatedProblemsForService(serviceSlug, limit = 3) {
+  return (content.problems || [])
+    .filter((p) => (p.linkedServices || []).includes(serviceSlug))
+    .slice(0, limit);
+}
+
+function relatedKnowledgeArticles(article, limit = 3) {
+  if (!article?.cluster) return [];
+  return (content.knowledgeArticles || [])
+    .filter((a) => a.slug !== article.slug && a.cluster === article.cluster)
+    .slice(0, limit);
+}
+
+function sitemapMeta(route) {
+  if (route === '/') return { priority: '1.0', changefreq: 'weekly' };
+  if (route === '/earthquakes') return { priority: '0.9', changefreq: 'hourly' };
+  if (route.startsWith('/guwahati/')) return { priority: '0.9', changefreq: 'weekly' };
+  if (['/problems', '/knowledge', '/services', '/portfolio', '/contact', '/about'].includes(route)) {
+    return { priority: '0.9', changefreq: 'weekly' };
+  }
+  if (
+    ['/services/waterproofing', '/services/retrofitting', '/services/ndt', '/services/seismic-jacketing'].includes(
+      route,
+    )
+  ) {
+    return { priority: '0.9', changefreq: 'weekly' };
+  }
+  if (route === '/education') return { priority: '0.5', changefreq: 'monthly' };
+  if (
+    route.startsWith('/problems/') ||
+    route.startsWith('/knowledge/') ||
+    route.startsWith('/portfolio/') ||
+    route.startsWith('/services/')
+  ) {
+    return { priority: '0.7', changefreq: 'monthly' };
+  }
+  return { priority: '0.7', changefreq: 'monthly' };
+}
 
 function escapeHtml(str) {
   return String(str)
@@ -88,7 +239,7 @@ function buildHomeEarthquakeSection() {
   return `<h2>${escapeHtml(hs.headline || eq.headline || 'Recent earthquakes near Guwahati')}</h2>
       <p>${escapeHtml(eq.homeIntro || eq.subhead || '')}</p>
       ${eventsHtml}
-      <p><a href="/earthquakes">View live earthquake map near Guwahati →</a></p>`;
+      <p><a href="${localizedHref('/earthquakes')}">View live earthquake map near Guwahati →</a></p>`;
 }
 
 function buildPageTitle(headline, seoTitle) {
@@ -193,7 +344,7 @@ function buildRouteBody(route) {
     case '/':
       return buildHomeBody();
     case '/services':
-      return `<h1>Services</h1><ul>${content.services.map((s) => `<li><a href="/services/${s.slug}"><strong>${escapeHtml(s.title)}</strong></a> — ${escapeHtml(s.description)}</li>`).join('')}</ul>`;
+      return `<h1>Services</h1><ul>${content.services.map((s) => `<li><a href="${localizedHref(`/services/${s.slug}`)}"><strong>${escapeHtml(s.title)}</strong></a> — ${escapeHtml(s.description)}</li>`).join('')}</ul>`;
     case '/portfolio':
       return `<h1>Portfolio</h1>${content.projects.map((p) => `<h2>${escapeHtml(p.title)}</h2><p>${escapeHtml(p.category)} · ${escapeHtml(p.location)} · ${p.year}</p><p>${escapeHtml(p.scope)}</p>`).join('')}<h2>${escapeHtml(content.homeSections?.clients?.headline || 'Clients')}</h2><ul>${content.clients.map((c) => `<li>${escapeHtml(c.name)} — ${escapeHtml(c.location)}</li>`).join('')}</ul>`;
     case '/about':
@@ -214,7 +365,7 @@ function buildRouteBody(route) {
       <p>Station: ${escapeHtml(content.telemetry.station)} · ${escapeHtml(content.telemetry.alertStatus)}</p>
       <p>${escapeHtml(content.telemetry.engineNote)}</p>
       <p>${escapeHtml(eq.disclaimer || '')}</p>
-      <p><a href="/services/seismic-jacketing">Seismic retrofitting for Zone V buildings →</a> · <a href="/knowledge/seismic-zone-5-guwahati-homeowner">Zone V homeowner guide →</a></p>
+      <p><a href="${localizedHref('/services/seismic-jacketing')}">Seismic retrofitting for Zone V buildings →</a> · <a href="${localizedHref('/knowledge/seismic-zone-5-guwahati-homeowner')}">Zone V homeowner guide →</a></p>
       ${buildEarthquakeFaqHtml()}`;
     }
     case '/education':
@@ -226,30 +377,49 @@ function buildRouteBody(route) {
     case '/contact':
       return `<h1>${escapeHtml(content.contact.headline)}</h1><p>${escapeHtml(content.contact.body)}</p><p>Phone: ${escapeHtml(content.contact.phone)}</p><p>Email: ${escapeHtml(content.contact.email)}</p><p>Address: ${escapeHtml(content.contact.address)}</p><p>Hours: ${escapeHtml(content.contact.hours)}</p>`;
     case '/problems':
-      return `<h1>Building Problems</h1><p>Diagnose leaks, cracks, dampness and structural issues in Guwahati buildings.</p><ul>${(content.problems || []).map((p) => `<li><a href="/problems/${p.slug}"><strong>${escapeHtml(p.title)}</strong></a> — ${escapeHtml(p.headline)}</li>`).join('')}</ul>`;
+      return `<h1>Building Problems</h1><p>Diagnose leaks, cracks, dampness and structural issues in Guwahati buildings.</p><ul>${(content.problems || []).map((p) => `<li><a href="${localizedHref(`/problems/${p.slug}`)}"><strong>${escapeHtml(p.title)}</strong></a> — ${escapeHtml(p.headline)}</li>`).join('')}</ul>`;
     case '/knowledge':
-      return `<h1>Knowledge Centre</h1><ul>${(content.knowledgeArticles || []).map((a) => `<li><a href="/knowledge/${a.slug}"><strong>${escapeHtml(a.title)}</strong></a> — ${escapeHtml(a.excerpt)}</li>`).join('')}</ul>`;
+      return `<h1>Knowledge Centre</h1><ul>${(content.knowledgeArticles || []).map((a) => `<li><a href="${localizedHref(`/knowledge/${a.slug}`)}"><strong>${escapeHtml(a.title)}</strong></a> — ${escapeHtml(a.excerpt)}</li>`).join('')}</ul>`;
     default: {
       const prob = (content.problems || []).find((p) => route === `/problems/${p.slug}`);
       if (prob) {
         const faqs = (prob.faqs || []).map((f) => `<h3>${escapeHtml(f.q)}</h3><p>${escapeHtml(f.a)}</p>`).join('');
-        return `<h1>${escapeHtml(prob.headline)}</h1><p>${escapeHtml(prob.intro)}</p><h2>Symptoms</h2><ul>${prob.symptoms.map((s) => `<li>${escapeHtml(s)}</li>`).join('')}</ul><h2>Diagnosis</h2><p>${escapeHtml(prob.diagnosis)}</p>${faqs}`;
+        const related = buildStaticRelatedLinks({
+          services: prob.linkedServices,
+          projectSlug: prob.linkedProject,
+          title: 'Recommended next steps',
+        });
+        return `${buildStaticBreadcrumb(route)}<h1>${escapeHtml(prob.headline)}</h1><p>${escapeHtml(prob.intro)}</p><h2>Symptoms</h2><ul>${prob.symptoms.map((s) => `<li>${escapeHtml(s)}</li>`).join('')}</ul><h2>Diagnosis</h2><p>${escapeHtml(prob.diagnosis)}</p>${faqs}${related}`;
       }
       const art = (content.knowledgeArticles || []).find((a) => route === `/knowledge/${a.slug}`);
       if (art) {
-        return `<h1>${escapeHtml(art.title)}</h1><p>${escapeHtml(art.excerpt)}</p><p>${escapeHtml(art.body)}</p>`;
+        const relatedArticles = relatedKnowledgeArticles(art);
+        const relatedHtml = relatedArticles.length
+          ? `<aside class="static-related"><h2>Related articles</h2><ul>${relatedArticles.map((r) => `<li><a href="${localizedHref(`/knowledge/${r.slug}`)}">${escapeHtml(r.title)}</a></li>`).join('')}</ul></aside>`
+          : '';
+        return `${buildStaticBreadcrumb(route)}<h1>${escapeHtml(art.title)}</h1><p>${escapeHtml(art.excerpt)}</p><p>${escapeHtml(art.body)}</p>${relatedHtml}`;
       }
       const serviceCategory = (content.serviceCategories || []).find(
         (c) => route === `/services/category/${c.slug}`,
       );
       if (serviceCategory) {
         const items = (content.services || []).filter((s) => s.category === serviceCategory.slug);
-        return `<h1>${escapeHtml(serviceCategory.headline)}</h1><p>${escapeHtml(serviceCategory.intro)}</p><ul>${items.map((s) => `<li><a href="/services/${s.slug}"><strong>${escapeHtml(s.title)}</strong></a> — ${escapeHtml(s.description)}</li>`).join('')}</ul>`;
+        return `<h1>${escapeHtml(serviceCategory.headline)}</h1><p>${escapeHtml(serviceCategory.intro)}</p><ul>${items.map((s) => `<li><a href="${localizedHref(`/services/${s.slug}`)}"><strong>${escapeHtml(s.title)}</strong></a> — ${escapeHtml(s.description)}</li>`).join('')}</ul>`;
       }
       const proj = (content.projects || []).find((p) => route === `/portfolio/${p.slug}`);
       if (proj) {
         const body = proj.body ? `<p>${escapeHtml(proj.body.replace(/\n\n/g, ' '))}</p>` : '';
-        return `<h1>${escapeHtml(proj.title)}</h1><p>${escapeHtml(proj.scope || '')}</p>${body}<p><strong>Outcome:</strong> ${escapeHtml(proj.outcome || '')}</p>`;
+        const serviceLinks = (proj.services || [])
+          .map((slug) => {
+            const svc = (content.services || []).find((s) => s.slug === slug);
+            return svc ? `<li><a href="${localizedHref(`/services/${slug}`)}">${escapeHtml(svc.title)}</a></li>` : '';
+          })
+          .filter(Boolean)
+          .join('');
+        const servicesHtml = serviceLinks
+          ? `<h2>Services used</h2><ul>${serviceLinks}</ul>`
+          : '';
+        return `${buildStaticBreadcrumb(route)}<h1>${escapeHtml(proj.title)}</h1><p>${escapeHtml(proj.scope || '')}</p>${body}<p><strong>Outcome:</strong> ${escapeHtml(proj.outcome || '')}</p>${servicesHtml}`;
       }
       const sp = (content.servicePages || []).find((p) => route === `/services/${p.slug}`);
       if (sp) {
@@ -269,7 +439,15 @@ function buildRouteBody(route) {
               `<h2>${escapeHtml(sec.title)}</h2>${sec.body ? `<p>${escapeHtml(sec.body)}</p>` : ''}${sec.bullets ? `<ul>${sec.bullets.map((b) => `<li>${escapeHtml(b)}</li>`).join('')}</ul>` : ''}`,
           )
           .join('');
-        return `<h1>${escapeHtml(h1)}</h1><p>${escapeHtml(sp.intro)}</p>${awareness}${offerings ? `<h2>Services</h2>${offerings}` : ''}${sections}${sp.ctaMessage ? `<p>${escapeHtml(sp.ctaMessage)}</p>` : ''}`;
+        const svc = (content.services || []).find((s) => s.slug === sp.slug);
+        const categoryLink = svc?.category
+          ? `<p><a href="${localizedHref(`/services/category/${svc.category}`)}">More ${escapeHtml(svc.category)} services →</a></p>`
+          : '';
+        const relatedProblems = relatedProblemsForService(sp.slug);
+        const relatedProblemsHtml = relatedProblems.length
+          ? `<aside class="static-related"><h2>Common problems we fix</h2><ul>${relatedProblems.map((p) => `<li><a href="${localizedHref(`/problems/${p.slug}`)}">${escapeHtml(p.title)}</a></li>`).join('')}</ul></aside>`
+          : '';
+        return `${buildStaticBreadcrumb(route)}<h1>${escapeHtml(h1)}</h1><p>${escapeHtml(sp.intro)}</p>${categoryLink}${awareness}${offerings ? `<h2>Services</h2>${offerings}` : ''}${sections}${sp.ctaMessage ? `<p>${escapeHtml(sp.ctaMessage)}</p>` : ''}${relatedProblemsHtml}`;
       }
       const landing = (content.localLandings || []).find((l) => route === `/guwahati/${l.slug}`);
       if (landing) {
@@ -282,13 +460,13 @@ function buildRouteBody(route) {
         const serviceLinks = (landing.linkedServices || [])
           .map((slug) => {
             const svc = (content.services || []).find((s) => s.slug === slug);
-            return svc ? `<li><a href="/services/${slug}">${escapeHtml(svc.title)}</a></li>` : '';
+            return svc ? `<li><a href="${localizedHref(`/services/${slug}`)}">${escapeHtml(svc.title)}</a></li>` : '';
           })
           .join('');
         const problemLinks = (landing.linkedProblems || [])
           .map((slug) => {
             const prob = (content.problems || []).find((p) => p.slug === slug);
-            return prob ? `<li><a href="/problems/${slug}">${escapeHtml(prob.title)}</a></li>` : '';
+            return prob ? `<li><a href="${localizedHref(`/problems/${slug}`)}">${escapeHtml(prob.title)}</a></li>` : '';
           })
           .join('');
         return `<h1>${escapeHtml(landing.headline)}</h1><p>${escapeHtml(landing.intro)}</p>${sections}${serviceLinks ? `<h2>Related services</h2><ul>${serviceLinks}</ul>` : ''}${problemLinks ? `<h2>Common problems</h2><ul>${problemLinks}</ul>` : ''}${faqs ? `<h2>FAQ</h2>${faqs}` : ''}${landing.ctaMessage ? `<p>${escapeHtml(landing.ctaMessage)}</p>` : ''}`;
@@ -426,7 +604,7 @@ function buildJsonLd(route) {
       name: serviceSchemaName,
       provider: { '@id': `${siteUrl}/#localbusiness` },
       areaServed: { '@type': 'City', name: 'Guwahati' },
-      url: `${siteUrl}${route}`,
+      url: `${siteUrl}${publicRoute(route)}`,
     });
   }
 
@@ -516,14 +694,33 @@ function buildGtmBody(gtmId) {
 }
 
 function buildContentBootstrap() {
-  const json = JSON.stringify(content).replace(/</g, '\\u003c');
-  return `<script>window.__CONTENT__=${json}</script>`;
+  const enJson = JSON.stringify(contentEn).replace(/</g, '\\u003c');
+  let out = `<script>window.__CONTENT__=${enJson}</script>`;
+  if (contentAs) {
+    const asJson = JSON.stringify(contentAs).replace(/</g, '\\u003c');
+    out += `\n    <script>window.__CONTENT_AS__=${asJson}</script>`;
+  }
+  return out;
 }
 
 function buildSeoHead(route, title, description) {
-  const canonical = route === '/' ? `${siteUrl}/` : `${siteUrl}${route}`;
+  const publicPath = publicRoute(route);
+  const canonical =
+    publicPath === '/' || publicPath === '/as'
+      ? `${siteUrl}${publicPath}/`
+      : `${siteUrl}${publicPath}`;
+  const enHref = route === '/' ? `${siteUrl}/` : `${siteUrl}${route}`;
+  const asHref = route === '/' ? `${siteUrl}/as/` : `${siteUrl}/as${route}`;
+  const hreflang = contentAs
+    ? `
+    <link rel="alternate" hreflang="en" href="${enHref}" />
+    <link rel="alternate" hreflang="as" href="${asHref}" />
+    <link rel="alternate" hreflang="x-default" href="${enHref}" />`
+    : '';
+  const htmlLang = activeLocale === 'as' ? 'as' : 'en';
   return `<!-- seo:injected -->
-    <link rel="canonical" href="${canonical}" />
+    <link rel="canonical" href="${canonical}" />${hreflang}
+    <meta property="og:locale" content="${activeLocale === 'as' ? 'as_IN' : 'en_IN'}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="${canonical}" />
     <meta property="og:title" content="${title}" />
@@ -537,6 +734,7 @@ function buildSeoHead(route, title, description) {
 function buildStaticArticle(route) {
   return `<article id="static-content">
       ${buildRouteBody(route)}
+      ${buildStaticFooterNav()}
     </article>`;
 }
 
@@ -553,13 +751,18 @@ function applySeoToHtml(html, route) {
   const { title, description } = routeMeta(route);
   const safeTitle = escapeHtml(title);
   const safeDescription = escapeHtml(description);
-  const canonical = route === '/' ? `${siteUrl}/` : `${siteUrl}${route}`;
+  const publicPath = publicRoute(route);
+  const canonical =
+    publicPath === '/' || publicPath === '/as'
+      ? `${siteUrl}${publicPath}/`
+      : `${siteUrl}${publicPath}`;
 
   let out = html.replace(/<title>[^<]*<\/title>/, `<title>${safeTitle}</title>`);
   out = out.replace(
     /<meta name="description" content="[^"]*" \/>/,
     `<meta name="description" content="${safeDescription}" />`,
   );
+  out = out.replace(/<html lang="[^"]*">/, `<html lang="${activeLocale === 'as' ? 'as' : 'en'}">`);
 
   const seoBlock = buildSeoHead(route, safeTitle, safeDescription);
   const hideStyle = buildStaticContentHideStyle();
@@ -605,14 +808,23 @@ Sitemap: ${siteUrl}/sitemap.xml
 
 function writeSitemap() {
   const today = new Date().toISOString().slice(0, 10);
-  const urls = ROUTES.map((route) => {
-    const loc = route === '/' ? siteUrl : `${siteUrl}${route}`;
-    if (route === '/earthquakes') {
-      return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>hourly</changefreq>\n    <priority>0.9</priority>\n  </url>`;
-    }
-    const priority = route === '/' ? '1.0' : '0.7';
-    return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>${priority}</priority>\n  </url>`;
-  }).join('\n');
+  const localeConfigs = [{ locale: 'en', prefix: '' }];
+  if (contentAs) localeConfigs.push({ locale: 'as', prefix: '/as' });
+
+  const urls = localeConfigs
+    .flatMap(({ prefix }) =>
+      SITEMAP_ROUTES.map((route) => {
+        const publicPath = prefix ? (route === '/' ? '/as' : `${prefix}${route}`) : route;
+        const loc =
+          publicPath === '/' || publicPath === '/as'
+            ? `${siteUrl}${publicPath}/`
+            : `${siteUrl}${publicPath}`;
+        const { priority, changefreq } = sitemapMeta(route);
+        const changefreqLine = changefreq ? `\n    <changefreq>${changefreq}</changefreq>` : '';
+        return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${today}</lastmod>${changefreqLine}\n    <priority>${priority}</priority>\n  </url>`;
+      }),
+    )
+    .join('\n');
 
   fs.writeFileSync(
     path.join(distDir, 'sitemap.xml'),
@@ -722,17 +934,29 @@ ${navLinks}
 }
 
 function writeRoutePages(baseHtml) {
-  for (const route of ROUTES) {
-    const html = applySeoToHtml(baseHtml, route);
-    if (route === '/') {
-      fs.writeFileSync(path.join(distDir, 'index.html'), html);
-      continue;
-    }
+  const locales = contentAs ? ['en', 'as'] : ['en'];
+  for (const locale of locales) {
+    setActiveLocale(locale);
+    const routes = buildRoutesFromContent(content);
+    for (const route of routes) {
+      const html = applySeoToHtml(baseHtml, route);
+      const publicPath = publicRoute(route);
+      if (publicPath === '/' || publicPath === '/as') {
+        const file =
+          publicPath === '/as'
+            ? path.join(distDir, 'as', 'index.html')
+            : path.join(distDir, 'index.html');
+        fs.mkdirSync(path.dirname(file), { recursive: true });
+        fs.writeFileSync(file, html);
+        continue;
+      }
 
-    const dir = path.join(distDir, route.slice(1));
-    fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(path.join(dir, 'index.html'), html);
+      const dir = path.join(distDir, publicPath.slice(1));
+      fs.mkdirSync(dir, { recursive: true });
+      fs.writeFileSync(path.join(dir, 'index.html'), html);
+    }
   }
+  setActiveLocale('en');
 }
 
 if (!fs.existsSync(distDir)) {
@@ -762,7 +986,16 @@ async function main() {
   writeLlmsTxt();
   writeRoutePages(baseHtml);
 
-  console.log('[seo] wrote robots.txt, sitemap.xml, llms.txt, and static HTML for', ROUTES.length, 'routes');
+  const sitemapCount = contentAs ? SITEMAP_ROUTES.length * 2 : SITEMAP_ROUTES.length;
+  console.log(
+    '[seo] wrote robots.txt, sitemap.xml, llms.txt, and static HTML for',
+    ROUTES.length,
+    'routes x',
+    contentAs ? 2 : 1,
+    'locales (sitemap:',
+    sitemapCount,
+    'urls)',
+  );
 }
 
 main().catch((err) => {

@@ -1,5 +1,7 @@
-import { Link, useLocation } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import LocalizedLink from './LocalizedLink';
+import LanguageSwitcher from './LanguageSwitcher';
 import { HeaderWhatsAppLink } from './WhatsAppCTA';
 import '../styles/conversion-cta.css';
 import './Header.css';
@@ -39,9 +41,9 @@ function NavDropdown({ label, labelHref, items, isOpen, setOpen, dropdownRef, on
     <div ref={dropdownRef} className={`nav-dropdown ${isOpen ? 'open' : ''}`}>
       {labelHref ? (
         <div className="nav-dropdown-label-row">
-          <Link to={labelHref} className="nav-dropdown-link" onClick={onClose}>
+          <LocalizedLink to={labelHref} className="nav-dropdown-link" onClick={onClose}>
             {label}
-          </Link>
+          </LocalizedLink>
           {items.length > 0 && (
             <button
               type="button"
@@ -68,9 +70,9 @@ function NavDropdown({ label, labelHref, items, isOpen, setOpen, dropdownRef, on
       {items.length > 0 && (
         <div className="nav-dropdown-menu">
           {items.map((item) => (
-            <Link key={item.href} to={item.href} onClick={onClose}>
+            <LocalizedLink key={item.href} to={item.href} onClick={onClose}>
               {item.label}
-            </Link>
+            </LocalizedLink>
           ))}
         </div>
       )}
@@ -78,7 +80,7 @@ function NavDropdown({ label, labelHref, items, isOpen, setOpen, dropdownRef, on
   );
 }
 
-export default function Header({ content }) {
+export default function Header({ content, locale = 'en' }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
@@ -95,6 +97,10 @@ export default function Header({ content }) {
   );
   const tools = content?.navTools || [];
   const more = content?.navMore || [];
+  const servicesLabel = locale === 'as' ? 'সেৱাসমূহ' : 'Services';
+  const moreLabel = locale === 'as' ? 'অধিক' : 'More';
+  const menuLabel = locale === 'as' ? 'মেনু' : 'Menu';
+  const inspectionTip = locale === 'as' ? 'বিনামূলীয়া ছাইট পৰিদৰ্শন বুক কৰক' : 'Book a free site inspection';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -169,7 +175,7 @@ export default function Header({ content }) {
   return (
     <header className={`site-header ${scrolled ? 'scrolled' : ''}`}>
       <div className="wrap nav-inner">
-        <Link className="brand" to="/" onClick={closeMenu}>
+        <LocalizedLink className="brand" to="/" onClick={closeMenu}>
           {content.company?.logo ? (
             <picture>
               <source srcSet={content.company.logo.replace(/\.png$/i, '.webp')} type="image/webp" />
@@ -181,19 +187,19 @@ export default function Header({ content }) {
               <span>{content.company?.name}</span>
             </>
           )}
-        </Link>
+        </LocalizedLink>
         <nav className={`nav-links ${menuOpen ? 'open' : ''}`}>
           {primary.flatMap((item) => {
             const links = [
-              <Link key={item.href} to={item.href} onClick={closeMenu}>
+              <LocalizedLink key={item.href} to={item.href} onClick={closeMenu}>
                 {item.label}
-              </Link>,
+              </LocalizedLink>,
             ];
             if (item.href === '/problems' && servicesNav.length > 0) {
               links.push(
                 <NavDropdown
                   key="services"
-                  label="Services"
+                  label={servicesLabel}
                   labelHref="/services"
                   items={servicesNav}
                   isOpen={servicesOpen}
@@ -206,7 +212,7 @@ export default function Header({ content }) {
             return links;
           })}
           <NavDropdown
-            label={content.navToolsLabel || 'Tools'}
+            label={content.navToolsLabel || (locale === 'as' ? 'সঁজুলি' : 'Tools')}
             items={tools}
             isOpen={toolsOpen}
             setOpen={setToolsOpen}
@@ -214,7 +220,7 @@ export default function Header({ content }) {
             onClose={closeMenu}
           />
           <NavDropdown
-            label="More"
+            label={moreLabel}
             items={more}
             isOpen={moreOpen}
             setOpen={setMoreOpen}
@@ -223,24 +229,25 @@ export default function Header({ content }) {
           />
         </nav>
         <div className="nav-cta-wrap">
+          <LanguageSwitcher />
           <HeaderWhatsAppLink contact={content.contact} />
-          <NavIconTooltip tip="Book a free site inspection">
-            <Link
+          <NavIconTooltip tip={inspectionTip}>
+            <LocalizedLink
               className="btn-conversion btn-conversion--inspection btn-conversion--icon-only nav-cta-btn"
-              to="/contact"
-              aria-label="Book a free site inspection"
+              to="/contact#inspection-form"
+              aria-label={inspectionTip}
             >
               <InspectionIcon />
-            </Link>
+            </LocalizedLink>
           </NavIconTooltip>
           <button
             type="button"
             className="menu-toggle"
-            aria-label="Menu"
+            aria-label={menuLabel}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((o) => !o)}
           >
-            Menu
+            {menuLabel}
           </button>
         </div>
       </div>

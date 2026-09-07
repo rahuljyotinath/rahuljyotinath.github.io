@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import LocalizedLink from './LocalizedLink';
 
 export default function InspectionCTA({ data, showPrimary = true }) {
   if (!data) return null;
@@ -13,14 +13,14 @@ export default function InspectionCTA({ data, showPrimary = true }) {
         {(showPrimary || data.secondaryHref) && (
           <div className="inspection-cta-actions">
             {showPrimary && (
-              <Link className="btn-conversion btn-conversion--inspection" to={data.primaryHref || '/contact#inspection-form'}>
+              <LocalizedLink className="btn-conversion btn-conversion--inspection" to={data.primaryHref || '/contact#inspection-form'}>
                 {data.primaryLabel || 'Book inspection'}
-              </Link>
+              </LocalizedLink>
             )}
             {data.secondaryHref && (
-              <Link className="btn btn--ghost" to={data.secondaryHref}>
+              <LocalizedLink className="btn btn--ghost" to={data.secondaryHref}>
                 {data.secondaryLabel}
-              </Link>
+              </LocalizedLink>
             )}
           </div>
         )}

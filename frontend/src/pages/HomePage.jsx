@@ -1,24 +1,31 @@
-import { Link, useOutletContext } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+import { useOutletContext } from 'react-router-dom';
+import LocalizedLink from '../components/LocalizedLink';
 import HeroLanding from '../components/HeroLanding';
 import StatsBar from '../components/StatsBar';
 import ProblemGrid from '../components/ProblemGrid';
 import DoctorPositioning from '../components/DoctorPositioning';
-import InspectionCTA from '../components/InspectionCTA';
 import InspectionRequestForm from '../components/InspectionRequestForm';
-import GoogleReviews from '../components/GoogleReviews';
-import HomeownerFaq from '../components/HomeownerFaq';
-import GuidesTeaser from '../components/GuidesTeaser';
-import ServicesGrid from '../components/ServicesGrid';
-import ProjectsShowcase from '../components/ProjectsShowcase';
-import ProcessGrid from '../components/ProcessGrid';
-import AboutSection from '../components/AboutSection';
-import ClientsGrid from '../components/ClientsGrid';
-import BackingSection from '../components/BackingSection';
-import ContactTeaser from '../components/ContactTeaser';
-import PagePreview from '../components/PagePreview';
 import SectionHead from '../components/SectionHead';
-import EarthquakeHomeSection from '../components/EarthquakeHomeSection';
 import usePageTitle from '../hooks/usePageTitle';
+
+const GoogleReviews = lazy(() => import('../components/GoogleReviews'));
+const EarthquakeHomeSection = lazy(() => import('../components/EarthquakeHomeSection'));
+const ServicesGrid = lazy(() => import('../components/ServicesGrid'));
+const ProjectsShowcase = lazy(() => import('../components/ProjectsShowcase'));
+const ProcessGrid = lazy(() => import('../components/ProcessGrid'));
+const AboutSection = lazy(() => import('../components/AboutSection'));
+const ClientsGrid = lazy(() => import('../components/ClientsGrid'));
+const BackingSection = lazy(() => import('../components/BackingSection'));
+const HomeownerFaq = lazy(() => import('../components/HomeownerFaq'));
+const GuidesTeaser = lazy(() => import('../components/GuidesTeaser'));
+const ContactTeaser = lazy(() => import('../components/ContactTeaser'));
+const InspectionCTA = lazy(() => import('../components/InspectionCTA'));
+const PagePreview = lazy(() => import('../components/PagePreview'));
+
+function HomeSectionFallback() {
+  return null;
+}
 
 export default function HomePage() {
   const { content } = useOutletContext();
@@ -44,13 +51,13 @@ export default function HomePage() {
           <p className="local-seo-links-label">Popular in Guwahati</p>
           <ul>
             <li>
-              <Link to="/guwahati/waterproofing">Waterproofing in Guwahati</Link>
+              <LocalizedLink to="/guwahati/waterproofing">Waterproofing in Guwahati</LocalizedLink>
             </li>
             <li>
-              <Link to="/guwahati/building-crack-repair">Building crack repair in Guwahati</Link>
+              <LocalizedLink to="/guwahati/building-crack-repair">Building crack repair in Guwahati</LocalizedLink>
             </li>
             <li>
-              <Link to="/services/retrofitting">Building retrofitting in Guwahati</Link>
+              <LocalizedLink to="/services/retrofitting">Building retrofitting in Guwahati</LocalizedLink>
             </li>
           </ul>
         </div>
@@ -65,40 +72,42 @@ export default function HomePage() {
           <InspectionRequestForm id="inspection-form" />
         </div>
       </section>
-      {hs.inspectionCta && <InspectionCTA data={hs.inspectionCta} showPrimary={false} />}
-      <GoogleReviews heading={hs.googleReviews} data={content.googleReviewsData} />
-      <section>
-        <div className="wrap">
-          {hs.earthquakes && (
-            <SectionHead eyebrow={hs.earthquakes.eyebrow} headline={hs.earthquakes.headline} />
-          )}
-          <EarthquakeHomeSection copy={content.earthquakes} limit={5} />
-        </div>
-      </section>
-      <PagePreview heading={hs.capabilities} to="/services" linkLabel="View all services">
-        <ServicesGrid services={content.services} bare />
-      </PagePreview>
-      <PagePreview heading={hs.work} to="/portfolio" linkLabel="View all projects" id="work" className="section-work">
-        <ProjectsShowcase projects={content.projects} limit={3} bare />
-      </PagePreview>
-      <div className="hazard" />
-      <ProcessGrid process={content.process} heading={hs.process} />
-      <PagePreview heading={hs.team} to="/about" linkLabel="Meet the team">
-        <AboutSection about={content.about} company={content.company} excerpt bare />
-      </PagePreview>
-      <PagePreview heading={hs.clients} to="/portfolio#clients" linkLabel="View all clients">
-        <ClientsGrid clients={content.clients} limit={4} bare />
-      </PagePreview>
-      <PagePreview heading={hs.backing} to="/about#backing" linkLabel="Learn more">
-        <BackingSection backing={content.backing} limit={3} bare />
-      </PagePreview>
-      <HomeownerFaq data={content.homeownerFaq} />
-      <GuidesTeaser articles={content.knowledgeArticles} heading={hs.guides} />
-      <ContactTeaser
-        contact={content.contact}
-        heading={hs.contact}
-        teaser={content.contactTeaser}
-      />
+      <Suspense fallback={<HomeSectionFallback />}>
+        {hs.inspectionCta && <InspectionCTA data={hs.inspectionCta} showPrimary={false} />}
+        <GoogleReviews heading={hs.googleReviews} data={content.googleReviewsData} />
+        <section>
+          <div className="wrap">
+            {hs.earthquakes && (
+              <SectionHead eyebrow={hs.earthquakes.eyebrow} headline={hs.earthquakes.headline} />
+            )}
+            <EarthquakeHomeSection copy={content.earthquakes} limit={5} />
+          </div>
+        </section>
+        <PagePreview heading={hs.capabilities} to="/services" linkLabel="View all services">
+          <ServicesGrid services={content.services} bare />
+        </PagePreview>
+        <PagePreview heading={hs.work} to="/portfolio" linkLabel="View all projects" id="work" className="section-work">
+          <ProjectsShowcase projects={content.projects} limit={3} bare />
+        </PagePreview>
+        <div className="hazard" />
+        <ProcessGrid process={content.process} heading={hs.process} />
+        <PagePreview heading={hs.team} to="/about" linkLabel="Meet the team">
+          <AboutSection about={content.about} company={content.company} excerpt bare />
+        </PagePreview>
+        <PagePreview heading={hs.clients} to="/portfolio#clients" linkLabel="View all clients">
+          <ClientsGrid clients={content.clients} limit={4} bare />
+        </PagePreview>
+        <PagePreview heading={hs.backing} to="/about#backing" linkLabel="Learn more">
+          <BackingSection backing={content.backing} limit={3} bare />
+        </PagePreview>
+        <HomeownerFaq data={content.homeownerFaq} />
+        <GuidesTeaser articles={content.knowledgeArticles} heading={hs.guides} />
+        <ContactTeaser
+          contact={content.contact}
+          heading={hs.contact}
+          teaser={content.contactTeaser}
+        />
+      </Suspense>
     </>
   );
 }
