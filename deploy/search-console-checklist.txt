@@ -1,0 +1,26 @@
+Google Search Console — post-deploy checklist
+=============================================
+Property: https://91skylineworks.com
+
+1. Sitemaps
+   - Open: https://search.google.com/search-console/sitemaps
+   - Remove old sitemap if it shows errors for /as/ URLs (optional)
+   - Submit: https://91skylineworks.com/sitemap.xml
+   - Expected: ~85 URLs (English only; Assamese /as/ removed 2026-09-07)
+
+2. URL inspection (spot-check)
+   - https://91skylineworks.com/guwahati/waterproofing
+   - https://91skylineworks.com/guwahati/building-crack-repair
+   - https://91skylineworks.com/contact
+
+3. Performance — monitor monthly
+   - waterproofing guwahati
+   - building cracks guwahati
+   - retrofitting guwahati
+   - terrace leak repair guwahati
+
+4. Bing Webmaster Tools (optional)
+   - Submit same sitemap: https://91skylineworks.com/sitemap.xml
+
+Verify sitemap is reachable:
+  curl -sI https://91skylineworks.com/sitemap.xml | head -3

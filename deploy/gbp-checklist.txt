@@ -44,5 +44,6 @@ Site NAP audit (2026-09-07, post-deploy)
 - Live API phone: +91 60038 79490 — MATCH
 - Live API address: Senapati Road, Sahar Sarania 2nd part, Silpukhuri, Guwahati 781003 — MATCH
 - Live company name: 91SkylineWorks Private Limited (align GBP display name if needed)
-- Sitemap live: https://91skylineworks.com/sitemap.xml (85 /as/ URLs) — resubmit in Search Console
+- Sitemap live: https://91skylineworks.com/sitemap.xml (85 URLs, no /as/) — see deploy/search-console-checklist.txt
+- GBP copy-paste pack: deploy/gbp-action-pack.txt
 - Remaining manual: categories, 20+ photos, 15+ 2026 reviews, citations, weekly posts

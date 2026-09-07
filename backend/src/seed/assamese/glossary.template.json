@@ -1,0 +1,22 @@
+{
+  "_instructions": "Fill Assamese column with translator. Keep brand and codes in English where noted. Do not auto-translate with MyMemory.",
+  "terms": [
+    { "en": "Waterproofing", "as": "", "keepEnglish": false },
+    { "en": "Retrofitting", "as": "", "keepEnglish": false },
+    { "en": "Book free inspection", "as": "", "keepEnglish": false },
+    { "en": "Building crack repair", "as": "", "keepEnglish": false },
+    { "en": "Terrace leak", "as": "", "keepEnglish": false },
+    { "en": "NDT", "as": "NDT", "keepEnglish": true },
+    { "en": "CFRP", "as": "CFRP", "keepEnglish": true },
+    { "en": "PU injection", "as": "", "keepEnglish": false },
+    { "en": "91SkylineWorks", "as": "91SkylineWorks", "keepEnglish": true },
+    { "en": "Guwahati", "as": "গুৱাহাটী", "keepEnglish": false }
+  ],
+  "moneyPages": [
+    "home.hero",
+    "guwahati/waterproofing",
+    "guwahati/building-crack-repair",
+    "contact.inspectionForm",
+    "knowledge/waterproofing-contractor-guwahati-how-to-choose.excerpt"
+  ]
+}

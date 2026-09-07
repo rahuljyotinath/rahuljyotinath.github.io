@@ -1,0 +1,49 @@
+GBP action pack — copy/paste into Google Business Profile
+==========================================================
+Profile: https://maps.app.goo.gl/ogPYnKhJLep1R5hD9
+
+NAP (paste exactly)
+-------------------
+91Skylineworks Pvt Ltd
+Senapati Road, Sahar Sarania 2nd part, Silpukhuri, Guwahati 781003
++91 60038 79490
+https://91skylineworks.com
+
+Categories
+----------
+Primary: Waterproofing contractor
+Secondary: Structural engineer, Construction company
+
+Services (title + short description for GBP)
+--------------------------------------------
+Terrace waterproofing Guwahati — Double-coat membrane, slope correction, flood test. Free site inspection in Guwahati.
+Basement waterproofing — PU injection and coating for damp ground-floor walls and basements in Guwahati.
+Bathroom waterproofing — Membrane before tiles; stops seepage into rooms below.
+PU injection grouting — Stops active leaks through cracks and construction joints.
+Building crack repair — Crack mapping, epoxy injection, CFRP wrap for structural columns and beams.
+Seismic retrofitting / column jacketing — Zone V strengthening for Guwahati homes and societies.
+NDT building strength test — UPV and rebound hammer screening before you buy or renovate.
+
+WhatsApp review request (send after every completed job)
+--------------------------------------------------------
+Hi [Name], thank you for choosing 91SkylineWorks. If you’re happy with our work, a short Google review helps other Guwahati homeowners find us: [Google review link from GBP dashboard]
+
+You could mention what we did (e.g. terrace waterproofing / column crack repair) and your area — that helps neighbours searching locally. Thank you!
+
+Citation targets (same NAP as above)
+------------------------------------
+JustDial: https://www.justdial.com/Guwahati
+Sulekha: https://www.sulekha.com/waterproofing-services/guwahati
+IndiaMART: https://www.indiamart.com/
+guwahatiportal.com — local directory if available
+
+Progress tracker (check off in GBP dashboard)
+---------------------------------------------
+[ ] Primary category set to Waterproofing contractor
+[ ] 7 services added with descriptions
+[ ] 20+ photos uploaded
+[ ] 15+ reviews in 2026 (current baseline ~13)
+[ ] JustDial listing updated
+[ ] Sulekha listing updated
+[ ] IndiaMART listing updated
+[ ] First weekly post scheduled (monsoon tip + free inspection CTA)
