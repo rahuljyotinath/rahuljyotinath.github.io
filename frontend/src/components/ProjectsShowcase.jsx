@@ -29,6 +29,7 @@ function ProjectCard({ project }) {
         </div>
         <h3>{project.title}</h3>
         {project.scope && <div className="scope">{project.scope}</div>}
+        {project.caseStudy && <span className="project-case-badge">Case study</span>}
       </div>
     </LocalizedLink>
   );

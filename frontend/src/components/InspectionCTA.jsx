@@ -9,6 +9,7 @@ export default function InspectionCTA({ data, showPrimary = true }) {
         <div className="inspection-cta-copy">
           <h2>{data.headline}</h2>
           <p>{data.body}</p>
+          {data.slaNote && <p className="inspection-cta-sla">{data.slaNote}</p>}
         </div>
         {(showPrimary || data.secondaryHref) && (
           <div className="inspection-cta-actions">

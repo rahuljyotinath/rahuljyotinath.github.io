@@ -47,3 +47,22 @@ Progress tracker (check off in GBP dashboard)
 [ ] Sulekha listing updated
 [ ] IndiaMART listing updated
 [ ] First weekly post scheduled (monsoon tip + free inspection CTA)
+
+Competitor benchmarks (Maps — update monthly in deploy/competitive-scoreboard.csv)
+--------------------------------------------------------------------------------
+SCS (Beharbari): ~32 reviews, 5.0 — Fosroc/Sika/Hilti applicator
+SS Water Proofing (Rehabari): ~19 reviews, 5.0 — terrace-focused
+Avicon (Jatia): institutional specs — weak homeowner funnel
+Target: 30+ reviews and 20+ photos to match SCS pack density
+
+Weekly GBP post ideas (rotate Apr–Sep)
+--------------------------------------
+Week 1: Terrace leak after first rain? Book free inspection — 48h visit in Guwahati
+Week 2: Column crack after tremor? Cosmetic vs structural — we classify before quoting
+Week 3: Society expansion joints — treat before monsoon, not after parking floods
+Week 4: Before you buy a Beltola resale flat — NDT screening + written report
+
+Search Console: see deploy/search-console-checklist.txt
+Scoreboard: update deploy/competitive-scoreboard.csv monthly
+OEM applicator: see deploy/oem-applicator-guide.txt
+RWA one-pager: deploy/rwa-monsoon-plan.txt (share with housing societies)

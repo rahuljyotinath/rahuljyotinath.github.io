@@ -58,6 +58,23 @@ export default function ProjectDetailPage() {
 
           {project.scope && <p className="service-intro">{project.scope}</p>}
 
+          {(project.beforeSummary || project.afterSummary) && (
+            <div className="project-before-after">
+              {project.beforeSummary && (
+                <article className="service-block">
+                  <h3>Before</h3>
+                  <p>{project.beforeSummary}</p>
+                </article>
+              )}
+              {project.afterSummary && (
+                <article className="service-block">
+                  <h3>After</h3>
+                  <p>{project.afterSummary}</p>
+                </article>
+              )}
+            </div>
+          )}
+
           {(project.challenge || project.solution) && (
             <div className="project-detail-summary">
               {project.challenge && (

@@ -66,7 +66,8 @@
       "primaryLabel": "Book inspection",
       "primaryHref": "/contact#inspection-form",
       "secondaryLabel": "Try self-assessment",
-      "secondaryHref": "/assessment"
+      "secondaryHref": "/assessment",
+      "slaNote": "Same-day phone callback on weekdays (before 4 PM). Site visit within 48 hours inside Guwahati city limits."
     },
     "googleReviews": {
       "eyebrow": "Google reviews",
@@ -356,7 +357,13 @@
       "services": [
         "waterproofing",
         "expansion-joints"
-      ]
+      ],
+      "caseStudy": true,
+      "challenge": "48-unit society on Beltola — three monsoons of ceiling stains on top-floor flats. Previous contractor had applied single-coat acrylic without slope or parapet detail.",
+      "solution": "Removed failed layers, corrected terrace slope to drains, double-coat PU membrane, parapet upturn, penetration seals, and 24-hour flood test before handover.",
+      "beforeSummary": "Standing water on terrace; damp patches on 4th–5th floor ceilings after every rain.",
+      "afterSummary": "Zero leak complaints through monsoon 2024. Society received written warranty and drain maintenance checklist.",
+      "body": "The RWA board wanted a fixed per-sq-ft quote over WhatsApp. We insisted on flood test first — water was entering at pipe collars and a reversed slope pocket near the lift machine room.\n\nPhased work over 12 days: drain clearance, screed correction, membrane, protection course. Expansion joints between blocks resealed in the same contract.\n\nThis is the job type Rehabari applicators underbid — and the reason we publish photos, not just logos."
     },
     {
       "slug": "chandmari-apartment-complex",
@@ -371,7 +378,13 @@
       "services": [
         "pu-injection",
         "waterproofing"
-      ]
+      ],
+      "caseStudy": true,
+      "challenge": "Active water ingress through slab joints — 12 flats with bathroom and bedroom stains. Prior PU injection failed because cracks were still moving.",
+      "solution": "Crack mapping, low-pressure PU injection at active leaks, expansion joint reseal, bathroom membrane at two worst units.",
+      "beforeSummary": "Inter-floor seepage; residents using buckets during heavy rain.",
+      "afterSummary": "Dry ceilings through peak monsoon. PU injection points documented for future monitoring.",
+      "body": "SS Water Proofing-style quick injection without mapping had failed twice. We mapped movement first, injected in stages, flood-tested bathrooms before tiles.\n\nHomeowners got a one-page diagnosis — not a verbal 'all fixed'."
     },
     {
       "slug": "hpcl-regional-facility",
@@ -402,7 +415,13 @@
         "epoxy-injection",
         "carbon-fibre",
         "ndt"
-      ]
+      ],
+      "caseStudy": true,
+      "challenge": "Diagonal cracks on multiple columns after tremors — occupancy audit required NDT proof and repair design before continued use.",
+      "solution": "Crack mapping, UPV and rebound hammer screening, epoxy injection on dry cracks, CFRP wrap on critical columns, handover NDT report.",
+      "beforeSummary": "Visible column cracks; audit flagged structural concern for staff occupancy.",
+      "afterSummary": "Structural clearance for continued occupancy. Strengthened members documented with before/after photos and test results.",
+      "body": "Not every crack needed CFRP — we classified cosmetic plaster separately from through-column cracks. That honesty saved the department budget and built trust.\n\nPDCE-style testing plus execution in one contract — no consultant-to-contractor handoff delay."
     },
     {
       "slug": "industrial-warehouse-paltan-bazar",
@@ -425,13 +444,19 @@
       "location": "GS Road, Guwahati",
       "year": 2024,
       "scope": "Podium waterproofing and parking expansion joint treatment",
-      "featured": false,
+      "featured": true,
       "image": "images/projects/gs-road-commercial-block/hero.webp",
       "outcome": "Dry parking level through monsoon",
       "services": [
         "waterproofing",
         "expansion-joints"
-      ]
+      ],
+      "caseStudy": true,
+      "challenge": "Stilt parking flooded every monsoon — water through podium expansion joints and ramp entrance. Shop tenants threatened rent withholding.",
+      "solution": "Podium flood test, joint sealant replacement, waterproof coating on podium slab, ramp water-stop detail.",
+      "beforeSummary": "Parking unusable during storms; efflorescence on columns at parking level.",
+      "afterSummary": "Dry parking through monsoon. Joint treatment scheduled on 3-year society maintenance calendar.",
+      "body": "Society managers often treat parking leaks as 'not structural'. We tied joint failure to column exposure — rust risk if ignored.\n\nPhased parking closure on weekends only — tenants could still operate weekdays."
     },
     {
       "slug": "six-mile-school-campus",
@@ -461,7 +486,13 @@
       "services": [
         "waterproofing",
         "heatproofing"
-      ]
+      ],
+      "caseStudy": true,
+      "challenge": "Guest rooms on the top two floors reported leaks every monsoon — online reviews mentioned damp smell. Hotel could not strip all rooms during peak season.",
+      "solution": "Phased terrace PU membrane by wing, heat-reflective top coat, drain redesign, and night-only work on occupied floors.",
+      "beforeSummary": "Terrace ponding; guest complaints and booking impact each May–September.",
+      "afterSummary": "Leak tickets dropped to zero post-monsoon. Management uses our photo log for annual maintenance planning.",
+      "body": "Hotels cannot close during tourist season. We worked in zones — flood test each section before membrane, heat-reflective coat to cut AC load on top floor.\n\nCompetitors offered acrylic re-coat in two days. We mapped leak paths first; active cracks got PU injection before membrane."
     },
     {
       "slug": "noonmati-housing-retrofit",
@@ -470,13 +501,19 @@
       "location": "Noonmati, Guwahati",
       "year": 2022,
       "scope": "CFRP column wrap and micro concreting on honeycombed columns",
-      "featured": false,
+      "featured": true,
       "image": "images/projects/noonmati-housing-retrofit/hero.webp",
       "outcome": "NDT strength targets met post-repair",
       "services": [
         "carbon-fibre",
         "micro-concreting"
-      ]
+      ],
+      "caseStudy": true,
+      "challenge": "Honeycombed columns and low UPV readings in a 1990s walk-up — owners feared earthquake risk but did not want bulky steel jackets.",
+      "solution": "NDT screening, micro concreting for voids, CFRP column wrap on deficient members, re-test after cure.",
+      "beforeSummary": "Hollow-sounding columns; visible honeycomb; NDT below target on two ground-floor members.",
+      "afterSummary": "Post-repair UPV met agreed targets. Owners received diagnosis pack and 10-year workmanship warranty on wrap.",
+      "body": "Retrofit without eviction — CFRP kept column size nearly unchanged. Alternative steel jacket quotes were rejected by owners for space and appearance.\n\nWe beat Avicon on speed for a small residential job they would spec but rarely photograph."
     },
     {
       "slug": "bhangagarh-hospital-basement",
@@ -665,7 +702,19 @@
       ],
       "ctaMessage": "Seen a crack? Don't wait for the next tremor. Call us for a free consultation — we'll tell you honestly if it's serious.",
       "seoTitle": "Building retrofitting in Guwahati",
-      "seoHeadline": "Building retrofitting in Guwahati"
+      "seoHeadline": "Building retrofitting in Guwahati",
+      "warranty": {
+        "term": "10 years on specified structural repair",
+        "covers": [
+          "CFRP wrap, jacketing, epoxy injection, and grouting executed under our design",
+          "Workmanship defect in materials we supplied and installed"
+        ],
+        "voids": [
+          "New loading, illegal construction, or unapproved structural changes after handover",
+          "Corrosion progression where client declined recommended member treatment",
+          "Cosmetic plaster cracks unrelated to treated structural members"
+        ]
+      }
     },
     {
       "slug": "waterproofing",
@@ -746,7 +795,19 @@
       ],
       "ctaMessage": "Monsoon is coming. Fix the leak now — not after your ceiling collapses.",
       "seoTitle": "Waterproofing in Guwahati",
-      "seoHeadline": "Waterproofing in Guwahati"
+      "seoHeadline": "Waterproofing in Guwahati",
+      "warranty": {
+        "term": "5 years",
+        "covers": [
+          "Membrane failure at treated terrace, bathroom, or basement areas we completed",
+          "Leak recurrence at detailed penetrations, parapet upturns, and drains included in scope"
+        ],
+        "voids": [
+          "New cracks from structural movement or earthquake damage after handover",
+          "Third-party damage, tile breaking, or drain blockage by others",
+          "Areas outside agreed scope or where client declined recommended prep work"
+        ]
+      }
     },
     {
       "slug": "ndt",
@@ -2488,5 +2549,52 @@
       ],
       "ctaMessage": "Seen a crack? Book structural assessment before monsoon water reaches the steel."
     }
-  ]
+  ],
+  "inspectionSla": {
+    "headline": "Guwahati inspection SLA",
+    "callback": "Same-day phone callback on weekdays (before 4 PM)",
+    "visit": "Site visit within 48 hours inside Guwahati city limits",
+    "note": "Emergency active leaks — call; we prioritise PU stop-leak when water is entering living spaces."
+  },
+  "diagnosisPack": {
+    "name": "Written Diagnosis Pack",
+    "tagline": "What Avicon specs on paper — we give homeowners in plain language.",
+    "includes": [
+      "Site photos of the problem area",
+      "Crack classification: cosmetic vs structural",
+      "Moisture / leak path summary (where water is travelling)",
+      "Recommended system (membrane, PU, epoxy, CFRP, NDT, or monitor)",
+      "Written warranty term for the proposed work",
+      "Clear next step: repair now, phased plan, or no action needed"
+    ],
+    "ctaLabel": "Book free inspection",
+    "ctaHref": "/contact#inspection-form"
+  },
+  "partnerCredentials": {
+    "headline": "Construction chemical systems",
+    "intro": "We specify and apply recognised waterproofing and repair systems — not generic acrylic paint.",
+    "applicationNote": "Fosroc applicator application in progress. Until approved, we continue with manufacturer-specified systems on every job.",
+    "badges": [
+      {
+        "name": "Fosroc",
+        "status": "pending",
+        "label": "Applicator application in progress"
+      },
+      {
+        "name": "Sika",
+        "status": "planned",
+        "label": "Planned applicator partnership"
+      },
+      {
+        "name": "Dr. Fixit",
+        "status": "systems",
+        "label": "Pidilite systems where specified"
+      }
+    ]
+  },
+  "portfolioIntro": {
+    "eyebrow": "Executed work",
+    "headline": "Before monsoon — after repair",
+    "sub": "Six Guwahati jobs: terrace leaks, column cracks, PU injection, and society expansion joints."
+  }
 }

@@ -35,6 +35,7 @@ const earthquakesSeo = loadJson('earthquakes-seo.json') || {};
 const serviceCategoriesExt = loadJson('service-categories.json') || {};
 const seoOverrides = loadJson('seo-overrides.json') || {};
 const localLandingsExt = loadJson('local-landings.json') || {};
+const competitiveExt = loadJson('competitive.json') || {};
 
 const merged = {
   ...base,
@@ -173,6 +174,31 @@ if (Object.keys(categoryMap).length) {
 }
 if (merged.nav) {
   merged.nav = merged.nav.filter((item) => item.href !== '/services' && item.label !== 'Services');
+}
+
+if (competitiveExt.inspectionSla) {
+  merged.inspectionSla = competitiveExt.inspectionSla;
+  if (merged.homeSections?.inspectionCta) {
+    merged.homeSections.inspectionCta.slaNote =
+      `${competitiveExt.inspectionSla.callback}. ${competitiveExt.inspectionSla.visit}.`;
+  }
+}
+if (competitiveExt.diagnosisPack) merged.diagnosisPack = competitiveExt.diagnosisPack;
+if (competitiveExt.partnerCredentials) merged.partnerCredentials = competitiveExt.partnerCredentials;
+if (competitiveExt.portfolioIntro) merged.portfolioIntro = competitiveExt.portfolioIntro;
+
+if (competitiveExt.serviceWarranty) {
+  for (const page of merged.servicePages || []) {
+    const warranty = competitiveExt.serviceWarranty[page.slug];
+    if (warranty) page.warranty = warranty;
+  }
+}
+
+if (competitiveExt.projectCaseStudies && merged.projects?.length) {
+  merged.projects = merged.projects.map((project) => {
+    const extra = competitiveExt.projectCaseStudies[project.slug];
+    return extra ? { ...project, ...extra } : project;
+  });
 }
 
 fs.writeFileSync(contentPath, `${JSON.stringify(merged, null, 2)}\n`);

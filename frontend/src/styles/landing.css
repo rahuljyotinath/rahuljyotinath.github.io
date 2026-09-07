@@ -1435,3 +1435,100 @@ body.app-ready #hero-prerender {
 .local-seo-links a:hover {
   color: var(--text);
 }
+
+.diagnosis-pack {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 1px solid var(--line-solid);
+  background: var(--bg-2);
+}
+
+.diagnosis-pack--compact {
+  margin-top: 1.5rem;
+}
+
+.diagnosis-pack-tagline {
+  color: var(--muted);
+  margin: 0.5rem 0 1rem;
+}
+
+.diagnosis-pack-sla,
+.diagnosis-pack-includes {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+}
+
+.diagnosis-pack-sla li,
+.diagnosis-pack-includes li {
+  margin-bottom: 0.35rem;
+}
+
+.service-warranty {
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  border: 1px solid var(--line-solid);
+}
+
+.service-warranty h3 {
+  font-size: 0.95rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.service-warranty ul {
+  padding-left: 1.25rem;
+}
+
+.partner-badges {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.partner-badges-intro,
+.partner-badges-note {
+  color: var(--muted);
+  max-width: 42rem;
+}
+
+.partner-badges-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 1.25rem 0;
+}
+
+.partner-badge {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--line-solid);
+  min-width: 9rem;
+}
+
+.partner-badge span {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.project-before-after {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin: 1.5rem 0;
+}
+
+.project-case-badge {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.portfolio-intro {
+  padding-bottom: 0;
+}

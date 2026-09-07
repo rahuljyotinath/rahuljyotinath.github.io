@@ -53,7 +53,8 @@ RewriteRule ^waterproofing-experts/?$ /services/waterproofing [R=301,L]
 
 RewriteRule ^expansion-joint-treatment/?$ /services/expansion-joints [R=301,L]
 
-RewriteRule ^as/?(.*)$ /$1 [R=301,L]
+RewriteRule ^as/(.*)$ /$1 [R=301,L]
+RewriteRule ^as$ / [R=301,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

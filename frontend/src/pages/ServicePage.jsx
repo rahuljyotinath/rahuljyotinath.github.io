@@ -1,6 +1,8 @@
 import { useOutletContext, useParams } from 'react-router-dom';
 import LocalizedLink from '../components/LocalizedLink';
 import SectionHead from '../components/SectionHead';
+import ServiceWarranty from '../components/ServiceWarranty';
+import DiagnosisPackSection from '../components/DiagnosisPackSection';
 import usePageTitle from '../hooks/usePageTitle';
 import { buildServicePageTitle } from '../lib/pageTitle';
 
@@ -77,6 +79,10 @@ export default function ServicePage() {
             </article>
           ))}
         </div>
+
+        <ServiceWarranty warranty={page.warranty} />
+
+        <DiagnosisPackSection pack={content.diagnosisPack} sla={content.inspectionSla} compact />
 
         <div className="service-cta">
           {page.ctaMessage && <p className="service-cta-message">{page.ctaMessage}</p>}

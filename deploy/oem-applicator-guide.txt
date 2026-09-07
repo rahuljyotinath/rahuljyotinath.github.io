@@ -1,0 +1,40 @@
+Fosroc / Sika applicator — application guide for 91SkylineWorks
+================================================================
+
+Why: SCS (Beharbari) ranks on Maps partly because they are a listed Fosroc/Sika/Hilti applicator. Match the badge, keep our diagnosis-first story.
+
+Priority: Fosroc first (waterproofing + repair overlap), Sika second.
+
+Before you apply
+----------------
+- 20+ GBP photos uploaded (site work, terrace, column repair, team)
+- 3+ case studies live on https://91skylineworks.com/portfolio
+- Written diagnosis pack offered on every inspection (site already live)
+- Company docs: GST, MSME, company registration
+
+Fosroc India — applicator / applicator contractor
+-------------------------------------------------
+1. Contact Fosroc India NE regional office or via https://www.fosroc.com/india/
+2. Ask for: "Authorised applicator" or "Applicator contractor" for waterproofing and concrete repair in Guwahati
+3. Provide: company profile, 3 project references (Beltola terrace, Dispur column, GS Road joints), photos, insurance if available
+4. Once approved: add badge to GBP, About page, and proposal PDFs
+
+Sika India — authorised applicator
+----------------------------------
+1. Contact via https://ind.sika.com/en/applicator.html or regional sales
+2. AKJ Engineers (akjengineers.in) is existing Sika distributor in Guwahati — ask if subcontractor applicator partnership is possible
+3. Target: listed on Sika applicator finder for Assam
+
+Dr. Fixit (Pidilite)
+--------------------
+- Dealer/applicator via 1800 209 5504
+- Useful for homeowner terrace jobs; less structural retrofit credibility than Fosroc/Sika
+
+After approval — site updates
+-----------------------------
+1. Update backend/src/seed/extensions/competitive.json partnerCredentials badges (status: active)
+2. Add logo images to frontend/public/images/partners/
+3. npm run release && FTP upload
+4. GBP: add "Uses Fosroc systems" or similar in description
+
+Timeline: allow 4–8 weeks for OEM approval. Continue all jobs with manufacturer-spec systems regardless.
